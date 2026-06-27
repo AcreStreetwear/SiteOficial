@@ -1,0 +1,2320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ACRE STREETWEAR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Oswald:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+/* ============================================================
+   ACRE STREETWEAR — style.css  v6
+   ============================================================ */
+:root {
+  --preto:    #0d0d0d;
+  --esc1:     #161616;
+  --esc2:     #202020;
+  --esc3:     #2a2a2a;
+  --esc4:     #363636;
+  --branco:   #ffffff;
+  --off:      #f0f0eb;
+  --cinza:    #888;
+  --cinza2:   #555;
+  --primaria: #15803d;
+  --prim2:    #166534;
+  --neon:     #4ade80;
+  --neon-bg:  rgba(74,222,128,.12);
+  --neon-glow:rgba(74,222,128,.45);
+  --wpp:      #25d366;
+  --vermelho: #ef4444;
+  --r:   8px;
+  --rl:  14px;
+  --rx:  20px;
+  --t:   .22s ease;
+  --ts:  .35s ease;
+}
+
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0 }
+html  { scroll-behavior:smooth; font-size:16px }
+body  { font-family:'Oswald',system-ui,sans-serif; background:var(--preto); color:var(--branco); line-height:1.6; overflow-x:hidden }
+a     { color:inherit; text-decoration:none }
+ul    { list-style:none }
+img   { display:block; max-width:100%; object-fit:cover }
+button{ cursor:pointer; border:none; font-family:inherit; background:none }
+input,select,textarea { font-family:inherit }
+button:focus-visible,a:focus-visible,[tabindex]:focus-visible {
+  outline:2px solid var(--neon); outline-offset:3px; border-radius:4px;
+}
+
+.container { max-width:1280px; margin:0 auto; padding:0 1.5rem }
+.w100 { width:100% }
+.flex1 { flex:1 }
+
+/* ── BOTÕES ── */
+.btn-prim {
+  background: linear-gradient(135deg, var(--primaria), var(--prim2));
+  color:#fff; padding:.75rem 1.6rem; border-radius:var(--r);
+  font-weight:700; font-size:.88rem; letter-spacing:.06em;
+  display:inline-flex; align-items:center; justify-content:center; gap:.45rem;
+  transition:box-shadow var(--t),transform var(--t);
+  box-shadow:0 2px 12px rgba(21,128,61,.35);
+}
+.btn-prim:hover { box-shadow:0 0 28px var(--neon-glow); transform:translateY(-2px) }
+.btn-prim:active { transform:translateY(0) }
+.btn-prim.sm { font-size:.75rem; padding:.32rem .7rem }
+
+.btn-sec {
+  background:transparent; border:1px solid var(--esc4); color:var(--branco);
+  padding:.72rem 1.5rem; border-radius:var(--r); font-weight:500;
+  display:inline-flex; align-items:center; justify-content:center; gap:.4rem;
+  transition:border-color var(--t),color var(--t);
+}
+.btn-sec:hover { border-color:var(--neon); color:var(--neon) }
+
+.btn-ghost {
+  background:transparent; border:1px solid var(--esc4); color:var(--branco);
+  padding:.72rem 1rem; border-radius:var(--r);
+  transition:border-color var(--t),color var(--t),background var(--t);
+}
+.btn-ghost:hover,.btn-ghost.ativo { border-color:var(--vermelho); color:var(--vermelho); background:rgba(239,68,68,.06) }
+
+.btn-branco {
+  background:rgba(255,255,255,.08); border:1.5px solid rgba(255,255,255,.3); color:#fff;
+  padding:.75rem 1.6rem; border-radius:var(--r); font-weight:600;
+  display:inline-flex; align-items:center; justify-content:center; gap:.4rem;
+  transition:background var(--t),border-color var(--t);
+  backdrop-filter:blur(4px);
+}
+.btn-branco:hover { background:rgba(255,255,255,.15); border-color:rgba(255,255,255,.6) }
+
+.btn-contorno {
+  background:transparent; border:1.5px solid var(--primaria); color:var(--primaria);
+  padding:.65rem 1.8rem; border-radius:30px; font-weight:600;
+  display:inline-flex; align-items:center; justify-content:center; gap:.4rem;
+  transition:all var(--t);
+}
+.btn-contorno:hover { background:var(--primaria); color:#fff; box-shadow:0 0 20px var(--neon-glow) }
+
+.btn-wpp {
+  background:var(--wpp); color:#fff; padding:.82rem 1.6rem; border-radius:var(--r);
+  font-weight:700; display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+  transition:background var(--t),box-shadow var(--t),transform var(--t);
+}
+.btn-wpp:hover { background:#1ebe5d; box-shadow:0 0 24px rgba(37,211,102,.4); transform:translateY(-1px) }
+
+.btn-copiar {
+  background:var(--primaria); color:#fff; padding:.5rem .9rem; border-radius:var(--r);
+  font-size:.82rem; font-weight:600; display:inline-flex; align-items:center; gap:.3rem;
+  flex-shrink:0; transition:background var(--t);
+}
+.btn-copiar:hover { background:var(--prim2) }
+
+.btn-voltar {
+  display:inline-flex; align-items:center; gap:.5rem; color:var(--cinza);
+  font-size:.88rem; margin-bottom:1.5rem; padding:.4rem 0; transition:color var(--t);
+}
+.btn-voltar:hover { color:var(--branco) }
+
+@keyframes gradMove { 0%{background-position:0%} 100%{background-position:200%} }
+
+/* ── HEADER ── */
+#header {
+  position:sticky; top:0; z-index:900;
+  background:rgba(13,13,13,.92); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  transition:box-shadow var(--t);
+}
+#header.rolado { box-shadow:0 2px 30px rgba(0,0,0,.7) }
+
+.navbar { display:flex; align-items:center; gap:.8rem; padding:0 1.5rem; height:96px }
+.nav-acoes { display:flex; align-items:center; gap:.4rem; flex-shrink:0; margin-left:auto }
+
+/* Logo */
+.logo-link { display:flex; align-items:center; flex-shrink:0 }
+.logo-img  { height:78px; width:auto; object-fit:contain; filter:drop-shadow(0 0 8px rgba(74,222,128,.35)) }
+.logo-texto {
+  font-family:'Black Ops One',sans-serif; font-size:1.5rem; letter-spacing:.06em; white-space:nowrap;
+}
+.logo-texto span { color:var(--neon) }
+
+/* Nav links */
+.nav-links { display:flex; gap:.1rem; flex:1; justify-content:center; flex-wrap:wrap }
+.nav-links li a {
+  padding:.42rem .75rem; font-size:.82rem; font-weight:500; border-radius:var(--r);
+  color:var(--cinza); white-space:nowrap; transition:color var(--t),background var(--t);
+}
+.nav-links li a:hover { color:#fff; background:rgba(255,255,255,.07) }
+.nav-modus { color:var(--neon) !important; font-weight:700 !important }
+.nav-modus:hover { background:var(--neon-bg) !important }
+
+.hamburger {
+  display:none; color:#fff; font-size:1.2rem; padding:.45rem;
+  border-radius:var(--r); transition:color var(--t); flex-shrink:0;
+}
+.hamburger:hover { color:var(--neon) }
+
+/* Busca desktop */
+.busca-wrap { position:relative; display:flex; align-items:center }
+.busca-wrap input {
+  background:var(--esc2); border:1px solid var(--esc3);
+  border-radius:30px; padding:.42rem 2.4rem .42rem 1rem;
+  color:#fff; font-size:.82rem; width:175px;
+  outline:none; transition:width var(--t),border-color var(--t),box-shadow var(--t);
+}
+.busca-wrap input:focus { width:215px; border-color:var(--primaria); box-shadow:0 0 0 3px rgba(21,128,61,.18) }
+.busca-icone {
+  position:absolute; right:.65rem; color:var(--cinza); font-size:.82rem;
+  padding:.2rem; border-radius:50%; transition:color var(--t);
+}
+.busca-icone:hover { color:var(--neon) }
+
+/* Busca mobile */
+.busca-mobile {
+  display:none; align-items:center; padding:.5rem 1rem;
+  border-top:1px solid rgba(255,255,255,.07);
+  position:relative; overflow:hidden; max-height:0; transition:max-height .3s ease;
+}
+.busca-mobile.aberta { max-height:60px }
+.busca-mobile input {
+  width:100%; background:var(--esc2); border:1px solid var(--esc3);
+  border-radius:30px; padding:.5rem 2.4rem .5rem 1rem; color:#fff;
+  font-size:.88rem; outline:none; transition:border-color var(--t);
+}
+.busca-mobile input:focus { border-color:var(--primaria) }
+.busca-mobile i { position:absolute; right:1.7rem; color:var(--cinza); font-size:.82rem; pointer-events:none }
+
+.icon-btn {
+  color:var(--cinza); font-size:1rem; padding:.48rem; border-radius:var(--r);
+  position:relative; transition:color var(--t), background var(--t);
+}
+.icon-btn:hover { color:#fff; background:rgba(255,255,255,.06) }
+.cart-btn { position:relative }
+.badge {
+  position:absolute; top:-4px; right:-4px; background:var(--neon); color:#fff;
+  font-size:.62rem; font-weight:700; width:17px; height:17px;
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height:92vh; display:flex; align-items:center; padding:7rem 2rem 4rem;
+  position:relative; overflow:hidden;
+  background:
+    radial-gradient(ellipse at 70% 50%, rgba(21,128,61,.22), transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(74,222,128,.07), transparent 50%),
+    linear-gradient(180deg, var(--preto), var(--esc1));
+}
+.hero::before {
+  content:''; position:absolute; inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='50' height='50' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2315803d' fill-opacity='.045'%3E%3Cpolygon points='25,4 29,17 43,17 32,26 36,39 25,31 14,39 18,26 7,17 21,17'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none;
+}
+
+.hero-conteudo { max-width:580px; z-index:2; animation:aparecer .9s ease both }
+.eyebrow {
+  font-family:'Share Tech Mono',monospace; font-size:.74rem; letter-spacing:.25em;
+  text-transform:uppercase; color:var(--neon); margin-bottom:1rem;
+  display:flex; align-items:center; gap:.5rem;
+}
+.eyebrow::before { content:''; display:block; width:24px; height:2px; background:var(--neon); border-radius:2px }
+
+.hero-titulo {
+  font-family:'Black Ops One',sans-serif;
+  font-size:clamp(3.2rem, 9vw, 7rem); line-height:.95; letter-spacing:.01em;
+}
+.hero-sub { margin:1.5rem 0 2.4rem; font-size:1.05rem; color:var(--cinza); max-width:400px; line-height:1.7 }
+.hero-btns { display:flex; gap:.9rem; flex-wrap:wrap }
+
+.hero-deco { position:absolute; right:5%; top:50%; transform:translateY(-50%); pointer-events:none; z-index:1 }
+.circulo {
+  position:absolute; border-radius:50%;
+  animation:pulsarCirc 5s ease-in-out infinite;
+}
+.c1 {
+  width:420px; height:420px; top:-210px; left:-210px;
+  background:radial-gradient(circle, rgba(21,128,61,.28) 0%, transparent 70%);
+}
+.c2 {
+  width:280px; height:280px; top:-140px; left:-140px;
+  background:radial-gradient(circle, rgba(74,222,128,.16) 0%, transparent 70%);
+  animation-delay:.5s;
+}
+.deco-label {
+  position:absolute; top:10%; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center;
+}
+.deco-label span {
+  font-family:'Black Ops One',sans-serif; font-size:5rem; line-height:.92;
+  letter-spacing:.1em; color:rgba(255,255,255,.04); white-space:nowrap;
+}
+
+@keyframes aparecer  { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
+@keyframes pulsarCirc { 0%,100%{transform:scale(1);opacity:.7} 50%{transform:scale(1.1);opacity:1} }
+
+/* ── SEÇÃO ── */
+.secao { padding:4.5rem 0 }
+.secao-header { margin-bottom:1.8rem }
+.titulo-sec { font-family:'Black Ops One',sans-serif; font-size:1.8rem; letter-spacing:.03em }
+
+/* ── CATEGORIAS ── */
+.cats-scroll {
+  display:grid; grid-template-columns:repeat(6,1fr); gap:1rem;
+}
+@media(max-width:900px) { .cats-scroll { grid-template-columns:repeat(3,1fr) } }
+@media(max-width:500px) { .cats-scroll { grid-template-columns:repeat(2,1fr) } }
+
+.cat-card {
+  background:var(--esc2); border:1px solid rgba(255,255,255,.06); border-radius:var(--rl);
+  padding:1.4rem .8rem; text-align:center; cursor:pointer;
+  transition:border-color var(--t),transform var(--t),box-shadow var(--t),background var(--t);
+  display:flex; flex-direction:column; align-items:center; gap:.5rem;
+}
+.cat-card:hover {
+  border-color:var(--primaria); transform:translateY(-4px);
+  box-shadow:0 10px 30px rgba(21,128,61,.22); background:rgba(21,128,61,.07);
+}
+.cat-icon { font-size:2rem }
+.cat-card span { font-weight:600; font-size:.88rem }
+.cat-card small { font-size:.72rem; color:var(--cinza) }
+.modus-card {
+  background:linear-gradient(135deg,rgba(21,128,61,.14),rgba(74,222,128,.06));
+  border-color:rgba(21,128,61,.4) !important;
+}
+.modus-card .cat-icon {
+  font-size:1.5rem; color:var(--neon);
+  text-shadow:0 0 20px var(--neon-glow);
+}
+.modus-card span { color:var(--neon); font-weight:700 }
+
+/* ── FILTROS ── */
+.prod-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.8rem; flex-wrap:wrap; gap:1rem }
+.filtros-bar { display:flex; align-items:center; gap:.7rem }
+.filtros-bar select {
+  background:var(--esc2); border:1px solid var(--esc3); color:#fff;
+  padding:.42rem .88rem; border-radius:var(--r); font-size:.83rem;
+  outline:none; cursor:pointer; transition:border-color var(--t);
+}
+.filtros-bar select:focus { border-color:var(--primaria) }
+.toggle-view { display:flex; gap:.28rem }
+.toggle-view button {
+  background:var(--esc2); color:var(--cinza); border:1px solid var(--esc3);
+  padding:.4rem .62rem; border-radius:var(--r); font-size:.83rem; transition:all var(--t);
+}
+.toggle-view button.ativo { background:var(--primaria); color:#fff; border-color:var(--primaria); box-shadow:0 0 12px rgba(21,128,61,.4) }
+
+/* ── GRADE / LISTA ── */
+.grade { display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; margin-bottom:2rem }
+.lista { display:flex; flex-direction:column; gap:.9rem; margin-bottom:2rem }
+.ver-mais-wrap { display:flex; justify-content:center; padding:1rem 0 }
+
+.vazio-estado {
+  grid-column:1/-1; text-align:center; color:var(--cinza);
+  padding:5rem 1rem; display:flex; flex-direction:column; align-items:center; gap:1rem;
+}
+.vazio-estado i { font-size:3rem; opacity:.25 }
+
+/* ── CARD GRADE ── */
+.card {
+  background:var(--esc2); border-radius:var(--rl); overflow:hidden;
+  border:1px solid rgba(255,255,255,.06); cursor:pointer;
+  transition:transform var(--ts),box-shadow var(--ts),border-color var(--ts);
+}
+.card:hover {
+  transform:translateY(-5px);
+  box-shadow:0 16px 40px rgba(0,0,0,.65),0 0 0 1px rgba(21,128,61,.25);
+  border-color:rgba(21,128,61,.4);
+}
+.card-img { position:relative; aspect-ratio:3/4; overflow:hidden; background:var(--esc3) }
+.card-img img { height:100%; width:100%; object-fit:cover; transition:transform .5s ease,opacity .12s ease }
+.card:hover .card-img img { transform:scale(1.07) }
+
+.prod-badge { position:absolute; top:.6rem; left:.6rem; background:var(--primaria); color:#fff; font-size:.63rem; font-weight:700; padding:.22rem .55rem; border-radius:30px; text-transform:uppercase; z-index:2; box-shadow:0 2px 8px rgba(0,0,0,.3) }
+.badge-desc { position:absolute; top:.6rem; right:.6rem; background:var(--vermelho); color:#fff; font-size:.65rem; font-weight:700; padding:.2rem .48rem; border-radius:30px; z-index:2 }
+.tag-novo { position:absolute; bottom:.6rem; left:.6rem; background:var(--neon); color:#0d0d0d; font-size:.6rem; font-weight:700; padding:.18rem .48rem; border-radius:30px; z-index:2; box-shadow:0 0 10px rgba(74,222,128,.5) }
+.tag-modus { position:absolute; bottom:.6rem; right:.6rem; background:rgba(21,128,61,.92); color:#fff; font-size:.6rem; font-weight:700; padding:.18rem .48rem; border-radius:3px; z-index:2; letter-spacing:.1em; border:1px solid rgba(74,222,128,.3) }
+
+.card-hover {
+  position:absolute; bottom:0; left:0; right:0;
+  background:linear-gradient(transparent, rgba(0,0,0,.78));
+  padding:3rem .75rem .75rem; display:flex; gap:.4rem; align-items:center;
+  opacity:0; transform:translateY(8px);
+  transition:opacity var(--t),transform var(--t); z-index:3;
+}
+.card:hover .card-hover { opacity:1; transform:translateY(0) }
+
+.btn-rapido {
+  flex:1; background:rgba(255,255,255,.95); color:var(--preto); border-radius:var(--r);
+  padding:.48rem; font-size:.76rem; font-weight:700; display:flex; align-items:center;
+  justify-content:center; gap:.3rem; transition:background var(--t);
+}
+.btn-rapido:hover { background:#fff }
+
+.btn-fav {
+  background:rgba(0,0,0,.55); color:#fff; border-radius:var(--r);
+  padding:.48rem .6rem; font-size:.85rem; border:1px solid rgba(255,255,255,.15);
+  transition:color var(--t),background var(--t),border-color var(--t);
+}
+.btn-fav:hover,.btn-fav.ativo { color:var(--vermelho); border-color:rgba(239,68,68,.4); background:rgba(239,68,68,.1) }
+
+.card-info { padding:.9rem }
+.card-marca { font-size:.68rem; color:var(--neon); font-weight:600; letter-spacing:.1em; text-transform:uppercase; margin-bottom:.2rem }
+.card-info h3 { font-size:.9rem; font-weight:600; margin-bottom:.5rem; line-height:1.3 }
+
+.cor-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:.5rem; min-height:22px; gap:.4rem }
+.cor-nome { font-size:.7rem; color:var(--cinza); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex-shrink:1 }
+.dots { display:flex; gap:.28rem; flex-wrap:wrap; flex-shrink:0 }
+.dot {
+  width:15px; height:15px; border-radius:50%; border:2px solid rgba(255,255,255,.08);
+  outline:2px solid transparent; outline-offset:1px; cursor:pointer; flex-shrink:0;
+  transition:outline-color .15s,transform .15s,border-color .15s;
+}
+.dot.ativo { outline-color:var(--primaria); border-color:rgba(255,255,255,.5); transform:scale(1.25) }
+.dot:hover:not(.ativo) { outline-color:rgba(74,222,128,.6); transform:scale(1.12) }
+
+.preco-bloco { display:flex; align-items:baseline; gap:.4rem; flex-wrap:wrap; margin-bottom:.1rem }
+.preco-riscado { font-size:.75rem; color:var(--cinza); text-decoration:line-through }
+.preco-atual { font-size:1.05rem; font-weight:700 }
+
+/* ── CARD LISTA ── */
+.card-lista {
+  display:grid; grid-template-columns:130px 1fr auto;
+  background:var(--esc2); border-radius:var(--rl); overflow:hidden;
+  border:1px solid rgba(255,255,255,.06); cursor:pointer; align-items:center;
+  transition:border-color var(--t),box-shadow var(--t);
+}
+.card-lista:hover { border-color:rgba(21,128,61,.4); box-shadow:0 4px 20px rgba(0,0,0,.3) }
+.card-lista .card-img { aspect-ratio:1; height:130px }
+.card-lista-info { padding:.9rem .7rem }
+.card-desc-short { font-size:.78rem; color:var(--cinza); margin:.3rem 0; line-height:1.5 }
+.lista-tam { display:flex; gap:.3rem; margin-top:.45rem; flex-wrap:wrap }
+.lista-tam span { font-size:.68rem; border:1px solid var(--esc3); padding:.1rem .38rem; border-radius:3px; color:var(--cinza) }
+.card-lista-acoes { padding:.9rem; display:flex; flex-direction:column; align-items:flex-end; gap:.6rem; min-width:150px }
+.lista-preco { display:flex; flex-direction:column; align-items:flex-end; gap:.05rem; margin-bottom:.3rem }
+.lista-preco-mobile { display:none }
+.btn-fav-lista {
+  background:none; color:var(--cinza); font-size:.9rem;
+  transition:color var(--t);
+}
+.btn-fav-lista:hover,.btn-fav-lista.ativo { color:var(--vermelho) }
+
+/* ── BANNER ── */
+.banner {
+  background:linear-gradient(135deg, var(--esc1) 0%, rgba(21,128,61,.22) 100%);
+  border-top:1px solid rgba(21,128,61,.22); border-bottom:1px solid rgba(21,128,61,.22);
+  padding:5.5rem 2rem; text-align:center; position:relative; overflow:hidden;
+}
+.banner-inner { position:relative; z-index:2 }
+.banner-inner h2 {
+  font-family:'Black Ops One',sans-serif; font-size:clamp(2.5rem,6vw,5rem);
+  letter-spacing:.04em; margin:1rem 0 2rem; line-height:1.05;
+}
+.banner-deco { position:absolute; inset:0; pointer-events:none }
+.bd1 { position:absolute; width:320px; height:320px; border-radius:50%; filter:blur(70px); background:rgba(21,128,61,.2); top:-80px; left:-80px }
+.bd2 { position:absolute; width:420px; height:420px; border-radius:50%; filter:blur(80px); background:rgba(74,222,128,.1); bottom:-100px; right:-100px }
+
+/* ── DIFERENCIAIS ── */
+.dif-secao { background:var(--esc1); border-top:1px solid rgba(255,255,255,.06) }
+.dif-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem }
+.dif {
+  background:var(--esc2); border:1px solid rgba(255,255,255,.06); border-radius:var(--rl);
+  padding:2rem 1.2rem; text-align:center;
+  transition:border-color var(--t),transform var(--t);
+}
+.dif:hover { border-color:rgba(21,128,61,.35); transform:translateY(-2px) }
+.dif-icone {
+  width:52px; height:52px; border-radius:50%; background:var(--neon-bg);
+  border:1px solid rgba(74,222,128,.2); display:flex; align-items:center; justify-content:center;
+  margin:0 auto 1rem; font-size:1.4rem; color:var(--neon);
+}
+.dif h4 { font-size:.95rem; font-weight:700; margin-bottom:.45rem }
+.dif p  { font-size:.82rem; color:var(--cinza); line-height:1.55 }
+
+/* ── FOOTER ── */
+.footer { background:var(--esc1); border-top:1px solid rgba(255,255,255,.07); padding-top:3.5rem }
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:2.5rem; padding-bottom:2.5rem }
+.footer-marca .logo-img { height:32px; margin-bottom:.5rem }
+.footer-desc { font-size:.82rem; color:var(--cinza); margin:.7rem 0 .4rem; line-height:1.6 }
+.footer-local { font-size:.75rem; color:var(--primaria); margin-bottom:1rem; display:flex; align-items:center; gap:.3rem }
+.redes { display:flex; gap:.55rem; margin-top:.9rem }
+.redes a {
+  width:34px; height:34px; border-radius:50%; background:var(--esc2);
+  border:1px solid var(--esc3); display:flex; align-items:center; justify-content:center;
+  color:var(--cinza); font-size:.82rem; transition:all var(--t);
+}
+.redes a:hover { background:var(--primaria); color:#fff; border-color:var(--primaria); transform:translateY(-2px) }
+.footer-col h5 { font-size:.74rem; text-transform:uppercase; letter-spacing:.14em; margin-bottom:.9rem }
+.footer-col ul li { margin-bottom:.45rem }
+.footer-col ul li a { font-size:.82rem; color:var(--cinza); transition:color var(--t) }
+.footer-col ul li a:hover { color:var(--neon) }
+.footer-wpp { display:inline-flex; align-items:center; gap:.4rem; color:var(--wpp); font-size:.83rem; margin-top:.5rem; transition:opacity var(--t) }
+.footer-wpp:hover { opacity:.8 }
+.footer-pag { font-size:.75rem; color:var(--cinza2); margin-top:.8rem }
+.footer-rodape {
+  border-top:1px solid rgba(255,255,255,.06); padding:1.1rem 0;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.5rem;
+}
+.footer-rodape p { font-size:.75rem; color:var(--cinza2) }
+.footer-links { display:flex; gap:1.2rem }
+.footer-links a { font-size:.75rem; color:var(--cinza2); transition:color var(--t) }
+.footer-links a:hover { color:var(--neon) }
+
+/* ── PAINEL LATERAL ── */
+.painel-overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,.75); backdrop-filter:blur(6px);
+  z-index:1100; display:none; justify-content:flex-end; align-items:stretch;
+  opacity:0; transition:opacity var(--t);
+}
+.painel-overlay.aberto { opacity:1 }
+.painel {
+  background:var(--esc2); width:420px; max-width:100vw; display:flex; flex-direction:column;
+  border-left:1px solid rgba(255,255,255,.07); transform:translateX(100%);
+  transition:transform .3s cubic-bezier(.25,.8,.25,1);
+}
+.painel-overlay.aberto .painel { transform:translateX(0) }
+.painel-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.3rem 1.4rem; border-bottom:1px solid rgba(255,255,255,.07);
+}
+.painel-header h3 { font-size:1rem; font-weight:700; display:flex; align-items:center; gap:.5rem }
+.painel-header button { color:var(--cinza); font-size:1.05rem; padding:.35rem; border-radius:var(--r); transition:color var(--t),background var(--t) }
+.painel-header button:hover { color:#fff; background:rgba(255,255,255,.06) }
+.painel-body { flex:1; overflow-y:auto; padding:.9rem }
+.painel-footer { padding:1.1rem; border-top:1px solid rgba(255,255,255,.07); display:flex; flex-direction:column; gap:.65rem }
+.total-row { display:flex; justify-content:space-between; font-weight:700; padding-bottom:.3rem }
+.total-val { color:var(--neon); font-size:1.1rem }
+
+.painel-vazio {
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:5rem 1rem; gap:1rem; color:var(--cinza); text-align:center;
+}
+.painel-vazio i { font-size:3rem; opacity:.2 }
+
+.item-cart { display:grid; grid-template-columns:68px 1fr auto; gap:.75rem; align-items:start; padding:.75rem 0; border-bottom:1px solid rgba(255,255,255,.05) }
+.item-cart img { border-radius:var(--r); aspect-ratio:1; object-fit:cover }
+.item-nome { font-size:.85rem; font-weight:600; margin-bottom:.2rem; line-height:1.3 }
+.item-meta { font-size:.72rem; color:var(--cinza) }
+.item-bottom { display:flex; align-items:center; justify-content:space-between; margin-top:.45rem; gap:.5rem }
+.item-preco { font-weight:700; font-size:.88rem; color:var(--neon) }
+.remover { color:var(--cinza); font-size:.78rem; padding:.2rem; align-self:start; border-radius:var(--r); transition:color var(--t) }
+.remover:hover { color:var(--vermelho) }
+
+.qtd-ctrl { display:flex; align-items:center; gap:.45rem; background:var(--esc3); border-radius:var(--r); padding:.18rem .45rem }
+.qtd-ctrl button { color:#fff; font-size:1rem; width:20px; height:20px; display:flex; align-items:center; justify-content:center; border-radius:3px; transition:background var(--t) }
+.qtd-ctrl button:hover { background:var(--primaria) }
+.qtd-ctrl span { font-size:.83rem; font-weight:600; min-width:18px; text-align:center }
+.qtd-ctrl.mini { padding:.12rem .38rem }
+
+/* ── MODAL PRODUTO ── */
+.modal-overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,.82); backdrop-filter:blur(10px);
+  z-index:1100; display:none; align-items:center; justify-content:center; padding:1rem;
+  opacity:0; transition:opacity var(--t);
+}
+.modal-overlay.aberto { opacity:1 }
+.modal-box {
+  background:var(--esc2); border-radius:var(--rx); width:100%; max-width:880px;
+  position:relative; max-height:92vh; overflow-y:auto;
+  border:1px solid rgba(255,255,255,.08);
+  transform:scale(.95) translateY(20px); transition:transform .3s cubic-bezier(.25,.8,.25,1),opacity .3s ease;
+  opacity:0;
+}
+.modal-overlay.aberto .modal-box { transform:scale(1) translateY(0); opacity:1 }
+.modal-fechar { position:absolute; top:.9rem; right:.9rem; color:var(--cinza); font-size:1.05rem; padding:.35rem; border-radius:50%; z-index:5; transition:color var(--t),background var(--t) }
+.modal-fechar:hover { color:#fff; background:rgba(255,255,255,.1) }
+.modal-grid { display:grid; grid-template-columns:1fr 1fr }
+.modal-fotos { padding:1.4rem }
+.foto-main { border-radius:var(--r); overflow:hidden; aspect-ratio:3/4; background:var(--esc3); margin-bottom:.7rem }
+.foto-main img { height:100%; width:100%; object-fit:cover; transition:opacity .15s ease }
+.miniaturas { display:flex; gap:.4rem; flex-wrap:wrap }
+.miniaturas img { width:58px; height:58px; border-radius:var(--r); object-fit:cover; cursor:pointer; border:2px solid transparent; opacity:.6; transition:border-color var(--t),opacity var(--t) }
+.miniaturas img.ativa,.miniaturas img:hover { border-color:var(--primaria); opacity:1 }
+.modal-info { padding:1.8rem 1.8rem 1.8rem 1rem }
+.modal-info h2 { font-size:1.45rem; font-weight:700; margin-bottom:.7rem; line-height:1.25 }
+.modal-desc { font-size:.84rem; color:var(--cinza); line-height:1.7; margin-bottom:1.1rem }
+.modal-preco-bloco { margin-bottom:1.2rem }
+.preco-modal { font-size:1.6rem; font-weight:700; display:block }
+.opcao-grupo { margin-bottom:1.1rem }
+.opcao-grupo>label { display:block; font-size:.76rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; margin-bottom:.55rem; color:var(--off) }
+.qtd-grupo { display:flex; align-items:center; gap:1.2rem }
+.qtd-grupo>label { font-size:.76rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; margin:0 }
+.swatches { display:flex; gap:.45rem; flex-wrap:wrap }
+.swatch { width:26px; height:26px; border-radius:50%; border:2px solid transparent; cursor:pointer; outline:2px solid transparent; outline-offset:2px; transition:outline-color var(--t),transform var(--t) }
+.swatch.ativo,.swatch:hover { outline-color:var(--primaria); transform:scale(1.12) }
+.tam-btns { display:flex; gap:.4rem; flex-wrap:wrap }
+.tam { background:var(--esc3); border:1px solid rgba(255,255,255,.08); color:#fff; padding:.38rem .75rem; border-radius:var(--r); font-size:.83rem; font-weight:600; transition:all var(--t) }
+.tam.ativo,.tam:hover { border-color:var(--primaria); background:rgba(21,128,61,.18); color:var(--neon) }
+.modal-acoes { display:flex; gap:.6rem; margin-bottom:1.1rem }
+.garantias { display:flex; gap:.8rem; flex-wrap:wrap }
+.garantias span { font-size:.72rem; color:var(--cinza); display:flex; align-items:center; gap:.28rem }
+.garantias i { color:var(--neon); font-size:.75rem }
+
+/* ── PÁGINAS (checkout/sobre/termos) ── */
+.pagina-overlay {
+  position:fixed; inset:0; background:rgba(5,5,5,.97); backdrop-filter:blur(12px);
+  z-index:1200; display:none; overflow-y:auto;
+  opacity:0; transition:opacity .3s ease;
+}
+.pagina-overlay.aberta { opacity:1 }
+
+.pagina-wrap { max-width:1200px; margin:0 auto; padding:2rem 1.5rem; min-height:100vh; animation:aparecer .35s ease both }
+.pagina-estreita { max-width:900px }
+.pagina-titulo { font-family:'Black Ops One',sans-serif; font-size:1.9rem; letter-spacing:.06em; margin-bottom:1.8rem }
+
+/* Hero das páginas */
+.pagina-hero { padding:1.5rem 0 2.5rem; border-bottom:1px solid rgba(255,255,255,.07); margin-bottom:2.5rem }
+.pagina-titulo-grande { font-family:'Black Ops One',sans-serif; font-size:clamp(2.8rem,7vw,5rem); line-height:.92; letter-spacing:.03em; margin:.5rem 0 1rem }
+.pagina-titulo-grande em { font-style:normal; color:var(--neon); -webkit-text-stroke:1px var(--neon); text-shadow:0 0 30px var(--neon-glow) }
+.termos-data { font-size:.78rem; color:var(--cinza) }
+
+/* Checkout */
+.checkout-grid { display:grid; grid-template-columns:1fr 360px; gap:2rem; align-items:start }
+.checkout-esq {}
+.card-form { background:var(--esc2); border:1px solid rgba(255,255,255,.07); border-radius:var(--rl); padding:1.5rem; margin-bottom:1.3rem }
+.card-form h3 { font-size:.95rem; font-weight:700; margin-bottom:1.2rem; display:flex; align-items:center; gap:.5rem }
+.card-form h3 i { color:var(--neon) }
+.aviso-local { background:rgba(74,222,128,.08); border:1px solid rgba(74,222,128,.22); border-radius:var(--r); padding:.55rem .9rem; font-size:.78rem; color:var(--neon); margin-bottom:1rem; display:flex; align-items:center; gap:.5rem }
+.pix-passos { display:flex; flex-direction:column; gap:.6rem; margin-bottom:1.2rem }
+.pix-passo { display:flex; align-items:flex-start; gap:.65rem; font-size:.84rem; color:var(--off) }
+.pix-passo span { background:linear-gradient(135deg,var(--primaria),var(--neon)); color:#fff; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.7rem; font-weight:700; flex-shrink:0; margin-top:.1rem }
+.pix-label { font-size:.74rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--cinza); margin-bottom:.5rem; display:block }
+.pix-row { display:flex; gap:.5rem }
+.pix-row input { flex:1; background:var(--esc3); border:1px solid rgba(255,255,255,.08); color:var(--cinza); padding:.5rem .75rem; border-radius:var(--r); font-size:.76rem; outline:none }
+
+/* Tabs pagamento */
+.pagto-tabs { display:flex; gap:.5rem; margin-bottom:1.2rem }
+.pagto-tab {
+  flex:1; display:flex; align-items:center; justify-content:center; gap:.45rem;
+  padding:.65rem; border-radius:var(--r); font-size:.85rem; font-weight:600;
+  border:1.5px solid var(--esc4); color:var(--cinza);
+  transition:all var(--t); cursor:pointer;
+}
+.pagto-tab:hover { border-color:var(--neon); color:var(--branco) }
+.pagto-tab.ativo { border-color:var(--primaria); background:rgba(21,128,61,.14); color:var(--branco) }
+.pagto-tab i { font-size:1rem }
+.pagto-painel { display:none }
+.pagto-painel.ativo { display:block }
+.cartao-aviso {
+  background:rgba(37,211,102,.07); border:1px solid rgba(37,211,102,.25);
+  border-radius:var(--r); padding:.7rem .9rem; font-size:.82rem; color:#4ade80;
+  display:flex; align-items:flex-start; gap:.5rem; margin-bottom:1rem; line-height:1.55;
+}
+
+.sticky-resumo { position:sticky; top:1rem }
+.resumo-box { background:var(--esc2); border:1px solid rgba(255,255,255,.07); border-radius:var(--rl); padding:1.5rem }
+.resumo-box h3 { font-size:.95rem; font-weight:700; margin-bottom:1.2rem }
+.resumo-item { display:grid; grid-template-columns:46px 1fr auto; gap:.55rem; align-items:center; margin-bottom:.8rem; padding-bottom:.8rem; border-bottom:1px solid rgba(255,255,255,.05) }
+.resumo-item img { border-radius:var(--r); aspect-ratio:1; object-fit:cover }
+.resumo-item p { font-size:.82rem; font-weight:600 }
+.resumo-item small { font-size:.7rem; color:var(--cinza) }
+.resumo-item span { font-size:.84rem; font-weight:700; white-space:nowrap }
+.resumo-linha { display:flex; justify-content:space-between; font-size:.84rem; color:var(--cinza); margin-bottom:.5rem }
+.resumo-total { display:flex; justify-content:space-between; font-weight:700; font-size:1.1rem; margin:1rem 0; padding-top:.8rem; border-top:1px solid rgba(255,255,255,.08) }
+.wpp-dica { font-size:.74rem; color:var(--cinza); text-align:center; margin-top:.6rem; line-height:1.5 }
+.seguro { display:flex; align-items:center; justify-content:center; gap:.4rem; font-size:.72rem; color:var(--cinza); margin-top:.75rem }
+.seguro i { color:var(--neon) }
+
+/* Sobre nós */
+.sobre-conteudo { padding-bottom:4rem }
+.sobre-grid { display:grid; grid-template-columns:1fr 260px; gap:3rem; margin-bottom:2.5rem; align-items:start }
+.sobre-texto h2 { font-family:'Black Ops One',sans-serif; font-size:1.6rem; letter-spacing:.05em; margin:1.5rem 0 .8rem; color:var(--branco) }
+.sobre-texto h2:first-child { margin-top:0 }
+.sobre-texto p { font-size:.9rem; color:var(--cinza); line-height:1.8; margin-bottom:1rem }
+.valores-lista { display:flex; flex-direction:column; gap:.6rem }
+.valores-lista li { display:flex; align-items:flex-start; gap:.6rem; font-size:.87rem; color:var(--cinza); line-height:1.55 }
+.valores-lista li i { color:var(--neon); font-size:.8rem; margin-top:.25rem; flex-shrink:0 }
+.valores-lista li strong { color:var(--branco) }
+.sobre-stats { display:grid; grid-template-columns:1fr 1fr; gap:.9rem }
+.stat { background:var(--esc2); border:1px solid rgba(255,255,255,.07); border-radius:var(--rl); padding:1.3rem; text-align:center; display:flex; flex-direction:column; gap:.3rem }
+.stat strong { font-family:'Black Ops One',sans-serif; font-size:1.75rem; color:var(--neon) }
+.stat span { font-size:.72rem; color:var(--cinza); text-transform:uppercase; letter-spacing:.1em }
+.sobre-quote { font-family:'Black Ops One',sans-serif; font-size:clamp(1.4rem,3.5vw,2.2rem); letter-spacing:.04em; color:var(--neon); text-align:center; padding:2rem; background:linear-gradient(135deg,rgba(21,128,61,.1),rgba(74,222,128,.05)); border:1px solid rgba(21,128,61,.25); border-radius:var(--rl); margin-bottom:2.5rem; font-style:normal }
+.sobre-cta { text-align:center }
+.sobre-cta p { font-size:.88rem; color:var(--cinza); margin-bottom:1rem }
+
+/* Termos */
+.termos-conteudo { display:flex; flex-direction:column; gap:0; padding-bottom:4rem }
+.termo-bloco { padding:2rem 0; border-bottom:1px solid rgba(255,255,255,.07) }
+.termo-bloco:last-child { border-bottom:none }
+.termo-bloco h3 { font-size:1.1rem; font-weight:700; margin-bottom:.9rem; display:flex; align-items:center; gap:.8rem }
+.termo-bloco h3 span { background:var(--primaria); color:#fff; font-size:.7rem; font-weight:700; padding:.2rem .5rem; border-radius:4px; font-family:'Share Tech Mono',monospace; letter-spacing:.05em; flex-shrink:0 }
+.termo-bloco p { font-size:.88rem; color:var(--cinza); line-height:1.8; margin-bottom:.7rem }
+.termo-bloco p:last-child { margin-bottom:0 }
+
+/* ── FORMS ── */
+.fg { margin-bottom:.9rem }
+.fg label { display:block; font-size:.8rem; font-weight:600; margin-bottom:.35rem; color:var(--off) }
+.fg input,.fg select {
+  width:100%; background:var(--esc3); border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r); color:#fff; padding:.7rem .9rem; font-size:.88rem;
+  outline:none; transition:border-color var(--t),box-shadow var(--t);
+}
+.fg input:focus,.fg select:focus { border-color:var(--primaria); box-shadow:0 0 0 3px rgba(21,128,61,.18) }
+
+/* ── TOAST ── */
+.toast {
+  position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(16px);
+  background:var(--esc2); border:1px solid rgba(21,128,61,.5); color:#fff;
+  padding:.75rem 1.6rem; border-radius:30px; font-size:.85rem; font-weight:500;
+  z-index:9999; opacity:0; transition:opacity .28s ease,transform .28s ease;
+  pointer-events:none; white-space:nowrap;
+  box-shadow:0 4px 24px rgba(0,0,0,.5), 0 0 0 1px rgba(74,222,128,.15);
+}
+.toast.show { opacity:1; transform:translateX(-50%) translateY(0) }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width:5px; height:5px }
+::-webkit-scrollbar-track { background:var(--preto) }
+::-webkit-scrollbar-thumb { background:var(--esc4); border-radius:99px }
+::-webkit-scrollbar-thumb:hover { background:var(--primaria) }
+
+/* ══ RESPONSIVE ══════════════════════════════════════════════ */
+@media(max-width:1100px){
+  .grade { grid-template-columns:repeat(3,1fr) }
+  .footer-grid { grid-template-columns:1fr 1fr; gap:2rem }
+  .checkout-grid { grid-template-columns:1fr }
+  .sticky-resumo { position:static }
+  .sobre-grid { grid-template-columns:1fr }
+  .sobre-stats { grid-template-columns:repeat(4,1fr) }
+}
+
+@media(max-width:900px){
+  .grade { grid-template-columns:repeat(2,1fr) }
+  .dif-grid { grid-template-columns:repeat(2,1fr) }
+  .modal-grid { grid-template-columns:1fr }
+  .modal-info { padding:1.3rem 1.5rem 1.5rem }
+  .hero { padding-top:4rem; padding-bottom:3rem }
+  .hero-deco { display:none }
+
+  /* Header mais compacto no celular */
+  .navbar { height:68px; padding:0 1rem; gap:.5rem }
+  .logo-img { height:46px }
+  .logo-texto { font-size:1.25rem }
+
+  /* Áreas de toque maiores (mín. 44px recomendado) */
+  .hamburger, .icon-btn, .busca-icone {
+    min-width:44px; min-height:44px;
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+
+  /* Menu mobile — posicionado relativo ao header (acompanha a altura real,
+     inclusive quando a busca mobile está aberta) em vez de um "top" fixo */
+  .nav-links {
+    position:absolute; top:100%; left:0; right:0;
+    background:rgba(20,20,20,.98); backdrop-filter:blur(20px);
+    padding:.8rem; flex-direction:column; gap:.1rem;
+    border-bottom:1px solid rgba(255,255,255,.07); display:none; z-index:850;
+    box-shadow:0 10px 30px rgba(0,0,0,.5);
+    max-height:calc(100vh - 100%); overflow-y:auto;
+  }
+  .nav-links.aberto { display:flex; animation:slideDown .25s ease }
+  .nav-links li a { padding:.85rem 1rem; border-radius:var(--r); font-size:.9rem; display:block }
+  .hamburger { display:flex }
+
+  /* Busca: esconde desktop, mostra ícone */
+  .busca-wrap input { display:none }
+  .busca-mobile { display:flex }
+}
+
+@media(max-width:640px){
+  .grade { grid-template-columns:1fr 1fr; gap:.7rem }
+  .dif-grid { grid-template-columns:1fr 1fr }
+  .footer-grid { grid-template-columns:1fr }
+  .painel { width:100vw }
+  .hero { padding:3.5rem 1rem 3rem }
+  .hero-titulo { font-size:3.4rem }
+  .hero-btns { flex-direction:column }
+  .hero-btns button { width:100% }
+  .sobre-stats { grid-template-columns:1fr 1fr }
+  .sobre-grid { gap:2rem }
+  .footer-rodape { flex-direction:column; text-align:center }
+  .footer-links { justify-content:center }
+  .card-lista { grid-template-columns:110px 1fr }
+  .card-lista-acoes { display:none }
+  .lista-preco-mobile { display:flex; align-items:baseline; gap:.4rem; flex-wrap:wrap; margin-top:.4rem }
+  .checkout-grid { grid-template-columns:1fr }
+  .modal-box { border-radius:var(--rl) var(--rl) 0 0; margin-top:auto; max-height:95vh }
+  .modal-overlay { align-items:flex-end; padding:0 }
+  .pagina-wrap { padding:1.2rem 1rem }
+}
+
+@keyframes slideDown {
+  from { opacity:0; transform:translateY(-8px) }
+  to   { opacity:1; transform:translateY(0) }
+}
+
+/* ── STREETWAR EXTRAS ── */
+body::after {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:9997;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:.018;
+}
+
+.hero-titulo em {
+  font-style:normal; color:var(--neon);
+  -webkit-text-stroke:1.5px var(--neon); text-shadow:0 0 60px var(--neon-glow), 0 0 120px rgba(74,222,128,.2);
+}
+
+.eyebrow { color:var(--neon); font-size:.72rem; letter-spacing:.3em }
+.eyebrow::before { background:var(--neon); box-shadow:0 0 8px var(--neon-glow) }
+
+.deco-label span {
+  font-family:'Black Ops One',sans-serif; font-size:5rem; line-height:.92;
+  letter-spacing:.1em; color:rgba(74,222,128,.04); white-space:nowrap;
+}
+
+.top-bar {
+  background: linear-gradient(90deg, #0f3d20, var(--primaria), #0f3d20);
+  background-size:200% auto; animation:gradMove 5s linear infinite;
+  text-align:center; padding:.4rem 1rem; font-size:.74rem; letter-spacing:.1em; font-weight:700;
+  text-transform:uppercase; border-bottom:1px solid rgba(74,222,128,.18);
+}
+
+.logo-texto {
+  font-family:'Black Ops One',sans-serif; font-size:1.65rem; letter-spacing:.14em; white-space:nowrap;
+}
+.logo-texto span { color:var(--neon); text-shadow:0 0 12px rgba(74,222,128,.5) }
+
+.hero-sub { margin:1.5rem 0 2.4rem; font-size:1.05rem; color:#aaa; max-width:420px; line-height:1.7; letter-spacing:.01em }
+
+.prod-badge { position:absolute; top:.6rem; left:.6rem; background:var(--primaria); color:#fff; font-size:.62rem; font-weight:700; padding:.22rem .55rem; border-radius:3px; text-transform:uppercase; z-index:2; box-shadow:0 2px 8px rgba(0,0,0,.4); letter-spacing:.08em }
+
+.card-marca { font-size:.68rem; color:var(--neon); font-weight:700; letter-spacing:.14em; text-transform:uppercase; margin-bottom:.2rem; text-shadow:0 0 8px rgba(74,222,128,.3) }
+
+.dif-icone {
+  width:52px; height:52px; border-radius:4px; background:rgba(21,128,61,.1);
+  border:1px solid rgba(74,222,128,.22); display:flex; align-items:center; justify-content:center;
+  margin:0 auto 1rem; font-size:1.4rem; color:var(--neon);
+}
+
+.footer-local { font-size:.75rem; color:var(--neon); margin-bottom:1rem; display:flex; align-items:center; gap:.3rem; font-weight:600; letter-spacing:.06em }
+.redes a:hover { background:var(--primaria); color:#fff; border-color:var(--primaria); transform:translateY(-2px); box-shadow:0 0 12px rgba(21,128,61,.4) }
+
+.btn-prim:hover { box-shadow:0 0 30px rgba(21,128,61,.55), 0 0 60px rgba(74,222,128,.2); transform:translateY(-2px) }
+
+.hero-btns .btn-prim { text-transform:uppercase; letter-spacing:.1em; font-size:.86rem }
+.hero-btns .btn-branco { text-transform:uppercase; letter-spacing:.08em; font-size:.86rem }
+
+  </style>
+</head>
+<body>
+<!-- ════ TOAST ════════════════════════════════════════════════ -->
+<div id="toast" class="toast"></div>
+
+<!-- ════ TOP BAR ══════════════════════════════════════════════ -->
+<div class="top-bar"><span id="elTopBar"></span></div>
+
+<!-- ════ HEADER ═══════════════════════════════════════════════ -->
+<header id="header">
+  <nav class="navbar">
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- LOGO -->
+    <a href="#" class="logo-link" onclick="irInicio(); return false;" id="logoWrap">
+      <!-- Se logoUrl estiver preenchido, mostra a imagem -->
+      <img id="logoImg" src="" alt="ACRE STREETWEAR" class="logo-img" style="display:none"/>
+      <!-- Senão mostra o texto -->
+      <span class="logo-texto" id="logoTexto">ACRE<span>STREETWEAR</span></span>
+    </a>
+
+    <!-- NAV LINKS -->
+    <ul class="nav-links" id="navMenu">
+      <li><a href="#" onclick="irCategoria('all');   return false;">Todos</a></li>
+      <li><a href="#" onclick="irCategoria('modus'); return false;" class="nav-modus">AC STREETWEAR</a></li>
+      <li><a href="#" onclick="irCategoria('camisetas'); return false;">Camisetas</a></li>
+      <li><a href="#" onclick="irCategoria('personalizado'); return false;">Personalizado</a></li>
+    </ul>
+
+    <!-- AÇÕES -->
+    <div class="nav-acoes">
+      <!-- Busca -->
+      <div class="busca-wrap" id="buscaWrap">
+        <input type="search" id="buscaInput" placeholder="Buscar produto..."
+               oninput="buscar(this.value)" autocomplete="off"/>
+        <button class="busca-icone" onclick="toggleBusca()" aria-label="Abrir busca"><i class="fas fa-search"></i></button>
+      </div>
+
+      <button class="icon-btn" onclick="abrirFavoritos()" title="Favoritos">
+        <i class="fas fa-heart"></i>
+        <span class="badge" id="badgeFav" style="display:none"></span>
+      </button>
+      <button class="icon-btn cart-btn" onclick="abrirCarrinho()" title="Sacola">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="badge" id="badgeCart" style="display:none">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Busca mobile (expande abaixo do header) -->
+  <div class="busca-mobile" id="buscaMobile">
+    <input type="search" id="buscaMobileInput" placeholder="Buscar produto..."
+           oninput="buscar(this.value)" autocomplete="off"/>
+    <i class="fas fa-search"></i>
+  </div>
+</header>
+
+<!-- ════ HERO ══════════════════════════════════════════════════ -->
+<section id="secHero" class="hero">
+  <div class="hero-conteudo">
+    <p class="eyebrow" id="elHeroEyebrow"></p>
+    <h1 class="hero-titulo" id="elHeroTitulo"></h1>
+    <p class="hero-sub" id="elHeroSub"></p>
+    <div class="hero-btns">
+      <button class="btn-prim" onclick="irCategoria('all')">
+        Explorar Produtos <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+  <div class="hero-deco" aria-hidden="true">
+    <div class="circulo c1"></div>
+    <div class="circulo c2"></div>
+    <div class="deco-label"><span>ACRE</span><span>STREETWEAR</span></div>
+  </div>
+</section>
+
+<!-- ════ CATEGORIAS ═══════════════════════════════════════════ -->
+<section id="secCats" class="secao">
+  <div class="container">
+    <div class="secao-header">
+      <h2 class="titulo-sec">Explorar por Categoria</h2>
+    </div>
+    <div class="cats-scroll">
+      <div class="cat-card modus-card" onclick="irCategoria('modus')">
+        <div class="cat-icon">✦</div>
+        <span>ACRE STREETWEAR</span>
+        <small>Exclusivo</small>
+         <small>Nosso &stilo Unico</small>
+      </div>
+      <div class="cat-card" onclick="irCategoria('camisetas')">
+        <div class="cat-icon">👕</div>
+        <span>Camisetas</span>
+        <small>Estilo Tradicional</small>
+      </div>
+      <div class="cat-card" onclick="irCategoria('personalizado')">
+        <div class="cat-icon">🎨</div>
+        <span>Personalizado</span>
+        <small>Sua Estampa</small>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PRODUTOS ══════════════════════════════════════════════ -->
+<section id="secProdutos" class="secao">
+  <div class="container">
+    <div class="prod-header">
+      <h2 class="titulo-sec" id="elTituloListagem">Em Destaque</h2>
+      <div class="filtros-bar">
+        <select id="selectOrdem" onchange="ordenar(this.value)">
+          <option value="">Ordenar</option>
+          <option value="menor">Menor preço</option>
+          <option value="maior">Maior preço</option>
+          <option value="az">A–Z</option>
+        </select>
+        <div class="toggle-view">
+          <button id="btnGrade" class="ativo" onclick="setView('grade')" title="Grade">
+            <i class="fas fa-th"></i>
+          </button>
+          <button id="btnLista" onclick="setView('lista')" title="Lista">
+            <i class="fas fa-list"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="gridProdutos" class="grade"></div>
+    <div id="verMaisWrap" class="ver-mais-wrap" style="display:none">
+      <button class="btn-contorno" onclick="verMais()">
+        Carregar mais <i class="fas fa-chevron-down"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ════ BANNER ════════════════════════════════════════════════ -->
+<section id="secBanner" class="banner">
+  <div class="banner-inner">
+    <p class="eyebrow" id="elBannerSub"></p>
+    <h2 id="elBannerTitulo"></h2>
+    <button class="btn-prim" id="elBannerBtn" onclick="irCategoria('all')"></button>
+  </div>
+  <div class="banner-deco" aria-hidden="true">
+    <div class="bd1"></div><div class="bd2"></div>
+  </div>
+</section>
+
+<!-- ════ MAIS VENDIDOS ════════════════════════════════════════ -->
+<section id="secDestaque" class="secao">
+  <div class="container">
+    <div class="secao-header">
+      <h2 class="titulo-sec">Mais Vendidos</h2>
+    </div>
+    <div id="gridDestaque" class="grade"></div>
+  </div>
+</section>
+
+<!-- ════ DIFERENCIAIS ═════════════════════════════════════════ -->
+<section class="secao dif-secao">
+  <div class="container">
+    <div class="dif-grid">
+      <div class="dif">
+        <div class="dif-icone"><i class="fas fa-truck-fast"></i></div>
+        <h4>Entrega Rápida</h4>
+        <p>Entregamos em Rio Branco em até 24h.</p>
+      </div>
+      <div class="dif">
+        <div class="dif-icone"><i class="fas fa-shield-halved"></i></div>
+        <h4>Compra Segura</h4>
+        <p>Pagamento via PIX com total segurança.</p>
+      </div>
+      <div class="dif">
+        <div class="dif-icone"><i class="fas fa-undo"></i></div>
+        <h4>Troca em 3 dias</h4>
+        <p>Não curtiu? Resolvemos em 3 dias.</p>
+      </div>
+      <div class="dif">
+        <div class="dif-icone"><i class="fas fa-headset"></i></div>
+        <h4>Atendimento</h4>
+        <p>Fale com a gente direto no WhatsApp ou Instagram.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-marca">
+      <a href="#" onclick="irInicio(); return false;" class="logo-link footer-logo">
+        <img id="footerLogoImg" src="" alt="ACRE STREETWEAR" class="logo-img" style="display:none"/>
+        <span class="logo-texto" id="footerLogoTexto">ACRE<span>STREETWEAR</span></span>
+      </a>
+      <p class="footer-desc" id="elFooterDesc"></p>
+      <p class="footer-local"><i class="fas fa-map-marker-alt"></i> Rio Branco — Acre (AC)</p>
+      <div class="redes">
+        <a id="linkInsta" href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+        <a id="linkTiktok" href="#" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+        <a id="linkWpp" href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h5>Loja</h5>
+      <ul>
+        <li><a href="#" onclick="irCategoria('all');return false;">Todos os Produtos</a></li>
+        <li><a href="#" onclick="irCategoria('modus');return false;">AC STREETWEAR</a></li>
+        <li><a href="#" onclick="irCategoria('camisetas');return false;">Camisetas</a></li>
+        <li><a href="#" onclick="irCategoria('personalizado');return false;">Personalizado</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Empresa</h5>
+      <ul>
+        <li><a href="#" onclick="abrirPagina('ovSobre');return false;">Sobre Nós</a></li>
+        <li><a href="#" onclick="abrirPagina('ovTermos');return false;">Termos de Uso</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Contato</h5>
+      <a class="footer-wpp" id="footerWpp" href="#" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+      <a class="footer-wpp" id="footerInsta" href="#" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-instagram"></i> Instagram
+      </a>
+      <p class="footer-pag">Aceitamos PIX e Cartão</p>
+    </div>
+  </div>
+
+  <div class="footer-rodape container">
+    <p id="elCopyright"></p>
+    <div class="footer-links">
+      <a href="#" onclick="abrirPagina('ovSobre');return false;">Sobre Nós</a>
+      <a href="#" onclick="abrirPagina('ovTermos');return false;">Termos de Uso</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════
+     OVERLAYS / PÁGINAS
+     ════════════════════════════════════════════════════════════ -->
+
+<!-- PAINEL: CARRINHO -->
+<div id="ovCarrinho" class="painel-overlay" onclick="fecharOverlay('ovCarrinho')">
+  <div class="painel" onclick="event.stopPropagation()">
+    <div class="painel-header">
+      <h3><i class="fas fa-shopping-bag"></i> Sacola</h3>
+      <button onclick="fecharOverlay('ovCarrinho')"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="listaCarrinho" class="painel-body"></div>
+    <div id="rodapeCarrinho" class="painel-footer" style="display:none">
+      <div class="total-row">
+        <span>Total</span>
+        <span id="totalCarrinho" class="total-val">R$ 0,00</span>
+      </div>
+      <button class="btn-prim w100" onclick="irCheckout()">
+        <i class="fas fa-lock"></i> Finalizar Pedido
+      </button>
+      <button class="btn-sec w100" onclick="fecharOverlay('ovCarrinho')">
+        Continuar Comprando
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- PAINEL: FAVORITOS -->
+<div id="ovFavoritos" class="painel-overlay" onclick="fecharOverlay('ovFavoritos')">
+  <div class="painel" onclick="event.stopPropagation()">
+    <div class="painel-header">
+      <h3><i class="fas fa-heart" style="color:var(--neon)"></i> Favoritos</h3>
+      <button onclick="fecharOverlay('ovFavoritos')"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="listaFavoritos" class="painel-body"></div>
+  </div>
+</div>
+
+<!-- MODAL: PRODUTO -->
+<div id="ovProduto" class="modal-overlay" onclick="fecharModal()">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <button class="modal-fechar" onclick="fecharModal()"><i class="fas fa-times"></i></button>
+    <div class="modal-grid">
+      <div class="modal-fotos">
+        <div class="foto-main"><img id="mFoto" src="" alt=""/></div>
+        <div id="mMiniaturas" class="miniaturas"></div>
+      </div>
+      <div class="modal-info">
+        <span id="mBadge" class="prod-badge" style="display:none"></span>
+        <h2 id="mNome"></h2>
+        <p id="mDesc" class="modal-desc"></p>
+        <div class="modal-preco-bloco">
+          <s id="mPrecoAnt" class="preco-riscado" style="display:none"></s>
+          <span id="mPreco" class="preco-modal"></span>
+        </div>
+        <div class="opcao-grupo">
+          <label>Cor: <strong id="mCorNome"></strong></label>
+          <div id="mCores" class="swatches"></div>
+        </div>
+        <div class="opcao-grupo">
+          <label>Tamanho</label>
+          <div id="mTamanhos" class="tam-btns"></div>
+        </div>
+        <div class="opcao-grupo qtd-grupo">
+          <label>Quantidade</label>
+          <div class="qtd-ctrl">
+            <button onclick="mudarQtd(-1)">−</button>
+            <span id="qtdVal">1</span>
+            <button onclick="mudarQtd(1)">+</button>
+          </div>
+        </div>
+        <div class="modal-acoes">
+          <button class="btn-prim flex1" onclick="adicionarCarrinho()">
+            <i class="fas fa-shopping-bag"></i> Adicionar à Sacola
+          </button>
+          <button class="btn-ghost" id="btnFavModal" onclick="toggleFavModal()">
+            <i class="fas fa-heart"></i>
+          </button>
+        </div>
+        <button class="btn-wpp w100" onclick="comprarAgora()">
+          <i class="fas fa-bolt"></i> Comprar Agora
+        </button>
+        <div class="garantias">
+          <span><i class="fas fa-undo"></i> Troca em 3 dias</span>
+          <span><i class="fas fa-shield-halved"></i> Compra segura</span>
+          <span><i class="fas fa-map-marker-alt"></i> Rio Branco — AC</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PÁGINA: CHECKOUT -->
+<div id="ovCheckout" class="pagina-overlay" style="display:none">
+  <div class="pagina-wrap">
+    <button class="btn-voltar" onclick="fecharPagina('ovCheckout')">
+      <i class="fas fa-arrow-left"></i> Voltar
+    </button>
+    <h2 class="pagina-titulo">Finalizar Pedido</h2>
+    <div class="checkout-grid">
+      <div class="checkout-esq">
+
+        <div class="card-form">
+          <h3><i class="fas fa-user"></i> Seus Dados</h3>
+          <div class="fg">
+            <label>Nome completo *</label>
+            <input type="text" id="ckNome" placeholder="Seu nome completo"/>
+          </div>
+        </div>
+
+        <div class="card-form">
+          <h3><i class="fas fa-map-marker-alt"></i> Endereço de Entrega</h3>
+          <p class="aviso-local"><i class="fas fa-info-circle"></i> Entregamos só em <strong>Rio Branco — AC</strong></p>
+          <div class="fg">
+            <label>Bairro *</label>
+            <input type="text" id="ckBairro" placeholder="Seu bairro"/>
+          </div>
+          <div class="fg">
+            <label>Rua e número *</label>
+            <input type="text" id="ckEnd" placeholder="Rua das Flores, 123"/>
+          </div>
+          <div class="fg">
+            <label>Complemento</label>
+            <input type="text" id="ckCompl" placeholder="Apto, bloco, referência..."/>
+          </div>
+        </div>
+
+        <div class="card-form">
+          <h3><i class="fas fa-credit-card"></i> Forma de Pagamento</h3>
+
+          <div class="pagto-tabs">
+            <button class="pagto-tab ativo" id="tabPix" onclick="selecionarPagto('pix')">
+              <i class="fas fa-qrcode"></i> PIX
+            </button>
+            <button class="pagto-tab" id="tabCartao" onclick="selecionarPagto('cartao')">
+              <i class="fas fa-credit-card"></i> Cartão
+            </button>
+          </div>
+
+          <!-- PIX -->
+          <div id="painelPix" class="pagto-painel ativo">
+            <div class="pix-passos">
+              <div class="pix-passo"><span>1</span> Copie a chave PIX abaixo</div>
+              <div class="pix-passo"><span>2</span> Faça o pagamento do valor total</div>
+              <div class="pix-passo"><span>3</span> Clique em "Fazer Pedido" e envie o comprovante pelo WhatsApp</div>
+            </div>
+            <label class="pix-label">Chave PIX</label>
+            <div class="pix-row">
+              <input type="text" readonly id="pixChave"/>
+              <button class="btn-copiar" onclick="copiarPix()">
+                <i class="fas fa-copy"></i> Copiar
+              </button>
+            </div>
+          </div>
+
+          <!-- CARTÃO -->
+          <div id="painelCartao" class="pagto-painel">
+            <div class="cartao-aviso">
+              <i class="fas fa-info-circle" style="margin-top:.15rem;flex-shrink:0"></i>
+              <span>O pagamento com cartão é feito na entrega, direto na maquininha. Aceitamos débito e crédito.</span>
+            </div>
+            <div class="pix-passos">
+              <div class="pix-passo"><span>1</span> Clique em "Fazer Pedido" para enviar seu pedido pelo WhatsApp</div>
+              <div class="pix-passo"><span>2</span> Aguarde a confirmação da loja</div>
+              <div class="pix-passo"><span>3</span> Pague na maquininha no momento da entrega</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="checkout-dir">
+        <div class="resumo-box sticky-resumo">
+          <h3>Resumo do Pedido</h3>
+          <div id="resumoItens"></div>
+          <div class="resumo-linha">
+            <span>Subtotal</span>
+            <span id="resumoSub">R$ 0,00</span>
+          </div>
+          <div class="resumo-linha">
+            <span>Taxa de entrega</span>
+            <span>R$ 10,00</span>
+          </div>
+          <div class="resumo-total">
+            <span>Total</span>
+            <span id="resumoTotal">R$ 0,00</span>
+          </div>
+          <button class="btn-wpp w100" onclick="finalizarPedido()">
+            <i class="fab fa-whatsapp"></i> Fazer Pedido pelo WhatsApp
+          </button>
+          <p class="wpp-dica">
+            O resumo do seu pedido vai direto para o WhatsApp da loja.
+            Não precisa digitar nada — só confirmar!
+          </p>
+          <p class="seguro"><i class="fas fa-lock"></i> Dados usados só para entrega</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PÁGINA: SOBRE NÓS -->
+<div id="ovSobre" class="pagina-overlay" style="display:none">
+  <div class="pagina-wrap pagina-estreita">
+    <button class="btn-voltar" onclick="fecharPagina('ovSobre')">
+      <i class="fas fa-arrow-left"></i> Voltar
+    </button>
+    <div class="pagina-hero">
+      <p class="eyebrow">Nossa História</p>
+      <h1 class="pagina-titulo-grande">SOBRE A<br/><em>ACRE STREETWEAR</em></h1>
+    </div>
+    <div class="sobre-conteudo">
+      <div class="sobre-grid">
+        <div class="sobre-texto">
+          <h2>Quem somos</h2>
+          <p>A <strong>ACRE STREETWEAR</strong> nasceu em Rio Branco, Acre, com uma missão simples: oferecer moda de qualidade com estilo próprio e preço justo para quem vive aqui no Acre.</p>
+          <p>Acreditamos que roupa não é só tecido — é expressão, identidade, atitude. Cada peça que criamos passa por um cuidado especial para que você use algo que realmente representa quem você é.</p>
+
+          <h2>Nossos valores</h2>
+          <ul class="valores-lista">
+            <li><i class="fas fa-check-circle"></i> <strong>Qualidade acima de tudo</strong> — peças que valem cada real</li>
+            <li><i class="fas fa-check-circle"></i> <strong>Atendimento humano</strong> — você fala direto com a gente</li>
+            <li><i class="fas fa-check-circle"></i> <strong>Entrega rápida</strong> — somos de Rio Branco, entregamos em Rio Branco</li>
+            <li><i class="fas fa-check-circle"></i> <strong>Troca sem burocracia</strong> — resolvemos em até 3 dias</li>
+            <li><i class="fas fa-check-circle"></i> <strong>Estilo autêntico</strong> — coleções que fogem do óbvio</li>
+          </ul>
+        </div>
+        <div class="sobre-stats">
+          <div class="stat"><strong>2026</strong><span>Fundada</span></div>
+          <div class="stat"><strong>100%</strong><span>Qualidade</span></div>
+          <div class="stat"><strong>RBAC</strong><span>Rio Branco — AC</span></div>
+          <div class="stat"><strong>PIX & CARTÃO</strong><span>Simples e seguro</span></div>
+        </div>
+      </div>
+      <blockquote class="sobre-quote">
+        "Moda que define quem você é. Autenticidade em cada peça."
+      </blockquote>
+      <div class="sobre-cta">
+        <p>Alguma dúvida? A gente responde rápido no WhatsApp.</p>
+        <a class="btn-wpp" id="sobreWpp" href="#" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PÁGINA: TERMOS DE USO -->
+<div id="ovTermos" class="pagina-overlay" style="display:none">
+  <div class="pagina-wrap pagina-estreita">
+    <button class="btn-voltar" onclick="fecharPagina('ovTermos')">
+      <i class="fas fa-arrow-left"></i> Voltar
+    </button>
+    <div class="pagina-hero">
+      <p class="eyebrow">Documentos Legais</p>
+      <h1 class="pagina-titulo-grande">TERMOS<br/><em>DE USO</em></h1>
+      <p class="termos-data">Última atualização: Janeiro de 2026</p>
+    </div>
+    <div class="termos-conteudo">
+      <div class="termo-bloco">
+        <h3><span>01</span> Área de Atendimento</h3>
+        <p>Realizamos entregas <strong>exclusivamente em Rio Branco — Acre (AC)</strong>. Pedidos fora dessa área poderão ter um frete bem mais alto.</p>
+      </div>
+      <div class="termo-bloco">
+        <h3><span>02</span> Como Funciona a Compra</h3>
+        <p>Selecione os produtos, informe o endereço, copie a chave PIX, faça o pagamento e clique em "Fazer Pedido". O resumo vai direto ao WhatsApp da loja. O pedido é confirmado após envio do comprovante. Se a compra for no cartão nosso entregador vai levar a maquininha ate você.</p>
+      </div>
+      <div class="termo-bloco">
+        <h3><span>03</span> Formas de Pagamento</h3>
+        <p>Aceitamos <strong>PIX</strong> e <strong>Cartão</strong>. Não trabalhamos com boleto bancário.</p>
+      </div>
+      <div class="termo-bloco">
+        <h3><span>04</span> Entrega</h3>
+        <p>O prazo é informado no atendimento via WhatsApp. Em geral, entregamos em até <strong>24 horas</strong> após confirmação do pagamento. Taxa única de <strong>R$ 10,00</strong> por entrega, em qualquer bairro de Rio Branco.</p>
+      </div>
+      <div class="termo-bloco">
+        <h3><span>05</span> Troca e Devolução</h3>
+        <p>Você pode solicitar troca em até <strong>3 dias corridos</strong> após o recebimento, com produto sem uso e etiqueta original. Em caso de defeito, a troca é garantida sem custo.</p>
+      </div>
+      <div class="termo-bloco">
+        <h3><span>06</span> Privacidade dos Dados</h3>
+        <p>Nome, telefone e endereço são usados <strong>exclusivamente</strong> para entrega do pedido. Não compartilhamos dados com terceiros.</p>
+      </div>
+      <div class="termo-bloco">
+        <h3><span>07</span> Contato</h3>
+        <p>Dúvidas? Fale com a gente pelo WhatsApp.</p>
+        <a class="btn-wpp" id="termosWpp" href="#" target="_blank" rel="noopener noreferrer" style="margin-top:1rem">
+          <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ CONFIGURAÇÃO E PRODUTOS ═══════════════════════════════ -->
+<script>
+// ╔══════════════════════════════════════════════════════════════╗
+// ║           ACRE STREETWEAR — ARQUIVO DE CONFIGURAÇÃO               ║
+// ║   Edite aqui para mudar produtos e textos da loja           ║
+// ╚══════════════════════════════════════════════════════════════╝
+
+// ═══════════════════════════════════════════════════════════════
+//  1. CONFIGURAÇÕES GERAIS
+// ═══════════════════════════════════════════════════════════════
+const CONFIG = {
+
+  // ── CONTATO ────────────────────────────────────────────────
+  whatsapp: "5568999271074",   // Número para receber pedidos (só números)
+  pixChave: "000.000.000-00",  // Sua chave PIX
+
+  // ── REDES SOCIAIS (deixe "#" para ocultar) ─────────────────
+  instagram: "https://instagram.com/clmodus",
+  tiktok:    "#",
+
+  // ── LOGO ───────────────────────────────────────────────────
+  // Cole aqui a URL da imagem da sua logo
+  // Deixe "" para usar só o texto "ACRE STREETWEAR"
+  logoUrl: "ac-st.png",
+
+  // ── TEXTOS ─────────────────────────────────────────────────
+  topBar: " STREETWEAR — RIO BRANCO AC / TROCA EM 3 DIAS / ENTREGA EM 24HRS",
+
+  heroEyebrow: " STREETWAR COLLECTION 2026",
+  heroTitulo:  "AQUI|VOCÊ|TEM &STILO",   // | separa as 3 linhas. A do meio fica verde.
+  heroSub:     "Street culture. Estilo próprio. Movimento real.",
+
+  bannerTitulo:    "MELHORES PREÇOS|DO ACRE",  // | quebra linha
+  bannerSubtitulo: " STREETWEAR EXCLUSIVO",
+  bannerBotao:     "Ver Tudo",
+
+  footerDescricao: "Street culture. Estilo próprio. Movimento real — Rio Branco, AC.",
+  copyright:       "© 2026 ACRE STREETWEAR. Todos os direitos reservados.",
+
+  // ── CORES ──────────────────────────────────────────────────
+  corPrimaria: "#15803d",   // Cor dos botões — verde escuro
+  corNeon:     "#4ade80",   // Cor de destaque — verde neon
+};
+
+
+// ═══════════════════════════════════════════════════════════════
+//  2. PRODUTOS
+//
+//  ► Como ADICIONAR um produto:
+//    1. Copie um bloco { ... }, qualquer um abaixo
+//    2. Cole ANTES do ]; no final
+//    3. Mude os dados e salve — aparece na hora!
+//
+//  ► Como REMOVER: apague o bloco { ... } do produto
+//  ► Como OCULTAR: troque active: true  por  active: false
+//
+//  CAMPOS:
+//  id         → Número único (não repita!)
+//  nome       → Nome do produto
+//  marca      → "ACRE STREETWEAR" ou outra marca
+//  categoria  → "modus" | "camisetas" | "personalizado"
+//               (use "modus" para aparecer na aba exclusiva ACRE STREETWEAR)
+//               (use "personalizado" para camisas com estampa personalizada
+//                em papel de transfer — oversized, básica ou polo)
+//  preco      → Use ponto para decimal. Ex: 89.90
+//  precoAntigo→ null = sem desconto
+//  badge      → Etiqueta no card: "Novo", "Promoção", "Exclusivo" — ou null
+//  descricao  → Texto descrevendo o produto
+//  tamanhos   → Lista de tamanhos
+//  cores      → Lista de cores. Cada cor: { nome, hex, foto }
+//  destaque   → true = aparece em "Mais Vendidos"
+//  novidade   → true = etiqueta NOVO no card
+//  active     → false = oculta da loja
+// ═══════════════════════════════════════════════════════════════
+const PRODUTOS = [
+
+  // ─── ACRE STREETWEAR (categoria exclusiva) ──────────────────────
+
+  {
+    id: 1,
+    nome:        "Camiseta basica 'All Eyes On Me'ACST",
+    marca:       "ACRE STREETWEAR",
+    categoria:   "modus",
+    preco:       65.00,
+    precoAntigo: null,
+    badge:       "Exclusivo",
+    descricao:   "Camiseta oversized 100% algodão estampa unica e exclusiva da Ac Streetwear.",
+    tamanhos:    [ "M", "G",],
+    cores: [
+      { nome: "Preto",  hex: "#1a1a1a", foto: "img/all preto.png" },
+      { nome: "Branco", hex: "#f5f5f0", foto: "img/all branco.png" },
+    ],
+    destaque: true,
+    novidade: true,
+    active:   true,
+  },
+
+  {
+    id: 2,
+    nome:        "Camiseta Modus Oversized Exclusiva ACST",
+    marca:       "ACRE STREETWEAR",
+    categoria:   "modus",
+    preco:       60.00,
+    precoAntigo: null,
+    badge:       "Exclusivo",
+    descricao:   "Camisa oversized 100% algodão, exclusiva da AC streetwear.",
+    tamanhos:    ["M", "G",],
+    cores: [
+      { nome: "Preto", hex: "#1a1a1a", foto: "img/mpreto.png" },
+      { nome: "Branco",  hex: "#f5f5f0", foto: "img/mbranco.png" },
+    ],
+    destaque: true,
+    novidade: true,
+    active:   true,
+  },
+
+  {
+    id: 3,
+    nome:        "Camiseta Oversized ACST",
+    marca:       "ACRE STREETWEAR",
+    categoria:   "modus",
+    preco:       65.00,
+    precoAntigo: null,
+    badge:       "Exclusivo",
+    descricao:   "Camiseta oversized 100% algodão estampa unica e exclusiva da Ac Streetwear.",
+    tamanhos:    ["M", "G",],
+    cores: [
+      { nome: "Preto", hex: "#1a1a1a", foto: "img/bauduinoP.jpg" },
+      { nome: "Branco", hex: "#f5f5f0", foto: "img/bauduinoB.jpg" },
+    ],
+    destaque: true,
+    novidade: true,
+    active:   true,
+  },
+
+  {
+    id: 4,
+    nome:        "Camisa Oversized Cristã ACST",
+    marca:       "ACRE STREETWEAR",
+    categoria:   "modus",
+    preco:       65.00,
+    precoAntigo: null,
+    badge:       "Exclusivo",
+    descricao:   "Camiseta oversized 100% algodão estampa única e exclusiva da Ac Streetwear.",
+    tamanhos:    ["M", "G", ],
+    cores: [
+      { nome: "Preto",  hex: "#1a1a1a", foto: "img/coraçãop.png" },
+      { nome: "Branco", hex: "#f5f5f0", foto: "img/coraçãob.png" },
+    ],
+    destaque: true,
+    novidade: true,
+    active:   true,
+  },
+  {
+    id: 5,
+    nome:        "Camisa Basica ACST",
+    marca:       "ACRE STREETWEAR",
+    categoria:   "modus",
+    preco:       65.00,
+    precoAntigo: null,
+    badge:       "Exclusivo",
+    descricao:   "Camiseta oversized 100% algodão estampa única e exclusiva da Ac Streetwear.",
+    tamanhos:    ["M", "G", ],
+    cores: [
+      { nome: "Preto",  hex: "#1a1a1a", foto: "img/ap.png" },
+      { nome: "Branco", hex: "#f5f5f0", foto: "img/apb.png" },
+    ],
+    destaque: true,
+    novidade: true,
+    active:   true,
+  },
+  
+
+  // ─── CAMISETAS ─────────────────────────────────────────────
+
+ 
+   {
+    id: 9,
+    nome:        "Camisa Oversized Flor",
+    marca:       "Variada",
+    categoria:   "camisetas",
+    preco:       65.00,
+    precoAntigo: null,
+    badge:       "Exclusivo",
+    descricao:   "Camiseta oversized 100% algodão estampa única e exclusiva da Ac Streetwear.",
+    tamanhos:    ["G"],
+    cores: [
+      { nome: "Preto",  hex: "#1a1a1a", foto: "img/florP.png" },
+      { nome: "Branco", hex: "#f5f5f0", foto: "img/florB.png" },
+    ],
+    destaque: true,
+    novidade: true,
+    active:   true,
+  },
+
+
+  // ─── PERSONALIZADO (estampa em papel de transfer) ───────────
+  //  Cliente escolhe o modelo/cor/tamanho aqui e, depois de fechar
+  //  o pedido pelo WhatsApp, envia a estampa (imagem/ideia) no chat.
+
+  {
+    id: 7,
+    nome:        "Camiseta Personalizada Oversized",
+    marca:       "Ac Streetwear",
+    categoria:   "personalizado",
+    preco:       70.00,
+    precoAntigo: null,
+    badge:       "Personalizado",
+    descricao:   "Camiseta oversized 100% algodão. Escolha a cor e o tamanho e envie sua estampa pelo WhatsApp após o pedido — aplicamos em papel de transfer de alta qualidade. ⚠️ A estampa é feita no mesmo dia: espere 24h para lavar a peça, assim a tinta seca totalmente e a arte se preserva.",
+    tamanhos:    ["M", "G",],
+    cores: [
+      { nome: "Branco", hex: "#f5f5f0", foto: "img/sbranco.png" },
+      { nome: "Preto",  hex: "#1a1a1a", foto: "img/spreto.png" },
+    ],
+    destaque: false,
+    novidade: false,
+    active:   true,
+  },
+
+  {
+    id: 8,
+    nome:        "Camiseta Personalizada Básica",
+    marca:       "Ac Streetwear",
+    categoria:   "personalizado",
+    preco:       70.00,
+    precoAntigo: null,
+    badge:       "Personalizado",
+    descricao:   "Camiseta básica 100% algodão, corte tradicional. Escolha a cor e o tamanho e envie sua estampa pelo WhatsApp após o pedido — aplicamos em papel de transfer de alta qualidade. ⚠️ A estampa é feita no mesmo dia: espere 24h para lavar a peça, assim a tinta seca totalmente e a arte se preserva.",
+    tamanhos:    ["M", "G", ],
+    cores: [
+      { nome: "Branco", hex: "#f5f5f0", foto: "img/csbranco.png" },
+      { nome: "Preto",  hex: "#1a1a1a", foto: "img/cspreto.png" },
+    ],
+    destaque: false,
+    novidade: false,
+    active:   true,
+  },
+
+  // ════════════════════════════════════════════════════════════
+  //  ► ADICIONE NOVOS PRODUTOS AQUI ↓
+  //  Copie um bloco acima, cole aqui e mude os dados.
+  //  Não esqueça: id único, vírgula no final do bloco!
+  // ════════════════════════════════════════════════════════════
+
+];
+
+</script>
+
+<!-- ════ LÓGICA DA LOJA ════════════════════════════════════════ -->
+<script>
+// ============================================================
+//  ACRE STREETWEAR — script.js  v6
+//  Não precisa editar este arquivo.
+//  Para mudar produtos e textos, edite apenas o products.js
+// ============================================================
+'use strict';
+
+// ── Estado ───────────────────────────────────────────────────
+let carrinho  = JSON.parse(localStorage.getItem('clm_cart') || '[]');
+let favoritos = JSON.parse(localStorage.getItem('clm_favs') || '[]');
+let prodAtual = null;
+let corAtual  = 0;
+let qtdAtual  = 1;
+let categoria = 'all';
+let ordem     = '';
+let busca     = '';
+let view      = 'grade';
+let exibidos  = 8;
+let buscaTimer = null;
+let buscaMobileAberta = false;
+
+// ── Init ─────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  aplicarConfig();
+  renderProdutos();
+  renderDestaque();
+  atualizarBadges();
+
+  // Header ao rolar
+  window.addEventListener('scroll', () => {
+    document.getElementById('header').classList.toggle('rolado', window.scrollY > 50);
+  }, { passive: true });
+
+  // Fecha menu ao clicar fora
+  document.addEventListener('click', e => {
+    const nav = document.getElementById('navMenu');
+    const ham = document.getElementById('hamburger');
+    if (nav.classList.contains('aberto') && !nav.contains(e.target) && !ham.contains(e.target))
+      fecharMenu();
+  });
+
+  // Esc fecha menu mobile, painéis, modal e páginas abertas
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    document.querySelectorAll('.painel-overlay.aberto').forEach(el => fecharOverlay(el.id));
+    document.querySelectorAll('.modal-overlay.aberto').forEach(el => fecharModal2(el.id));
+    document.querySelectorAll('.pagina-overlay.aberta').forEach(el => fecharPagina(el.id));
+    fecharMenu();
+  });
+
+  // Sync busca mobile ↔ desktop
+  document.getElementById('buscaMobileInput').addEventListener('input', e => {
+    document.getElementById('buscaInput').value = e.target.value;
+    buscar(e.target.value);
+  });
+  document.getElementById('buscaInput').addEventListener('input', e => {
+    document.getElementById('buscaMobileInput').value = e.target.value;
+    buscar(e.target.value);
+  });
+});
+
+// ── Aplicar CONFIG ────────────────────────────────────────────
+function aplicarConfig() {
+  const c = CONFIG;
+  const wpp = `https://wa.me/${c.whatsapp}`;
+
+  // CSS vars
+  document.documentElement.style.setProperty('--primaria', c.corPrimaria || '#15803d');
+  document.documentElement.style.setProperty('--neon',     c.corNeon     || '#4ade80');
+
+  // Textos simples
+  setText('elTopBar',      c.topBar);
+  setText('elHeroEyebrow', c.heroEyebrow);
+  setText('elHeroSub',     c.heroSub);
+  setText('elBannerSub',   c.bannerSubtitulo);
+  setText('elBannerBtn',   c.bannerBotao);
+  setText('elFooterDesc',  c.footerDescricao);
+  setText('elCopyright',   c.copyright);
+
+  // Hero título — divide no | e coloca a do meio em neon
+  const heroEl = document.getElementById('elHeroTitulo');
+  if (heroEl) {
+    const p = c.heroTitulo.split('|');
+    heroEl.innerHTML = p.map((t, i) => i === 1 ? `<em>${t}</em>` : t).join('<br/>');
+  }
+
+  // Banner título
+  const bannerEl = document.getElementById('elBannerTitulo');
+  if (bannerEl) bannerEl.innerHTML = c.bannerTitulo.split('|').join('<br/>');
+
+  // Links WhatsApp
+  [['linkWpp', wpp], ['footerWpp', wpp], ['sobreWpp', wpp], ['termosWpp', wpp]].forEach(([id, url]) => setHref(id, url));
+  setHref('linkInsta',   c.instagram || '#');
+  setHref('linkTiktok',  c.tiktok    || '#');
+  setHref('footerInsta', c.instagram || '#');
+
+  // PIX
+  const px = document.getElementById('pixChave');
+  if (px) px.value = c.pixChave;
+
+  // Logo — imagem ou texto
+  const logoUrl = c.logoUrl || '';
+  ['logoImg', 'footerLogoImg'].forEach(id => {
+    const img = document.getElementById(id);
+    if (img) { img.src = logoUrl; img.style.display = logoUrl ? 'block' : 'none'; }
+  });
+  ['logoTexto', 'footerLogoTexto'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = logoUrl ? 'none' : 'block';
+  });
+}
+
+// ── Produtos ─────────────────────────────────────────────────
+function getProdutos() {
+  let lista = PRODUTOS.filter(p => p.active !== false);
+
+  if (categoria !== 'all') {
+    lista = lista.filter(p => p.categoria === categoria);
+  }
+
+  if (busca.trim()) {
+    const q = busca.toLowerCase();
+    lista = lista.filter(p =>
+      p.nome.toLowerCase().includes(q) ||
+      (p.descricao || '').toLowerCase().includes(q) ||
+      (p.marca || '').toLowerCase().includes(q) ||
+      p.categoria.toLowerCase().includes(q)
+    );
+  }
+
+  if (ordem === 'menor') lista.sort((a, b) => a.preco - b.preco);
+  if (ordem === 'maior') lista.sort((a, b) => b.preco - a.preco);
+  if (ordem === 'az')    lista.sort((a, b) => a.nome.localeCompare(b.nome));
+
+  return lista;
+}
+
+function renderProdutos() {
+  const grid  = document.getElementById('gridProdutos');
+  const lista = getProdutos();
+  const fatia = lista.slice(0, exibidos);
+
+  const titulos = {
+    all:'Em Destaque', modus:'✦ Coleção ACRE STREETWEAR',
+    camisetas:'Camisetas', calcas:'Calças',
+    moletons:'Moletons', vestidos:'Vestidos', acessorios:'Acessórios',
+    personalizado:'🎨 Personalizado — Estampa sua'
+  };
+
+  let titulo = busca
+    ? `Busca: "${busca}" — ${lista.length} resultado${lista.length !== 1 ? 's' : ''}`
+    : (titulos[categoria] || 'Produtos');
+  setText('elTituloListagem', titulo);
+
+  grid.className = view === 'lista' ? 'lista' : 'grade';
+
+  if (!fatia.length) {
+    grid.innerHTML = `
+      <div class="vazio-estado">
+        <i class="fas fa-search"></i>
+        <p>Nenhum produto encontrado${busca ? ` para "${busca}"` : ''}.</p>
+        ${busca ? `<button class="btn-contorno" onclick="limparBusca()">Limpar busca</button>` : ''}
+      </div>`;
+    document.getElementById('verMaisWrap').style.display = 'none';
+    return;
+  }
+
+  grid.innerHTML = fatia.map(p => cardHTML(p)).join('');
+  animarCards();
+  document.getElementById('verMaisWrap').style.display = lista.length > exibidos ? 'flex' : 'none';
+}
+
+function renderDestaque() {
+  const grid = document.getElementById('gridDestaque');
+  const lista = PRODUTOS.filter(p => p.destaque && p.active !== false).slice(0, 4);
+  if (!lista.length) {
+    document.getElementById('secDestaque').style.display = 'none';
+    return;
+  }
+  grid.innerHTML = lista.map(p => cardHTML(p)).join('');
+  animarCards();
+}
+
+function cardHTML(p) {
+  const c0   = p.cores[0];
+  const fav  = favoritos.includes(p.id);
+  const pct  = p.precoAntigo ? Math.round((1 - p.preco / p.precoAntigo) * 100) : 0;
+  const desc = pct > 0 ? `<span class="badge-desc">-${pct}%</span>` : '';
+  const badge = p.badge ? `<span class="prod-badge">${p.badge}</span>` : '';
+  const novo  = p.novidade ? '<span class="tag-novo">NOVO</span>' : '';
+  const isModus = p.categoria === 'modus' ? '<span class="tag-modus">ACRE STREETWEAR</span>' : '';
+
+  const dots = p.cores.map((c, i) =>
+    `<button class="dot ${i === 0 ? 'ativo' : ''}" style="background:${c.hex}" title="${c.nome}"
+      onclick="event.stopPropagation(); trocarCor(${p.id}, ${i}, this)" aria-label="${c.nome}"></button>`
+  ).join('');
+
+  const precos = `
+    ${p.precoAntigo ? `<s class="preco-riscado">R$ ${f(p.precoAntigo)}</s>` : ''}
+    <span class="preco-atual">R$ ${f(p.preco)}</span>`;
+
+  if (view === 'lista') {
+    return `
+    <article class="card-lista animate-card" onclick="abrirProduto(${p.id})" tabindex="0"
+      onkeydown="if(event.key==='Enter')abrirProduto(${p.id})">
+      <div class="card-img">
+        <img id="ci${p.id}" src="${c0.foto}" alt="${p.nome}" loading="lazy"/>
+        ${badge}${desc}
+      </div>
+      <div class="card-lista-info">
+        <p class="card-marca">${p.marca || ''}</p>
+        <h3>${p.nome}</h3>
+        <p class="card-desc-short">${(p.descricao || '').slice(0, 100)}…</p>
+        <div class="cor-row">
+          <span id="cl${p.id}" class="cor-nome">${c0.nome}</span>
+          <div class="dots">${dots}</div>
+        </div>
+        <div class="lista-tam">${p.tamanhos.slice(0, 6).map(t => `<span>${t}</span>`).join('')}</div>
+        <div class="lista-preco-mobile">${precos}</div>
+      </div>
+      <div class="card-lista-acoes">
+        <div class="lista-preco">${precos}</div>
+        <button class="btn-prim" onclick="event.stopPropagation(); abrirProduto(${p.id})">
+          Ver Produto
+        </button>
+        <button class="btn-fav-lista ${fav ? 'ativo' : ''}" onclick="event.stopPropagation(); toggleFavCard(${p.id}, this)">
+          <i class="fa${fav ? 's' : 'r'} fa-heart"></i>
+        </button>
+      </div>
+    </article>`;
+  }
+
+  return `
+  <article class="card animate-card" onclick="abrirProduto(${p.id})" tabindex="0"
+    onkeydown="if(event.key==='Enter')abrirProduto(${p.id})">
+    <div class="card-img">
+      <img id="ci${p.id}" src="${c0.foto}" alt="${p.nome}" loading="lazy"/>
+      ${badge}${desc}${novo}${isModus}
+      <div class="card-hover">
+        <button class="btn-rapido" onclick="event.stopPropagation(); abrirProduto(${p.id})">
+          <i class="fas fa-eye"></i> Ver Rápido
+        </button>
+        <button class="btn-fav ${fav ? 'ativo' : ''}" onclick="event.stopPropagation(); toggleFavCard(${p.id}, this)">
+          <i class="fa${fav ? 's' : 'r'} fa-heart"></i>
+        </button>
+      </div>
+    </div>
+    <div class="card-info">
+      <p class="card-marca">${p.marca || ''}</p>
+      <h3>${p.nome}</h3>
+      <div class="cor-row">
+        <span id="cl${p.id}" class="cor-nome">${c0.nome}</span>
+        <div class="dots">${dots}</div>
+      </div>
+      <div class="preco-bloco">
+        ${precos}
+      </div>
+    </div>
+  </article>`;
+}
+
+function animarCards() {
+  const cards = document.querySelectorAll('.animate-card');
+  cards.forEach((card, i) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    setTimeout(() => {
+      card.style.transition = 'opacity .35s ease, transform .35s ease';
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    }, i * 60);
+  });
+}
+
+function trocarCor(id, idx, btn) {
+  const p = PRODUTOS.find(x => x.id === id);
+  if (!p || !p.cores[idx]) return;
+  const img = document.getElementById(`ci${id}`);
+  if (img) {
+    img.style.opacity = '.3';
+    setTimeout(() => { img.src = p.cores[idx].foto; img.style.opacity = '1'; }, 120);
+  }
+  const lbl = document.getElementById(`cl${id}`);
+  if (lbl) lbl.textContent = p.cores[idx].nome;
+  btn.closest('.dots').querySelectorAll('.dot').forEach(b => b.classList.remove('ativo'));
+  btn.classList.add('ativo');
+}
+
+// ── Filtros ───────────────────────────────────────────────────
+function irCategoria(cat) {
+  categoria = cat;
+  busca     = '';
+  exibidos  = 8;
+  ordem     = '';
+  document.getElementById('buscaInput').value = '';
+  document.getElementById('buscaMobileInput').value = '';
+  document.getElementById('selectOrdem').value = '';
+  renderProdutos();
+  fecharMenu();
+  setTimeout(() => {
+    document.getElementById('secProdutos').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+function buscar(q) {
+  busca    = q;
+  exibidos = 8;
+  renderProdutos();
+  clearTimeout(buscaTimer);
+  if (q.trim()) {
+    buscaTimer = setTimeout(() => {
+      document.getElementById('secProdutos').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 400);
+  }
+}
+
+function limparBusca() {
+  busca = '';
+  document.getElementById('buscaInput').value = '';
+  document.getElementById('buscaMobileInput').value = '';
+  renderProdutos();
+}
+
+function ordenar(v) { ordem = v; renderProdutos(); }
+
+function setView(v) {
+  view = v;
+  document.getElementById('btnGrade').classList.toggle('ativo', v === 'grade');
+  document.getElementById('btnLista').classList.toggle('ativo', v === 'lista');
+  renderProdutos();
+}
+
+function verMais() { exibidos += 8; renderProdutos(); }
+
+function toggleBusca() {
+  buscaMobileAberta = !buscaMobileAberta;
+  document.getElementById('buscaMobile').classList.toggle('aberta', buscaMobileAberta);
+  if (buscaMobileAberta) {
+    document.getElementById('buscaMobileInput').focus();
+    fecharMenu();
+  }
+}
+
+function fecharBuscaMobile() {
+  buscaMobileAberta = false;
+  document.getElementById('buscaMobile').classList.remove('aberta');
+}
+
+// ── Modal Produto ─────────────────────────────────────────────
+function abrirProduto(id) {
+  const p = PRODUTOS.find(x => x.id === id);
+  if (!p) return;
+  prodAtual = p; corAtual = 0; qtdAtual = 1;
+  const c0 = p.cores[0];
+
+  setText('mNome',    p.nome);
+  setText('mDesc',    p.descricao || '');
+  setText('qtdVal',   '1');
+  setText('mPreco',   `R$ ${f(p.preco)}`);
+  setText('mCorNome', c0.nome);
+
+  const badgeEl = document.getElementById('mBadge');
+  badgeEl.textContent = p.badge || '';
+  badgeEl.style.display = p.badge ? 'inline-block' : 'none';
+
+  const pa = document.getElementById('mPrecoAnt');
+  if (p.precoAntigo) {
+    pa.textContent = `R$ ${f(p.precoAntigo)}`;
+    pa.style.display = 'inline';
+  } else {
+    pa.style.display = 'none';
+  }
+
+  const mFoto = document.getElementById('mFoto');
+  mFoto.src = c0.foto;
+  mFoto.alt = p.nome;
+
+  document.getElementById('mMiniaturas').innerHTML = p.cores.map((c, i) =>
+    `<img src="${c.foto}" alt="${c.nome}" class="${i === 0 ? 'ativa' : ''}"
+      onclick="trocarCorModal(${i})" loading="lazy"/>`
+  ).join('');
+
+  document.getElementById('mCores').innerHTML = p.cores.map((c, i) =>
+    `<button class="swatch ${i === 0 ? 'ativo' : ''}" style="background:${c.hex}"
+      title="${c.nome}" onclick="trocarCorModal(${i})" aria-label="${c.nome}"></button>`
+  ).join('');
+
+  document.getElementById('mTamanhos').innerHTML = (p.tamanhos || []).map((t, i) =>
+    `<button class="tam ${i === 0 ? 'ativo' : ''}" onclick="selTam(this)">${t}</button>`
+  ).join('');
+
+  const isFav = favoritos.includes(p.id);
+  const btn = document.getElementById('btnFavModal');
+  btn.innerHTML = `<i class="fa${isFav ? 's' : 'r'} fa-heart"></i>`;
+  btn.classList.toggle('ativo', isFav);
+
+  abrirModal('ovProduto');
+}
+
+function fecharModal() { fecharModal2('ovProduto'); }
+
+function trocarCorModal(idx) {
+  if (!prodAtual?.cores[idx]) return;
+  corAtual = idx;
+  const c = prodAtual.cores[idx];
+  const img = document.getElementById('mFoto');
+  img.style.opacity = '.3';
+  setTimeout(() => { img.src = c.foto; img.style.opacity = '1'; }, 130);
+  setText('mCorNome', c.nome);
+  document.querySelectorAll('#mCores .swatch').forEach((b, i) => b.classList.toggle('ativo', i === idx));
+  document.querySelectorAll('#mMiniaturas img').forEach((b, i) => b.classList.toggle('ativa', i === idx));
+}
+
+function selTam(btn) {
+  document.querySelectorAll('.tam').forEach(b => b.classList.remove('ativo'));
+  btn.classList.add('ativo');
+}
+
+function mudarQtd(d) {
+  qtdAtual = Math.max(1, qtdAtual + d);
+  setText('qtdVal', qtdAtual);
+}
+
+function adicionarItemAoCarrinho() {
+  const cor  = prodAtual.cores[corAtual] || prodAtual.cores[0];
+  const tam  = document.querySelector('.tam.ativo')?.textContent || prodAtual.tamanhos?.[0] || '';
+  const item = {
+    id: prodAtual.id, nome: prodAtual.nome, preco: prodAtual.preco,
+    foto: cor.foto, cor: cor.nome, tam, qtd: qtdAtual
+  };
+  const ex = carrinho.find(c => c.id === item.id && c.cor === item.cor && c.tam === item.tam);
+  if (ex) ex.qtd += item.qtd; else carrinho.push(item);
+  salvarCarrinho();
+}
+
+function adicionarCarrinho() {
+  if (!prodAtual) return;
+  adicionarItemAoCarrinho();
+  fecharModal2('ovProduto');
+  toast(`✓ ${prodAtual.nome} adicionado à sacola!`);
+}
+
+function comprarAgora() {
+  if (!prodAtual) return;
+  adicionarItemAoCarrinho();
+  fecharModal2('ovProduto');
+  renderResumo();
+  document.getElementById('pixChave').value = CONFIG.pixChave;
+  abrirPagina('ovCheckout');
+}
+
+// ── Favoritos ─────────────────────────────────────────────────
+function toggleFavCard(id, btn) {
+  const idx = favoritos.indexOf(id);
+  if (idx > -1) { favoritos.splice(idx, 1); toast('Removido dos favoritos'); }
+  else { favoritos.push(id); toast(`♥ ${PRODUTOS.find(p => p.id === id)?.nome} nos favoritos!`); }
+  localStorage.setItem('clm_favs', JSON.stringify(favoritos));
+  atualizarBadges();
+  if (btn) {
+    const ok = favoritos.includes(id);
+    btn.innerHTML = `<i class="fa${ok ? 's' : 'r'} fa-heart"></i>`;
+    btn.classList.toggle('ativo', ok);
+  }
+  renderProdutos(); renderDestaque();
+}
+
+function toggleFavModal() {
+  if (prodAtual) toggleFavCard(prodAtual.id, document.getElementById('btnFavModal'));
+}
+
+function abrirFavoritos() {
+  const box = document.getElementById('listaFavoritos');
+  if (!favoritos.length) {
+    box.innerHTML = `<div class="painel-vazio"><i class="fas fa-heart"></i><p>Nenhum favorito ainda</p></div>`;
+  } else {
+    box.innerHTML = favoritos.map(id => {
+      const p = PRODUTOS.find(x => x.id === id); if (!p) return '';
+      return `
+      <div class="item-cart">
+        <img src="${p.cores[0].foto}" alt="${p.nome}"/>
+        <div class="item-info">
+          <p class="item-nome">${p.nome}</p>
+          <p class="item-meta">${p.marca || ''}</p>
+          <div class="item-bottom">
+            <span class="item-preco">R$ ${f(p.preco)}</span>
+            <button class="btn-prim sm" onclick="fecharOverlay('ovFavoritos'); abrirProduto(${p.id})">Ver</button>
+          </div>
+        </div>
+        <button class="remover" onclick="toggleFavCard(${id}, null); abrirFavoritos()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>`;
+    }).join('');
+  }
+  abrirOverlay('ovFavoritos');
+}
+
+// ── Carrinho ──────────────────────────────────────────────────
+function abrirCarrinho() { renderCarrinho(); abrirOverlay('ovCarrinho'); }
+
+function renderCarrinho() {
+  const box = document.getElementById('listaCarrinho');
+  const rod = document.getElementById('rodapeCarrinho');
+
+  if (!carrinho.length) {
+    box.innerHTML = `<div class="painel-vazio"><i class="fas fa-shopping-bag"></i><p>Sacola vazia</p></div>`;
+    rod.style.display = 'none';
+    return;
+  }
+
+  box.innerHTML = carrinho.map((it, i) => `
+    <div class="item-cart">
+      <img src="${it.foto}" alt="${it.nome}"/>
+      <div class="item-info">
+        <p class="item-nome">${it.nome}</p>
+        <p class="item-meta">${it.tam} · ${it.cor}</p>
+        <div class="item-bottom">
+          <div class="qtd-ctrl mini">
+            <button onclick="mudQtdCart(${i}, -1)">−</button>
+            <span>${it.qtd}</span>
+            <button onclick="mudQtdCart(${i}, 1)">+</button>
+          </div>
+          <span class="item-preco">R$ ${f(it.preco * it.qtd)}</span>
+        </div>
+      </div>
+      <button class="remover" onclick="removerCart(${i})"><i class="fas fa-times"></i></button>
+    </div>`).join('');
+
+  rod.style.display = 'flex';
+  setText('totalCarrinho', `R$ ${f(totalCart())}`);
+}
+
+function mudQtdCart(i, d) {
+  carrinho[i].qtd = Math.max(1, carrinho[i].qtd + d);
+  salvarCarrinho(); renderCarrinho();
+}
+
+function removerCart(i) {
+  carrinho.splice(i, 1);
+  salvarCarrinho(); renderCarrinho();
+}
+
+function salvarCarrinho() {
+  localStorage.setItem('clm_cart', JSON.stringify(carrinho));
+  atualizarBadges();
+}
+
+function totalCart() { return carrinho.reduce((s, i) => s + i.preco * i.qtd, 0); }
+
+function atualizarBadges() {
+  const qtd = carrinho.reduce((s, i) => s + i.qtd, 0);
+  const bc = document.getElementById('badgeCart');
+  bc.textContent = qtd; bc.style.display = qtd > 0 ? 'flex' : 'none';
+  const bf = document.getElementById('badgeFav');
+  bf.textContent = favoritos.length;
+  bf.style.display = favoritos.length > 0 ? 'flex' : 'none';
+}
+
+// ── Checkout ──────────────────────────────────────────────────
+function irCheckout() {
+  if (!carrinho.length) { toast('Adicione produtos primeiro'); return; }
+  fecharOverlay('ovCarrinho');
+  renderResumo();
+  document.getElementById('pixChave').value = CONFIG.pixChave;
+  abrirPagina('ovCheckout');
+}
+
+function renderResumo() {
+  document.getElementById('resumoItens').innerHTML = carrinho.map(it => `
+    <div class="resumo-item">
+      <img src="${it.foto}" alt="${it.nome}"/>
+      <div>
+        <p>${it.nome}</p>
+        <small>${it.tam} · ${it.cor} · Qtd: ${it.qtd}</small>
+      </div>
+      <span>R$ ${f(it.preco * it.qtd)}</span>
+    </div>`).join('');
+
+  const sub = totalCart();
+  const entrega = 10;
+  setText('resumoSub',   `R$ ${f(sub)}`);
+  setText('resumoTotal', `R$ ${f(sub + entrega)}`);
+}
+
+function copiarPix() {
+  const k = document.getElementById('pixChave').value;
+  navigator.clipboard?.writeText(k)
+    .then(() => toast('✓ Chave PIX copiada!'))
+    .catch(() => toast('Chave: ' + k));
+}
+
+let metodoPagto = 'pix';
+
+function selecionarPagto(metodo) {
+  metodoPagto = metodo;
+  document.getElementById('tabPix').classList.toggle('ativo', metodo === 'pix');
+  document.getElementById('tabCartao').classList.toggle('ativo', metodo === 'cartao');
+  document.getElementById('painelPix').classList.toggle('ativo', metodo === 'pix');
+  document.getElementById('painelCartao').classList.toggle('ativo', metodo === 'cartao');
+}
+
+function finalizarPedido() {
+  const nome   = val('ckNome');
+  const bairro = val('ckBairro');
+  const end    = val('ckEnd');
+  const compl  = val('ckCompl');
+
+  if (!nome)   { toast('⚠ Preencha seu nome');     focus('ckNome');   return; }
+  if (!bairro) { toast('⚠ Preencha o bairro');     focus('ckBairro'); return; }
+  if (!end)    { toast('⚠ Preencha o endereço');   focus('ckEnd');    return; }
+
+  let msg = `Olá! Quero fazer um pedido na *ACRE STREETWEAR* 🛍️\n\n`;
+  msg += `*👤 Nome:* ${nome}\n`;
+  msg += `*📍 Endereço:* ${end}${compl ? `, ${compl}` : ''} — ${bairro}, Rio Branco/AC\n\n`;
+  msg += `*🛒 Itens do Pedido:*\n${'─'.repeat(20)}\n`;
+  carrinho.forEach((it, i) => {
+    msg += `*${i + 1}. ${it.nome}*\n`;
+    msg += `   Tamanho: ${it.tam} | Cor: ${it.cor} | Qtd: ${it.qtd}\n`;
+    msg += `   Valor: R$ ${f(it.preco * it.qtd)}\n`;
+  });
+  msg += `${'─'.repeat(20)}\nSubtotal: R$ ${f(totalCart())}\nTaxa de entrega: R$ 10,00\n*💰 Total: R$ ${f(totalCart() + 10)}*\n\n`;
+
+  if (metodoPagto === 'pix') {
+    msg += `*Pagamento:* PIX 💸\n_(Vou enviar o comprovante em seguida)_ ✅`;
+  } else {
+    msg += `*Pagamento:* Cartão 💳\n_(Vou pagar na maquininha na entrega)_ ✅`;
+  }
+
+  const temPersonalizado = carrinho.some(it => PRODUTOS.find(p => p.id === it.id)?.categoria === 'personalizado');
+  if (temPersonalizado) {
+    msg += `\n\n🎨 *Personalizado:* vou enviar a estampa (imagem/ideia) aqui no chat!`;
+    msg += `\n⚠️ _Sei que a estampa é feita no mesmo dia e vou esperar 24h antes de lavar, pra tinta secar e a arte não estragar._`;
+  }
+
+  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+}
+
+// ── Bloqueio de scroll do body ────────────────────────────────
+// Mantém o body travado enquanto qualquer painel/modal/página/menu
+// estiver aberto, e libera só quando o último deles fechar.
+function atualizarScrollLock() {
+  const algumAberto = document.querySelector(
+    '.painel-overlay.aberto, .pagina-overlay.aberta, .modal-overlay.aberto, #navMenu.aberto'
+  );
+  document.body.style.overflow = algumAberto ? 'hidden' : '';
+}
+
+// ── Páginas (Sobre / Termos / Checkout) ──────────────────────
+function abrirPagina(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.display = 'flex';
+  setTimeout(() => el.classList.add('aberta'), 10);
+  el.scrollTop = 0;
+  atualizarScrollLock();
+}
+
+function fecharPagina(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.remove('aberta');
+  setTimeout(() => { el.style.display = 'none'; atualizarScrollLock(); }, 300);
+}
+
+// ── Overlays (painéis laterais) ───────────────────────────────
+function abrirOverlay(id) {
+  const el = document.getElementById(id);
+  el.style.display = 'flex';
+  setTimeout(() => el.classList.add('aberto'), 10);
+  atualizarScrollLock();
+}
+
+function fecharOverlay(id) {
+  const el = document.getElementById(id);
+  el.classList.remove('aberto');
+  setTimeout(() => { el.style.display = 'none'; atualizarScrollLock(); }, 300);
+}
+
+// ── Modal ─────────────────────────────────────────────────────
+function abrirModal(id) {
+  const el = document.getElementById(id);
+  el.style.display = 'flex';
+  setTimeout(() => el.classList.add('aberto'), 10);
+  atualizarScrollLock();
+}
+
+function fecharModal2(id) {
+  const el = document.getElementById(id);
+  el.classList.remove('aberto');
+  setTimeout(() => { el.style.display = 'none'; atualizarScrollLock(); }, 300);
+}
+
+// ── Menu mobile ───────────────────────────────────────────────
+function toggleMenu() {
+  const nav = document.getElementById('navMenu');
+  const aberto = !nav.classList.contains('aberto');
+  nav.classList.toggle('aberto', aberto);
+  document.getElementById('hamburger').setAttribute('aria-expanded', String(aberto));
+  const icone = document.querySelector('#hamburger i');
+  if (icone) icone.className = aberto ? 'fas fa-times' : 'fas fa-bars';
+  if (aberto) fecharBuscaMobile();
+  atualizarScrollLock();
+}
+function fecharMenu() {
+  document.getElementById('navMenu').classList.remove('aberto');
+  document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
+  const icone = document.querySelector('#hamburger i');
+  if (icone) icone.className = 'fas fa-bars';
+  atualizarScrollLock();
+}
+
+// ── Navegação ─────────────────────────────────────────────────
+function irInicio() {
+  document.getElementById('secHero').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ── Toast ─────────────────────────────────────────────────────
+let toastTimer;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2800);
+}
+
+// ── Helpers ───────────────────────────────────────────────────
+function setText(id, v) { const el = document.getElementById(id); if (el) el.textContent = v; }
+function setHref(id, u) { const el = document.getElementById(id); if (el) el.href = u; }
+function f(n)           { return Number(n || 0).toFixed(2).replace('.', ','); }
+function val(id)        { return document.getElementById(id)?.value?.trim() || ''; }
+function focus(id)      { document.getElementById(id)?.focus(); }
+
+</script>
+</body>
+</html>
