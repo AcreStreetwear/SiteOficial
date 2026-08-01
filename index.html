@@ -794,11 +794,57 @@ body::after {
 .hero-btns .btn-prim { text-transform:uppercase; letter-spacing:.1em; font-size:.86rem }
 .hero-btns .btn-branco { text-transform:uppercase; letter-spacing:.08em; font-size:.86rem }
 
+/* ── ANIMAÇÕES AO ROLAR (scroll reveal) ── */
+.reveal {
+  opacity:0; transform:translateY(28px);
+  transition:opacity .7s cubic-bezier(.16,.8,.3,1), transform .7s cubic-bezier(.16,.8,.3,1);
+}
+.reveal.in-view { opacity:1; transform:translateY(0) }
+.reveal-grupo .reveal:nth-child(1){ transition-delay:.03s }
+.reveal-grupo .reveal:nth-child(2){ transition-delay:.09s }
+.reveal-grupo .reveal:nth-child(3){ transition-delay:.15s }
+.reveal-grupo .reveal:nth-child(4){ transition-delay:.21s }
+.reveal-grupo .reveal:nth-child(5){ transition-delay:.27s }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity:1; transform:none; transition:none }
+}
+
+/* ── BOTÃO FLUTUANTE DO WHATSAPP ── */
+.wpp-flutuante {
+  position:fixed; right:1.3rem; bottom:1.3rem; z-index:800;
+  width:58px; height:58px; border-radius:50%;
+  background:var(--wpp); color:#fff; font-size:1.55rem;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 6px 24px rgba(0,0,0,.4), 0 0 0 0 rgba(37,211,102,.55);
+  animation:pulsoWpp 2.6s ease-in-out infinite;
+  transition:transform var(--t), box-shadow var(--t);
+}
+.wpp-flutuante:hover { transform:scale(1.08); box-shadow:0 8px 28px rgba(0,0,0,.5) }
+@keyframes pulsoWpp {
+  0%   { box-shadow:0 6px 24px rgba(0,0,0,.4), 0 0 0 0 rgba(37,211,102,.55) }
+  70%  { box-shadow:0 6px 24px rgba(0,0,0,.4), 0 0 0 14px rgba(37,211,102,0) }
+  100% { box-shadow:0 6px 24px rgba(0,0,0,.4), 0 0 0 0 rgba(37,211,102,0) }
+}
+@media(max-width:640px){
+  .wpp-flutuante { right:1rem; bottom:1rem; width:52px; height:52px; font-size:1.4rem }
+}
+
+/* ── ZOOM NAS FOTOS DO PRODUTO (modal) ── */
+.foto-main { cursor:zoom-in; position:relative }
+.foto-main img { transition:transform .35s ease }
+.foto-main:hover img { transform:scale(1.18) }
+
+
   </style>
 </head>
 <body>
 <!-- ════ TOAST ════════════════════════════════════════════════ -->
 <div id="toast" class="toast"></div>
+
+<!-- ════ BOTÃO FLUTUANTE WHATSAPP ═════════════════════════════ -->
+<a id="wppFlutuante" class="wpp-flutuante" href="#" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
 
 <!-- ════ TOP BAR ══════════════════════════════════════════════ -->
 <div class="top-bar"><span id="elTopBar"></span></div>
@@ -821,8 +867,9 @@ body::after {
     <!-- NAV LINKS -->
     <ul class="nav-links" id="navMenu">
       <li><a href="#" onclick="irCategoria('all');   return false;">Todos</a></li>
-      <li><a href="#" onclick="irCategoria('modus'); return false;" class="nav-modus">AC STREETWEAR</a></li>
-      <li><a href="#" onclick="irCategoria('camisetas'); return false;">Camisetas</a></li>
+      <li><a href="#" onclick="irCategoria('oversized'); return false;">Oversized</a></li>
+      <li><a href="#" onclick="irCategoria('polos'); return false;">Polos</a></li>
+      <li><a href="#" onclick="irCategoria('dryfit'); return false;">Dryfit</a></li>
       <li><a href="#" onclick="irCategoria('personalizado'); return false;">Personalizado</a></li>
     </ul>
 
@@ -876,26 +923,29 @@ body::after {
 <!-- ════ CATEGORIAS ═══════════════════════════════════════════ -->
 <section id="secCats" class="secao">
   <div class="container">
-    <div class="secao-header">
+    <div class="secao-header reveal">
       <h2 class="titulo-sec">Explorar por Categoria</h2>
     </div>
     <div class="cats-scroll">
-      <div class="cat-card modus-card" onclick="irCategoria('modus')">
-        <div class="cat-icon">✦</div>
-        <span>ACRE STREETWEAR</span>
-        <small>Exclusivo</small>
-         <small>Nosso &stilo Unico</small>
-      </div>
-      <div class="cat-card" onclick="irCategoria('camisetas')">
+      <div class="cat-card reveal" onclick="irCategoria('oversized')">
         <div class="cat-icon">👕</div>
-        <span>Camisetas</span>
-        <small>Estilo Tradicional</small>
+        <span>Oversized</span>
+        <small>Larga e Estilosa</small>
       </div>
-      <div class="cat-card" onclick="irCategoria('personalizado')">
+      <div class="cat-card reveal" onclick="irCategoria('polos')">
+        <div class="cat-icon">👔</div>
+        <span>Polos</span>
+        <small>Estilosas e Elegantes</small>
+      </div>
+      <div class="cat-card reveal" onclick="irCategoria('dryfit')">
+        <div class="cat-icon">🏃</div>
+        <span>Dryfit</span>
+        <small>Leve, Respirável e Esportiva</small>
+      </div>
+      <div class="cat-card reveal" onclick="irCategoria('personalizado')">
         <div class="cat-icon">🎨</div>
         <span>Personalizado</span>
         <small>Sua Estampa</small>
-      </div>
       </div>
     </div>
   </div>
@@ -934,7 +984,7 @@ body::after {
 
 <!-- ════ BANNER ════════════════════════════════════════════════ -->
 <section id="secBanner" class="banner">
-  <div class="banner-inner">
+  <div class="banner-inner reveal">
     <p class="eyebrow" id="elBannerSub"></p>
     <h2 id="elBannerTitulo"></h2>
     <button class="btn-prim" id="elBannerBtn" onclick="irCategoria('all')"></button>
@@ -947,7 +997,7 @@ body::after {
 <!-- ════ MAIS VENDIDOS ════════════════════════════════════════ -->
 <section id="secDestaque" class="secao">
   <div class="container">
-    <div class="secao-header">
+    <div class="secao-header reveal">
       <h2 class="titulo-sec">Mais Vendidos</h2>
     </div>
     <div id="gridDestaque" class="grade"></div>
@@ -957,23 +1007,23 @@ body::after {
 <!-- ════ DIFERENCIAIS ═════════════════════════════════════════ -->
 <section class="secao dif-secao">
   <div class="container">
-    <div class="dif-grid">
-      <div class="dif">
+    <div class="dif-grid reveal-grupo">
+      <div class="dif reveal">
         <div class="dif-icone"><i class="fas fa-truck-fast"></i></div>
         <h4>Entrega Rápida</h4>
         <p>Entregamos em Rio Branco em até 24h.</p>
       </div>
-      <div class="dif">
+      <div class="dif reveal">
         <div class="dif-icone"><i class="fas fa-shield-halved"></i></div>
         <h4>Compra Segura</h4>
         <p>Pagamento via PIX com total segurança.</p>
       </div>
-      <div class="dif">
+      <div class="dif reveal">
         <div class="dif-icone"><i class="fas fa-undo"></i></div>
         <h4>Troca em 3 dias</h4>
         <p>Não curtiu? Resolvemos em 3 dias.</p>
       </div>
-      <div class="dif">
+      <div class="dif reveal">
         <div class="dif-icone"><i class="fas fa-headset"></i></div>
         <h4>Atendimento</h4>
         <p>Fale com a gente direto no WhatsApp ou Instagram.</p>
@@ -1003,8 +1053,9 @@ body::after {
       <h5>Loja</h5>
       <ul>
         <li><a href="#" onclick="irCategoria('all');return false;">Todos os Produtos</a></li>
-        <li><a href="#" onclick="irCategoria('modus');return false;">AC STREETWEAR</a></li>
-        <li><a href="#" onclick="irCategoria('camisetas');return false;">Camisetas</a></li>
+        <li><a href="#" onclick="irCategoria('oversized');return false;">Oversized</a></li>
+        <li><a href="#" onclick="irCategoria('polos');return false;">Polos</a></li>
+        <li><a href="#" onclick="irCategoria('dryfit');return false;">Dryfit</a></li>
         <li><a href="#" onclick="irCategoria('personalizado');return false;">Personalizado</a></li>
       </ul>
     </div>
@@ -1265,14 +1316,14 @@ body::after {
             <li><i class="fas fa-check-circle"></i> <strong>Estilo autêntico</strong> — coleções que fogem do óbvio</li>
           </ul>
         </div>
-        <div class="sobre-stats">
-          <div class="stat"><strong>2026</strong><span>Fundada</span></div>
-          <div class="stat"><strong>100%</strong><span>Qualidade</span></div>
-          <div class="stat"><strong>RBAC</strong><span>Rio Branco — AC</span></div>
-          <div class="stat"><strong>PIX & CARTÃO</strong><span>Simples e seguro</span></div>
+        <div class="sobre-stats reveal-grupo">
+          <div class="stat reveal"><strong>2026</strong><span>Fundada</span></div>
+          <div class="stat reveal"><strong>100%</strong><span>Qualidade</span></div>
+          <div class="stat reveal"><strong>RBAC</strong><span>Rio Branco — AC</span></div>
+          <div class="stat reveal"><strong>PIX & CARTÃO</strong><span>Simples e seguro</span></div>
         </div>
       </div>
-      <blockquote class="sobre-quote">
+      <blockquote class="sobre-quote reveal">
         "Moda que define quem você é. Autenticidade em cada peça."
       </blockquote>
       <div class="sobre-cta">
@@ -1297,31 +1348,31 @@ body::after {
       <p class="termos-data">Última atualização: Janeiro de 2026</p>
     </div>
     <div class="termos-conteudo">
-      <div class="termo-bloco">
+      <div class="termo-bloco reveal">
         <h3><span>01</span> Área de Atendimento</h3>
         <p>Realizamos entregas <strong>exclusivamente em Rio Branco — Acre (AC)</strong>. Pedidos fora dessa área poderão ter um frete bem mais alto.</p>
       </div>
-      <div class="termo-bloco">
+      <div class="termo-bloco reveal">
         <h3><span>02</span> Como Funciona a Compra</h3>
         <p>Selecione os produtos, informe o endereço, copie a chave PIX, faça o pagamento e clique em "Fazer Pedido". O resumo vai direto ao WhatsApp da loja. O pedido é confirmado após envio do comprovante. Se a compra for no cartão nosso entregador vai levar a maquininha ate você.</p>
       </div>
-      <div class="termo-bloco">
+      <div class="termo-bloco reveal">
         <h3><span>03</span> Formas de Pagamento</h3>
         <p>Aceitamos <strong>PIX</strong> e <strong>Cartão</strong>. Não trabalhamos com boleto bancário.</p>
       </div>
-      <div class="termo-bloco">
+      <div class="termo-bloco reveal">
         <h3><span>04</span> Entrega</h3>
         <p>O prazo é informado no atendimento via WhatsApp. Em geral, entregamos em até <strong>24 horas</strong> após confirmação do pagamento. Taxa única de <strong>R$ 10,00</strong> por entrega, em qualquer bairro de Rio Branco.</p>
       </div>
-      <div class="termo-bloco">
+      <div class="termo-bloco reveal">
         <h3><span>05</span> Troca e Devolução</h3>
         <p>Você pode solicitar troca em até <strong>3 dias corridos</strong> após o recebimento, com produto sem uso e etiqueta original. Em caso de defeito, a troca é garantida sem custo.</p>
       </div>
-      <div class="termo-bloco">
+      <div class="termo-bloco reveal">
         <h3><span>06</span> Privacidade dos Dados</h3>
         <p>Nome, telefone e endereço são usados <strong>exclusivamente</strong> para entrega do pedido. Não compartilhamos dados com terceiros.</p>
       </div>
-      <div class="termo-bloco">
+      <div class="termo-bloco reveal">
         <h3><span>07</span> Contato</h3>
         <p>Dúvidas? Fale com a gente pelo WhatsApp.</p>
         <a class="btn-wpp" id="termosWpp" href="#" target="_blank" rel="noopener noreferrer" style="margin-top:1rem">
@@ -1357,12 +1408,18 @@ const CONFIG = {
   // Deixe "" para usar só o texto "ACRE STREETWEAR"
   logoUrl: "ac-st.png",
 
+  // ── IMAGEM DE FUNDO DO HERO (banner principal) ──────────────
+  // Cole aqui a URL/caminho de uma imagem para aparecer atrás do
+  // texto "AQUI VOCÊ TEM &STILO". Deixe "" para usar só o fundo
+  // com o efeito verde padrão (sem foto).
+  heroImagemFundo: "",
+
   // ── TEXTOS ─────────────────────────────────────────────────
   topBar: " STREETWEAR — RIO BRANCO AC / TROCA EM 3 DIAS / ENTREGA EM 24HRS",
 
-  heroEyebrow: " STREETWAR COLLECTION 2026",
-  heroTitulo:  "AQUI|VOCÊ TEM|&STILO",   // | separa as 3 linhas. A do meio fica verde.
-  heroSub:     "Street culture. Estilo próprio. Movimento real.",
+  heroEyebrow: " AST Industries COLLECTION 2026",
+  heroTitulo:  "AQUI|VOCÊ TEM |&STILO",   // | separa as 3 linhas. A do meio fica verde.
+  heroSub:     "VISTA SUA ESSÊNCIA",
 
   bannerTitulo:    "MELHORES PREÇOS|DO ACRE",  // | quebra linha
   bannerSubtitulo: " STREETWEAR EXCLUSIVO",
@@ -1392,8 +1449,7 @@ const CONFIG = {
 //  id         → Número único (não repita!)
 //  nome       → Nome do produto
 //  marca      → "ACRE STREETWEAR" ou outra marca
-//  categoria  → "modus" | "camisetas" | "personalizado"
-//               (use "modus" para aparecer na aba exclusiva ACRE STREETWEAR)
+//  categoria  → "oversized" | "polos" | "dryfit" | "personalizado"
 //               (use "personalizado" para camisas com estampa personalizada
 //                em papel de transfer — oversized, básica ou polo)
 //  preco      → Use ponto para decimal. Ex: 89.90
@@ -1401,28 +1457,32 @@ const CONFIG = {
 //  badge      → Etiqueta no card: "Novo", "Promoção", "Exclusivo" — ou null
 //  descricao  → Texto descrevendo o produto
 //  tamanhos   → Lista de tamanhos
-//  cores      → Lista de cores. Cada cor: { nome, hex, foto }
+//  cores      → Lista de cores. Cada cor: { nome, hex, fotos }
+//               "fotos" é uma LISTA de até 4 imagens (ângulos diferentes)
+//               dessa cor. A 1ª foto da lista é a foto principal (capa).
+//               Ex: fotos: ["img/produto-preto-1.png", "img/produto-preto-2.png"]
 //  destaque   → true = aparece em "Mais Vendidos"
 //  novidade   → true = etiqueta NOVO no card
 //  active     → false = oculta da loja
 // ═══════════════════════════════════════════════════════════════
 const PRODUTOS = [
 
-  // ─── ACRE STREETWEAR (categoria exclusiva) ──────────────────────
+  // ─── OVERSIZED ───────────────────────────────────────────────
 
   {
     id: 1,
-    nome:        "Camiseta basica 'All Eyes On Me' ACST",
-    marca:       "ACRE STREETWEAR",
-    categoria:   "modus",
+    nome:        "Camiseta Dragão Chinês",
+    marca:       "AST INDUSTRIES",
+    categoria:   "oversized",
     preco:       65.00,
     precoAntigo: null,
     badge:       "Exclusivo",
-    descricao:   "Camiseta unissex 100% algodão estampa unica e exclusiva da Ac Streetwear. ",
-    tamanhos:    [ "M", "G",],
+    descricao:   "Camiseta unissex 100% algodão estampa exclusiva da AST. Sem estampa na frente.🧼 Cuidados com sua Camisa ASTPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
+    tamanhos:    [, "M", "G","GG"],
     cores: [
-      { nome: "Preto",  hex: "#1a1a1a", foto: "img/all preto.png" },
-      { nome: "Branco", hex: "#f5f5f0", foto: "img/all branco.png" },
+      { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/dragaoP.jpg"] },
+      { nome: "Branco", hex: "#f5f5f0", fotos: ["img/dragaoB.jpg"] },
+      // PLACEHOLDER — troque pela foto real desta cor quando tiver
     ],
     destaque: true,
     novidade: true,
@@ -1431,17 +1491,19 @@ const PRODUTOS = [
 
   {
     id: 2,
-    nome:        "Camiseta Modus Oversized Exclusiva ACST",
-    marca:       "ACRE STREETWEAR",
-    categoria:   "modus",
-    preco:       60.00,
+    nome:        "Camiseta Dragão Chinês das nuvens",
+    marca:       "AST INDUSTRIES",
+    categoria:   "oversized",
+    preco:       65.00,
     precoAntigo: null,
     badge:       "Exclusivo",
-    descricao:   "Camisa oversized unissex 100% algodão, exclusiva da AC streetwear. sem estmapa na parte de traz so a logo pequena frente",
-    tamanhos:    ["M", "G",],
+    descricao:   "Camisa oversized unissex 100% algodão, exclusiva da AC streetwear.Estampa pequena na frente.🧼 Cuidados com sua Camisa ASTPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo! ",
+    tamanhos:    [, "M", "G","GG"],
     cores: [
-      { nome: "Preto", hex: "#1a1a1a", foto: "img/mpreto.png" },
-      { nome: "Branco",  hex: "#f5f5f0", foto: "img/mbranco.png" },
+      { nome: "Preto", hex: "#1a1a1a", fotos: ["img/dragaonP.jpg"] },
+      // PLACEHOLDER — troque pela foto real desta cor quando tiver
+      { nome: "Bege", hex: "#f5f5dc", fotos: ["img/dragaonA.jpg.jpg"] },
+      { nome: "Cinza",    hex: "#71717a", fotos: ["img/dragaonC.png"] },
     ],
     destaque: true,
     novidade: true,
@@ -1450,17 +1512,20 @@ const PRODUTOS = [
 
   {
     id: 3,
-    nome:        "Camiseta Oversized ACST",
-    marca:       "ACRE STREETWEAR",
-    categoria:   "modus",
+    nome:        "Camiseta Oversized Gotica Cristã",
+    marca:       "AST INDUSTRIES",
+    categoria:   "oversized",
     preco:       65.00,
     precoAntigo: null,
     badge:       "Exclusivo",
-    descricao:   "Camiseta oversized unissex 100% algodão estampa unica e exclusiva da Ac Streetwear. estampa gotica crstã so rei bauduino de jerusalem",
-    tamanhos:    ["M", "G",],
+    descricao:   "Camiseta oversized unissex 100% algodão estampa unica e exclusiva da Ac Streetwear. estampa gotica crstã so rei bauduino de jerusalem. 🧼 Cuidados com sua Camisa ASTPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
+    tamanhos:    [, "M", "G","GG"],
     cores: [
-      { nome: "Preto", hex: "#1a1a1a", foto: "img/bauduinoP.jpg" },
-      { nome: "Branco", hex: "#f5f5f0", foto: "img/bauduinoB.jpg" },
+      { nome: "Preto", hex: "#1a1a1a", fotos: ["img/bauduinoP.jpg"] },
+      { nome: "Branco", hex: "#f5f5f0", fotos: ["img/bauduinoB.jpg"] },
+      // PLACEHOLDER — troque pela foto real desta cor quando tiver
+      { nome: "Vermelho", hex: "#dc2626", fotos: ["img/bauduinoV.png"] },
+      { nome: "Cinza",    hex: "#71717a", fotos: ["img/bauduinoC.png"] },
     ],
     destaque: true,
     novidade: true,
@@ -1469,17 +1534,20 @@ const PRODUTOS = [
 
   {
     id: 4,
-    nome:        "Camisa Oversized Cristã ACST",
-    marca:       "ACRE STREETWEAR",
-    categoria:   "modus",
+    nome:        "Camisa Oversized Cristã ",
+    marca:       "AST INDUSTRIES",
+    categoria:   "oversized",
     preco:       65.00,
     precoAntigo: null,
     badge:       "Exclusivo",
-    descricao:   "Camiseta oversized unissex 100% algodão estampa única e exclusiva da Ac Streetwear. estampa crstã 'criai em mim um coração puro'",
-    tamanhos:    ["M", "G", ],
+    descricao:   "Camiseta oversized unissex 100% algodão estampa única e exclusiva da Ac Streetwear. estampa crstã 'criai em mim um coração puro',🧼 Cuidados com sua Camisa ASTPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
+    tamanhos:    [, "M", "G","GG"],
     cores: [
-      { nome: "Preto",  hex: "#1a1a1a", foto: "img/coraçãop.png" },
-      { nome: "Branco", hex: "#f5f5f0", foto: "img/coraçãob.png" },
+      { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/coraçãop.png"] },
+      { nome: "Branco", hex: "#f5f5f0", fotos: ["img/coraçãob.png"] },
+      // PLACEHOLDER — troque pela foto real desta cor quando tiver
+      { nome: "Vermelho", hex: "#dc2626", fotos: ["img/coracaoV.png"] },
+      { nome: "Cinza",    hex: "#71717a", fotos: ["img/coracaoC.png"] },
     ],
     destaque: true,
     novidade: true,
@@ -1487,17 +1555,19 @@ const PRODUTOS = [
   },
   {
     id: 5,
-    nome:        "Camisa Basica ACST",
-    marca:       "ACRE STREETWEAR",
-    categoria:   "modus",
+    nome:        "Camisa oversized cristã de jesus",
+    marca:       "AST INDUSTRIES",
+    categoria:   "oversized",
     preco:       65.00,
     precoAntigo: null,
     badge:       "Exclusivo",
-    descricao:   "Camiseta unissex 100% algodão estampa única e exclusiva da Ac Streetwear. estampa gotica cristã",
-    tamanhos:    ["M", "G", ],
+    descricao:   "Camiseta unissex 100% algodão estampa única e exclusiva da Ac Streetwear. estampa cristã de jesus 'eu sou o caminho verdade e a vida'. sem estampa na frente.🧼 Cuidados com sua Camisa ASTPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
+    tamanhos:    [, "M", "G","GG"],
     cores: [
-      { nome: "Preto",  hex: "#1a1a1a", foto: "img/ap.png" },
-      { nome: "Branco", hex: "#f5f5f0", foto: "img/apb.png" },
+      { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/JesusP.png"] },
+      { nome: "Branco", hex: "#f5f5f0", fotos: ["img/JesusB.png"] },
+      // PLACEHOLDER — troque pela foto real desta cor quando tiver
+     
     ],
     destaque: true,
     novidade: true,
@@ -1505,27 +1575,42 @@ const PRODUTOS = [
   },
   
 
-  // ─── CAMISETAS ─────────────────────────────────────────────
-
- 
    {
     id: 9,
     nome:        "Camisa Oversized Flor",
     marca:       "Variada",
-    categoria:   "camisetas",
+    categoria:   "oversized",
     preco:       65.00,
     precoAntigo: null,
     badge:       "Exclusivo",
-    descricao:   "Camiseta oversized unissex 100% algodão estampa de uma rosa(flor) na parte da frente, sem estampa na parte de traz.",
+    descricao:   "Camiseta oversized unissex 100% algodão estampa de uma rosa(flor) na parte da frente, sem estampa na parte de traz.🧼 Cuidados com sua Camisa ASTPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
     tamanhos:    ["G"],
     cores: [
-      { nome: "Preto",  hex: "#1a1a1a", foto: "img/florP.png" },
-      { nome: "Branco", hex: "#f5f5f0", foto: "img/florB.png" },
+      { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/florP.png"] },
+      { nome: "Branco", hex: "#f5f5f0", fotos: ["img/florB.png"] },
+      // PLACEHOLDER — troque pela foto real desta cor quando tiver
+    
     ],
     destaque: true,
     novidade: true,
     active:   true,
   },
+
+  // ─── POLOS ───────────────────────────────────────────────────
+  //  Camisas polo. Ainda não há produtos aqui — adicione os seus
+  //  copiando um bloco de produto acima e usando categoria: "polos".
+
+  // ─── DRYFIT ──────────────────────────────────────────────────
+  //  Camisetas dryfit (tecido leve/respirável). Ainda não há
+  //  produtos aqui — copie um bloco acima e use categoria: "dryfit".
+
+  // ─── PALETA DE CORES DE REFERÊNCIA ───────────────────────────
+  //  Cole o hex ao adicionar uma cor nova em "cores". Ex:
+  //  { nome: "Vermelho", hex: "#dc2626", fotos: ["img/sua-foto.png"] }
+  //    Vermelho   #dc2626      Cinza     #71717a      Azul     #2563eb
+  //    Azul Marinho #1e3a5f    Verde     #16a34a      Amarelo  #eab308
+  //    Roxo       #7c3aed      Rosa      #ec4899      Bege     #d6cbb3
+  //    Marrom     #78350f
 
 
   // ─── PERSONALIZADO (estampa em papel de transfer) ───────────
@@ -1535,16 +1620,19 @@ const PRODUTOS = [
   {
     id: 7,
     nome:        "Camiseta Personalizada Oversized",
-    marca:       "Ac Streetwear",
+    marca:       "AST INDUSTRIES",
     categoria:   "personalizado",
     preco:       70.00,
     precoAntigo: null,
     badge:       "Personalizado",
     descricao:   "Camiseta oversized unissex 100% algodão. Escolha a cor e o tamanho e envie sua estampa pelo WhatsApp após o pedido — aplicamos em papel de transfer de alta qualidade. ⚠️ A estampa é feita no mesmo dia: espere 24h para lavar a peça, assim a tinta seca totalmente e a arte se preserva.",
-    tamanhos:    ["M", "G",],
+    tamanhos:    [, "M", "G","GG"],
     cores: [
-      { nome: "Branco", hex: "#f5f5f0", foto: "img/sbranco.png" },
-      { nome: "Preto",  hex: "#1a1a1a", foto: "img/spreto.png" },
+      { nome: "Branco", hex: "#f5f5f0", fotos: ["img/sbranco.png"] },
+      { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/spreto.png"] },
+      // PLACEHOLDER — troque pela foto real desta cor quando tiver
+      { nome: "Vermelho", hex: "#dc2626", fotos: ["img/sbranco.png"] },
+      { nome: "Cinza",    hex: "#71717a", fotos: ["img/spreto.png"] },
     ],
     destaque: false,
     novidade: false,
@@ -1553,22 +1641,164 @@ const PRODUTOS = [
 
   {
     id: 8,
-    nome:        "Camiseta Personalizada Básica",
-    marca:       "Ac Streetwear",
-    categoria:   "personalizado",
-    preco:       70.00,
+    nome:        "Camiseta oversized Cristã leão de juda",
+    marca:       "AST INDUSTRIES",
+    categoria:   "oversized",
+    preco:       65.00,
     precoAntigo: null,
-    badge:       "Personalizado",
-    descricao:   "Camiseta básica 100% algodão, corte tradicional. Escolha a cor e o tamanho e envie sua estampa pelo WhatsApp após o pedido — aplicamos em papel de transfer de alta qualidade. ⚠️ A estampa é feita no mesmo dia: espere 24h para lavar a peça, assim a tinta seca totalmente e a arte se preserva.",
-    tamanhos:    ["M", "G", ],
+    badge:       "Oversized",
+    descricao:   "🧼 Cuidados com sua Camisa ASTPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!.",
+    tamanhos:    [, "M", "G","GG"],
     cores: [
-      { nome: "Branco", hex: "#f5f5f0", foto: "img/csbranco.png" },
-      { nome: "Preto",  hex: "#1a1a1a", foto: "img/cspreto.png" },
+      { nome: "Branco", hex: "#f5f5f0", fotos: ["img/leaoB.jpg"] },
+      { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/leaoP.jpg"] },
+      // PLACEHOLDER — troque pela foto real desta cor quando tiver
+      
     ],
     destaque: false,
     novidade: false,
     active:   true,
   },
+   {
+    id: 10,
+    nome:        "Camiseta Gola Polo",
+    marca:       "AST INDUSTRIES",
+    categoria:   "polos",
+    preco:       70.00,
+    precoAntigo: null,
+    badge:       "Gola POLO",
+    descricao:   "🧼 Cuidados com sua Camisa AST Para garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
+    tamanhos:    [, "M", "G","GG"],
+    cores: [
+      { nome: "Branco", hex: "#f5f5f0", fotos: ["img/poloB2.png"] },
+      { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/poloB1.png"] },
+      // PLACEHOLDER — troque pela foto real desta cor quando tiver
+      
+    ],
+    destaque: false,
+    novidade: false,
+    active:   true,
+  },
+   {
+    id: 15,
+    nome:        "Camiseta Personalizada Gola polo",
+    marca:       "AST INDUSTRIES",
+    categoria:   "personalizado",
+    preco:       80.00,
+    precoAntigo: null,
+    badge:       "Gola POLO",
+    descricao:   "Camiseta gola polo 50% algodão e 50% poliester , corte tradicional. Escolha a cor e o tamanho e envie sua estampa pelo WhatsApp após o pedido — aplicamos em papel de transfer de alta qualidade. ⚠️ A estampa é feita no mesmo dia: espere 24h para lavar a peça, assim a tinta seca totalmente e a arte se preserva.",
+    tamanhos:    [, "M", "G","GG"],
+    cores: [
+      { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/poloP.png"] },
+      { nome: "Branco", hex: "#f5f5f0", fotos: ["img/poloB.png"] },
+      // PLACEHOLDER — troque pela foto real desta cor quando tiver
+      
+    ],
+    destaque: false,
+    novidade: false,
+    active:   true,
+  },
+   {
+    id: 11,
+    nome:        "Camisa Oversized Cristã com cruz no peito",
+    marca:       "Variada",
+    categoria:   "oversized",
+    preco:       65.00,
+    precoAntigo: null,
+    badge:       "Exclusivo",
+    descricao:   "Camiseta oversized unissex 100% algodão estampa exclusiva da AST. estampa é uma cruz pequena no peito'.🧼 Cuidados com sua Camisa AST Para garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
+    tamanhos:    [, "M", "G","GG"],
+    cores: [
+      { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/CruzP.png"] },
+      { nome: "Branco", hex: "#f5f5f0", fotos: ["img/CruzB.png"] },
+      // PLACEHOLDER — troque pela foto real desta cor quando tiver
+      { nome: "Bege", hex: "#f5f5dc", fotos: ["img/CruzA.jpg"] },
+    ],
+    destaque: true,
+    novidade: true,
+    active:   true,
+  },
+  {
+    id: 12,
+    nome:        "Camisa Oversized futebolista de Juan Cuadrado",
+    marca:       "AST INDUSTRIES",
+    categoria:   "oversized",
+    preco:       65.00,
+    precoAntigo: null,
+    badge:       "Exclusivo",
+    descricao:   "Camiseta oversized unissex 100% algodão estampa única e exclusiva da AST. estampa crstã 'criai em mim um coração puro'.🧼 Cuidados com sua Camisa AST Para garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
+    tamanhos:    [, "M", "G","GG"],
+    cores: [
+      { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/CuadradoP.png"] },
+      { nome: "Branco", hex: "#f5f5f0", fotos: ["img/CuadradoB.png"] },
+      // PLACEHOLDER — troque pela foto real desta cor quando tiver
+    ],
+    destaque: true,
+    novidade: true,
+    active:   true,
+  },
+   {
+    id: 13,
+    nome:        "Camisa Oversized Streetwear",
+    marca:       "AST INDUSTRIES",
+    categoria:   "oversized",
+    preco:       65.00,
+    precoAntigo: null,
+    badge:       "Exclusivo",
+    descricao:   "Camiseta oversized unissex 100% algodão estampa única e exclusiva da AST.🧼 Cuidados com sua Camisa AST Para garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
+    tamanhos:    [, "M", "G","GG"],
+    cores: [
+      { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/astP.png"] },
+      { nome: "Branco", hex: "#f5f5f0", fotos: ["img/astB.png"] },
+      // PLACEHOLDER — troque pela foto real desta cor quando tiver
+    ],
+    destaque: true,
+    novidade: true,
+    active:   true,
+  },
+  {
+    id: 14,
+    nome:        "Camiseta Oversized Lisa sem estampa",
+    marca:       "AST INDUSTRIES",
+    categoria:   "Oversized",
+    preco:       70.00,
+    precoAntigo: null,
+    badge:       "Personalizado",
+    descricao:   "🧼 Cuidados com sua Camisa AST Para garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
+    tamanhos:    [, "M", "G","GG"],
+    cores: [
+      { nome: "Branco", hex: "#f5f5f0", fotos: ["img/lisaB.png"] },
+      { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/lisaP.png"] },
+      // PLACEHOLDER — troque pela foto real desta cor quando tiver
+      { nome: "Vermelho", hex: "#dc2626", fotos: ["img/lisaV.png"] },
+      { nome: "Cinza",    hex: "#71717a", fotos: ["img/lisaC.png"] },
+    ],
+    destaque: false,
+    novidade: false,
+    active:   true,
+  },
+   {
+    id: 16,
+    nome:        "Camisa Oversized Cristã Jesus King",
+    marca:       "Variada",
+    categoria:   "oversized",
+    preco:       65.00,
+    precoAntigo: null,
+    badge:       "Exclusivo",
+    descricao:   "Camiseta oversized unissex com estampa cristã na parte de traz 'Jesus Rei.João 3:16'.🧼 Cuidados com sua Camisa AST Para garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
+    tamanhos:    [, "M", "G","GG"],
+    cores: [
+      { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/kingP.png"] },
+      { nome: "Branco", hex: "#f5f5f0", fotos: ["img/kingB.png"] },
+      // PLACEHOLDER — troque pela foto real desta cor quando tiver
+      { nome: "Bege", hex: "#f5f5dc", fotos: ["img/kingA.png"] },
+    ],
+    destaque: true,
+    novidade: true,
+    active:   true,
+  },
+  
 
   // ════════════════════════════════════════════════════════════
   //  ► ADICIONE NOVOS PRODUTOS AQUI ↓
@@ -1594,6 +1824,7 @@ let carrinho  = JSON.parse(localStorage.getItem('clm_cart') || '[]');
 let favoritos = JSON.parse(localStorage.getItem('clm_favs') || '[]');
 let prodAtual = null;
 let corAtual  = 0;
+let fotoAtual = 0;
 let qtdAtual  = 1;
 let categoria = 'all';
 let ordem     = '';
@@ -1603,12 +1834,21 @@ let exibidos  = 8;
 let buscaTimer = null;
 let buscaMobileAberta = false;
 
+// Retorna a lista de fotos de uma cor (compatível com produtos
+// antigos que ainda usem o campo singular "foto").
+function fotosDaCor(cor) {
+  if (cor.fotos && cor.fotos.length) return cor.fotos;
+  if (cor.foto) return [cor.foto];
+  return [];
+}
+
 // ── Init ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   aplicarConfig();
   renderProdutos();
   renderDestaque();
   atualizarBadges();
+  initScrollReveal();
 
   // Header ao rolar
   window.addEventListener('scroll', () => {
@@ -1643,6 +1883,25 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// ── Animações ao rolar a página (scroll reveal) ────────────────
+function initScrollReveal() {
+  const els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('in-view'));
+    return;
+  }
+  const obs = new IntersectionObserver((entradas) => {
+    entradas.forEach(entrada => {
+      if (entrada.isIntersecting) {
+        entrada.target.classList.add('in-view');
+        obs.unobserve(entrada.target);
+      }
+    });
+  }, { threshold: .15, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => obs.observe(el));
+}
+
 // ── Aplicar CONFIG ────────────────────────────────────────────
 function aplicarConfig() {
   const c = CONFIG;
@@ -1668,12 +1927,27 @@ function aplicarConfig() {
     heroEl.innerHTML = p.map((t, i) => i === 1 ? `<em>${t}</em>` : t).join('<br/>');
   }
 
+  // Imagem de fundo do Hero (se configurada)
+  const heroSec = document.getElementById('secHero');
+  if (heroSec) {
+    if (c.heroImagemFundo) {
+      heroSec.style.backgroundImage =
+        `linear-gradient(180deg, rgba(13,13,13,.55), rgba(13,13,13,.85)), url("${c.heroImagemFundo}")`;
+      heroSec.style.backgroundSize = 'cover';
+      heroSec.style.backgroundPosition = 'center';
+      heroSec.classList.add('hero-com-imagem');
+    } else {
+      heroSec.style.backgroundImage = '';
+      heroSec.classList.remove('hero-com-imagem');
+    }
+  }
+
   // Banner título
   const bannerEl = document.getElementById('elBannerTitulo');
   if (bannerEl) bannerEl.innerHTML = c.bannerTitulo.split('|').join('<br/>');
 
   // Links WhatsApp
-  [['linkWpp', wpp], ['footerWpp', wpp], ['sobreWpp', wpp], ['termosWpp', wpp]].forEach(([id, url]) => setHref(id, url));
+  [['linkWpp', wpp], ['footerWpp', wpp], ['sobreWpp', wpp], ['termosWpp', wpp], ['wppFlutuante', wpp]].forEach(([id, url]) => setHref(id, url));
   setHref('linkInsta',   c.instagram || '#');
   setHref('linkTiktok',  c.tiktok    || '#');
   setHref('footerInsta', c.instagram || '#');
@@ -1725,9 +1999,7 @@ function renderProdutos() {
   const fatia = lista.slice(0, exibidos);
 
   const titulos = {
-    all:'Em Destaque', modus:'✦ Coleção ACRE STREETWEAR',
-    camisetas:'Camisetas', calcas:'Calças',
-    moletons:'Moletons', vestidos:'Vestidos', acessorios:'Acessórios',
+    all:'Em Destaque', oversized:'Oversized', polos:'Polos', dryfit:'Dryfit',
     personalizado:'🎨 Personalizado — Estampa sua'
   };
 
@@ -1766,13 +2038,13 @@ function renderDestaque() {
 }
 
 function cardHTML(p) {
-  const c0   = p.cores[0];
+  const c0     = p.cores[0];
+  const fotoC0 = fotosDaCor(c0)[0] || '';
   const fav  = favoritos.includes(p.id);
   const pct  = p.precoAntigo ? Math.round((1 - p.preco / p.precoAntigo) * 100) : 0;
   const desc = pct > 0 ? `<span class="badge-desc">-${pct}%</span>` : '';
   const badge = p.badge ? `<span class="prod-badge">${p.badge}</span>` : '';
   const novo  = p.novidade ? '<span class="tag-novo">NOVO</span>' : '';
-  const isModus = p.categoria === 'modus' ? '<span class="tag-modus">ACRE STREETWEAR</span>' : '';
 
   const dots = p.cores.map((c, i) =>
     `<button class="dot ${i === 0 ? 'ativo' : ''}" style="background:${c.hex}" title="${c.nome}"
@@ -1788,7 +2060,7 @@ function cardHTML(p) {
     <article class="card-lista animate-card" onclick="abrirProduto(${p.id})" tabindex="0"
       onkeydown="if(event.key==='Enter')abrirProduto(${p.id})">
       <div class="card-img">
-        <img id="ci${p.id}" src="${c0.foto}" alt="${p.nome}" loading="lazy"/>
+        <img id="ci${p.id}" src="${fotoC0}" alt="${p.nome}" loading="lazy"/>
         ${badge}${desc}
       </div>
       <div class="card-lista-info">
@@ -1818,8 +2090,8 @@ function cardHTML(p) {
   <article class="card animate-card" onclick="abrirProduto(${p.id})" tabindex="0"
     onkeydown="if(event.key==='Enter')abrirProduto(${p.id})">
     <div class="card-img">
-      <img id="ci${p.id}" src="${c0.foto}" alt="${p.nome}" loading="lazy"/>
-      ${badge}${desc}${novo}${isModus}
+      <img id="ci${p.id}" src="${fotoC0}" alt="${p.nome}" loading="lazy"/>
+      ${badge}${desc}${novo}
       <div class="card-hover">
         <button class="btn-rapido" onclick="event.stopPropagation(); abrirProduto(${p.id})">
           <i class="fas fa-eye"></i> Ver Rápido
@@ -1859,10 +2131,11 @@ function animarCards() {
 function trocarCor(id, idx, btn) {
   const p = PRODUTOS.find(x => x.id === id);
   if (!p || !p.cores[idx]) return;
+  const foto = fotosDaCor(p.cores[idx])[0];
   const img = document.getElementById(`ci${id}`);
-  if (img) {
+  if (img && foto) {
     img.style.opacity = '.3';
-    setTimeout(() => { img.src = p.cores[idx].foto; img.style.opacity = '1'; }, 120);
+    setTimeout(() => { img.src = foto; img.style.opacity = '1'; }, 120);
   }
   const lbl = document.getElementById(`cl${id}`);
   if (lbl) lbl.textContent = p.cores[idx].nome;
@@ -1934,8 +2207,9 @@ function fecharBuscaMobile() {
 function abrirProduto(id) {
   const p = PRODUTOS.find(x => x.id === id);
   if (!p) return;
-  prodAtual = p; corAtual = 0; qtdAtual = 1;
+  prodAtual = p; corAtual = 0; fotoAtual = 0; qtdAtual = 1;
   const c0 = p.cores[0];
+  const fotosC0 = fotosDaCor(c0);
 
   setText('mNome',    p.nome);
   setText('mDesc',    p.descricao || '');
@@ -1956,13 +2230,11 @@ function abrirProduto(id) {
   }
 
   const mFoto = document.getElementById('mFoto');
-  mFoto.src = c0.foto;
+  mFoto.src = fotosC0[0] || '';
   mFoto.alt = p.nome;
 
-  document.getElementById('mMiniaturas').innerHTML = p.cores.map((c, i) =>
-    `<img src="${c.foto}" alt="${c.nome}" class="${i === 0 ? 'ativa' : ''}"
-      onclick="trocarCorModal(${i})" loading="lazy"/>`
-  ).join('');
+  // Galeria de imagens (até 4 fotos) da cor selecionada
+  renderGaleriaModal(fotosC0);
 
   document.getElementById('mCores').innerHTML = p.cores.map((c, i) =>
     `<button class="swatch ${i === 0 ? 'ativo' : ''}" style="background:${c.hex}"
@@ -1981,18 +2253,40 @@ function abrirProduto(id) {
   abrirModal('ovProduto');
 }
 
+function renderGaleriaModal(fotos) {
+  const box = document.getElementById('mMiniaturas');
+  if (!fotos.length) { box.innerHTML = ''; return; }
+  box.innerHTML = fotos.map((foto, i) =>
+    `<img src="${foto}" alt="Foto ${i + 1}" class="${i === 0 ? 'ativa' : ''}"
+      onclick="trocarFotoModal(${i})" loading="lazy"/>`
+  ).join('');
+}
+
+function trocarFotoModal(idx) {
+  if (!prodAtual) return;
+  const fotos = fotosDaCor(prodAtual.cores[corAtual]);
+  if (!fotos[idx]) return;
+  fotoAtual = idx;
+  const img = document.getElementById('mFoto');
+  img.style.opacity = '.3';
+  setTimeout(() => { img.src = fotos[idx]; img.style.opacity = '1'; }, 130);
+  document.querySelectorAll('#mMiniaturas img').forEach((b, i) => b.classList.toggle('ativa', i === idx));
+}
+
 function fecharModal() { fecharModal2('ovProduto'); }
 
 function trocarCorModal(idx) {
   if (!prodAtual?.cores[idx]) return;
   corAtual = idx;
+  fotoAtual = 0;
   const c = prodAtual.cores[idx];
+  const fotos = fotosDaCor(c);
   const img = document.getElementById('mFoto');
   img.style.opacity = '.3';
-  setTimeout(() => { img.src = c.foto; img.style.opacity = '1'; }, 130);
+  setTimeout(() => { img.src = fotos[0] || ''; img.style.opacity = '1'; }, 130);
   setText('mCorNome', c.nome);
   document.querySelectorAll('#mCores .swatch').forEach((b, i) => b.classList.toggle('ativo', i === idx));
-  document.querySelectorAll('#mMiniaturas img').forEach((b, i) => b.classList.toggle('ativa', i === idx));
+  renderGaleriaModal(fotos);
 }
 
 function selTam(btn) {
@@ -2007,10 +2301,11 @@ function mudarQtd(d) {
 
 function adicionarItemAoCarrinho() {
   const cor  = prodAtual.cores[corAtual] || prodAtual.cores[0];
+  const foto = fotosDaCor(cor)[0] || '';
   const tam  = document.querySelector('.tam.ativo')?.textContent || prodAtual.tamanhos?.[0] || '';
   const item = {
     id: prodAtual.id, nome: prodAtual.nome, preco: prodAtual.preco,
-    foto: cor.foto, cor: cor.nome, tam, qtd: qtdAtual
+    foto, cor: cor.nome, tam, qtd: qtdAtual
   };
   const ex = carrinho.find(c => c.id === item.id && c.cor === item.cor && c.tam === item.tam);
   if (ex) ex.qtd += item.qtd; else carrinho.push(item);
@@ -2059,9 +2354,10 @@ function abrirFavoritos() {
   } else {
     box.innerHTML = favoritos.map(id => {
       const p = PRODUTOS.find(x => x.id === id); if (!p) return '';
+      const foto0 = fotosDaCor(p.cores[0])[0] || '';
       return `
       <div class="item-cart">
-        <img src="${p.cores[0].foto}" alt="${p.nome}"/>
+        <img src="${foto0}" alt="${p.nome}"/>
         <div class="item-info">
           <p class="item-nome">${p.nome}</p>
           <p class="item-meta">${p.marca || ''}</p>
