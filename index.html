@@ -131,7 +131,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible {
 
 /* Logo */
 .logo-link { display:flex; align-items:center; flex-shrink:0 }
-.logo-img  { height:78px; width:auto; object-fit:contain; filter:drop-shadow(0 0 8px rgba(74,222,128,.35)) }
+.logo-img  { height:96px; width:auto; object-fit:contain; filter:drop-shadow(0 0 8px rgba(74,222,128,.35)) }
 .logo-texto {
   font-family:'Black Ops One',sans-serif; font-size:1.5rem; letter-spacing:.06em; white-space:nowrap;
 }
@@ -142,10 +142,12 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible {
 .nav-links li a {
   padding:.42rem .75rem; font-size:.82rem; font-weight:500; border-radius:var(--r);
   color:var(--cinza); white-space:nowrap; transition:color var(--t),background var(--t);
+  display:flex; align-items:center;
 }
 .nav-links li a:hover { color:#fff; background:rgba(255,255,255,.07) }
 .nav-modus { color:var(--neon) !important; font-weight:700 !important }
 .nav-modus:hover { background:var(--neon-bg) !important }
+.nav-ico { display:none }
 
 .hamburger {
   display:none; color:#fff; font-size:1.2rem; padding:.45rem;
@@ -432,7 +434,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible {
 /* ── FOOTER ── */
 .footer { background:var(--esc1); border-top:1px solid rgba(255,255,255,.07); padding-top:3.5rem }
 .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:2.5rem; padding-bottom:2.5rem }
-.footer-marca .logo-img { height:32px; margin-bottom:.5rem }
+.footer-marca .logo-img { height:38px; margin-bottom:.5rem }
 .footer-desc { font-size:.82rem; color:var(--cinza); margin:.7rem 0 .4rem; line-height:1.6 }
 .footer-local { font-size:.75rem; color:var(--primaria); margin-bottom:1rem; display:flex; align-items:center; gap:.3rem }
 .redes { display:flex; gap:.55rem; margin-top:.9rem }
@@ -454,7 +456,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible {
   display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.5rem;
 }
 .footer-rodape p { font-size:.75rem; color:var(--cinza2) }
-.footer-links { display:flex; gap:1.2rem }
+.footer-links { display:flex; gap:1.2rem; flex-wrap:wrap }
 .footer-links a { font-size:.75rem; color:var(--cinza2); transition:color var(--t) }
 .footer-links a:hover { color:var(--neon) }
 
@@ -530,7 +532,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible {
 .miniaturas img.ativa,.miniaturas img:hover { border-color:var(--primaria); opacity:1 }
 .modal-info { padding:1.8rem 1.8rem 1.8rem 1rem }
 .modal-info h2 { font-size:1.45rem; font-weight:700; margin-bottom:.7rem; line-height:1.25 }
-.modal-desc { font-size:.84rem; color:var(--cinza); line-height:1.7; margin-bottom:1.1rem }
+.modal-desc { font-size:.84rem; color:var(--cinza); line-height:1.7; margin-bottom:1.1rem; white-space:pre-line }
 .modal-preco-bloco { margin-bottom:1.2rem }
 .preco-modal { font-size:1.6rem; font-weight:700; display:block }
 .opcao-grupo { margin-bottom:1.1rem }
@@ -640,6 +642,39 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible {
 .termo-bloco p { font-size:.88rem; color:var(--cinza); line-height:1.8; margin-bottom:.7rem }
 .termo-bloco p:last-child { margin-bottom:0 }
 
+/* ── ESTAMPAS DISPONÍVEIS ── */
+.estampas-intro { font-size:.9rem; color:var(--cinza); max-width:640px; margin-bottom:2rem; line-height:1.7 }
+.estampas-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; padding-bottom:4rem }
+.estampa-card {
+  background:var(--esc2); border:1px solid rgba(255,255,255,.06); border-radius:var(--rl);
+  overflow:hidden; transition:border-color var(--t),transform var(--t);
+}
+.estampa-card:hover { border-color:rgba(21,128,61,.4); transform:translateY(-4px) }
+.estampa-foto { aspect-ratio:1; background:var(--esc3); overflow:hidden }
+.estampa-foto img { width:100%; height:100%; object-fit:cover }
+.estampa-info { padding:.9rem }
+.estampa-info h4 { font-size:.85rem; font-weight:600; margin-bottom:.7rem; line-height:1.3 }
+.estampa-info .btn-wpp { width:100%; padding:.5rem .8rem; font-size:.76rem }
+.estampas-vazio {
+  text-align:center; color:var(--cinza); padding:4rem 1rem;
+  display:flex; flex-direction:column; align-items:center; gap:1rem; grid-column:1/-1;
+}
+.estampas-vazio i { font-size:2.6rem; opacity:.25 }
+
+/* ── TABELA DE PREÇOS ── */
+.tabela-precos-wrap { padding-bottom:4rem; text-align:center }
+.tabela-precos-wrap img { max-width:100%; border-radius:var(--rl); border:1px solid rgba(255,255,255,.08); margin:0 auto 1.5rem; }
+.tabela-precos-vazio {
+  background:var(--esc2); border:1px dashed rgba(255,255,255,.15); border-radius:var(--rl);
+  padding:3.5rem 1.5rem; color:var(--cinza); display:flex; flex-direction:column; align-items:center; gap:.9rem;
+}
+.tabela-precos-vazio i { font-size:2.4rem; opacity:.3 }
+.tabela-precos-aviso {
+  background:rgba(74,222,128,.08); border:1px solid rgba(74,222,128,.25);
+  border-radius:var(--rl); padding:1rem 1.3rem; color:var(--neon);
+  font-size:.85rem; line-height:1.6; text-align:left; margin-top:1.2rem;
+}
+
 /* ── FORMS ── */
 .fg { margin-bottom:.9rem }
 .fg label { display:block; font-size:.8rem; font-weight:600; margin-bottom:.35rem; color:var(--off) }
@@ -675,6 +710,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible {
   .sticky-resumo { position:static }
   .sobre-grid { grid-template-columns:1fr }
   .sobre-stats { grid-template-columns:repeat(4,1fr) }
+  .estampas-grid { grid-template-columns:repeat(3,1fr) }
 }
 
 @media(max-width:900px){
@@ -684,10 +720,11 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible {
   .modal-info { padding:1.3rem 1.5rem 1.5rem }
   .hero { padding-top:4rem; padding-bottom:3rem }
   .hero-deco { display:none }
+  .estampas-grid { grid-template-columns:repeat(2,1fr) }
 
   /* Header mais compacto no celular */
-  .navbar { height:68px; padding:0 1rem; gap:.5rem }
-  .logo-img { height:46px }
+  .navbar { height:72px; padding:0 1rem; gap:.5rem }
+  .logo-img { height:58px }
   .logo-texto { font-size:1.25rem }
 
   /* Áreas de toque maiores (mín. 44px recomendado) */
@@ -696,24 +733,67 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible {
     display:inline-flex; align-items:center; justify-content:center;
   }
 
-  /* Menu mobile — posicionado relativo ao header (acompanha a altura real,
-     inclusive quando a busca mobile está aberta) em vez de um "top" fixo */
-  .nav-links {
-    position:absolute; top:100%; left:0; right:0;
-    background:rgba(20,20,20,.98); backdrop-filter:blur(20px);
-    padding:.8rem; flex-direction:column; gap:.1rem;
-    border-bottom:1px solid rgba(255,255,255,.07); display:none; z-index:850;
-    box-shadow:0 10px 30px rgba(0,0,0,.5);
-    max-height:calc(100vh - 100%); overflow-y:auto;
+  /* Menu mobile — painel lateral em tela cheia com fundo escurecido,
+     em vez de um dropdown simples */
+  .nav-backdrop {
+    position:fixed; inset:0; background:rgba(0,0,0,.6); backdrop-filter:blur(3px);
+    z-index:840; opacity:0; pointer-events:none; transition:opacity .25s ease;
   }
-  .nav-links.aberto { display:flex; animation:slideDown .25s ease }
-  .nav-links li a { padding:.85rem 1rem; border-radius:var(--r); font-size:.9rem; display:block }
+  .nav-backdrop.aberto { opacity:1; pointer-events:auto }
+
+  .nav-links {
+    position:fixed; top:0; left:0; bottom:0; right:auto;
+    width:80vw; max-width:340px;
+    background:rgba(15,15,15,.99); backdrop-filter:blur(20px);
+    padding:4.2rem 1rem 1.2rem; flex-direction:column; gap:.15rem; align-items:stretch;
+    border-right:1px solid rgba(255,255,255,.08); display:flex; z-index:850;
+    box-shadow:8px 0 40px rgba(0,0,0,.6);
+    transform:translateX(-100%); transition:transform .3s cubic-bezier(.25,.8,.25,1);
+    overflow-y:auto;
+  }
+  .nav-links.aberto { transform:translateX(0) }
+  .nav-links li a { padding:.9rem 1rem; border-radius:var(--r); font-size:.95rem; display:flex }
+  .nav-ico { display:inline-flex; width:22px; margin-right:.65rem; color:var(--neon) }
   .hamburger { display:flex }
+
+  .nav-drawer-fechar {
+    position:absolute; top:1rem; right:1rem; color:var(--cinza);
+    font-size:1.1rem; padding:.5rem; border-radius:50%; z-index:2;
+    transition:color var(--t),background var(--t);
+  }
+  .nav-drawer-fechar:hover { color:#fff; background:rgba(255,255,255,.08) }
+
+  .nav-extra { margin-top:auto; padding-top:1rem; border-top:1px solid rgba(255,255,255,.08) }
+  .nav-extra a {
+    background:var(--wpp); color:#fff !important; justify-content:center;
+    font-weight:700; padding:.85rem 1rem !important;
+  }
 
   /* Busca: esconde desktop, mostra ícone */
   .busca-wrap input { display:none }
   .busca-mobile { display:flex }
+
+  /* Espaço para a barra de navegação inferior fixa */
+  body { padding-bottom:64px }
 }
+
+/* Barra de navegação inferior (mobile) */
+.mobile-tabbar {
+  display:none; position:fixed; bottom:0; left:0; right:0; z-index:820;
+  background:rgba(15,15,15,.97); backdrop-filter:blur(18px);
+  border-top:1px solid rgba(255,255,255,.08);
+  padding:.35rem .2rem calc(.35rem + env(safe-area-inset-bottom));
+  box-shadow:0 -4px 24px rgba(0,0,0,.5);
+}
+@media(max-width:900px){ .mobile-tabbar { display:flex } }
+.mobile-tabbar button {
+  flex:1; display:flex; flex-direction:column; align-items:center; gap:.2rem;
+  color:var(--cinza); font-size:.62rem; padding:.4rem .2rem; position:relative;
+  transition:color var(--t);
+}
+.mobile-tabbar button i { font-size:1.05rem }
+.mobile-tabbar button.ativo, .mobile-tabbar button:active { color:var(--neon) }
+.mobile-tabbar .badge { top:0; right:18%; }
 
 @media(max-width:640px){
   .grade { grid-template-columns:1fr 1fr; gap:.7rem }
@@ -735,6 +815,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible {
   .modal-box { border-radius:var(--rl) var(--rl) 0 0; margin-top:auto; max-height:95vh }
   .modal-overlay { align-items:flex-end; padding:0 }
   .pagina-wrap { padding:1.2rem 1rem }
+  .estampas-grid { grid-template-columns:1fr 1fr; gap:.7rem }
 }
 
 @keyframes slideDown {
@@ -825,8 +906,8 @@ body::after {
   70%  { box-shadow:0 6px 24px rgba(0,0,0,.4), 0 0 0 14px rgba(37,211,102,0) }
   100% { box-shadow:0 6px 24px rgba(0,0,0,.4), 0 0 0 0 rgba(37,211,102,0) }
 }
-@media(max-width:640px){
-  .wpp-flutuante { right:1rem; bottom:1rem; width:52px; height:52px; font-size:1.4rem }
+@media(max-width:900px){
+  .wpp-flutuante { right:1rem; bottom:calc(64px + .8rem); width:52px; height:52px; font-size:1.4rem }
 }
 
 /* ── ZOOM NAS FOTOS DO PRODUTO (modal) ── */
@@ -845,6 +926,9 @@ body::after {
 <a id="wppFlutuante" class="wpp-flutuante" href="#" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
   <i class="fab fa-whatsapp"></i>
 </a>
+
+<!-- ════ FUNDO ESCURO DO MENU MOBILE ══════════════════════════ -->
+<div class="nav-backdrop" id="navBackdrop" onclick="fecharMenu()"></div>
 
 <!-- ════ TOP BAR ══════════════════════════════════════════════ -->
 <div class="top-bar"><span id="elTopBar"></span></div>
@@ -866,11 +950,15 @@ body::after {
 
     <!-- NAV LINKS -->
     <ul class="nav-links" id="navMenu">
-      <li><a href="#" onclick="irCategoria('all');   return false;">Todos</a></li>
-      <li><a href="#" onclick="irCategoria('oversized'); return false;">Oversized</a></li>
-      <li><a href="#" onclick="irCategoria('polos'); return false;">Polos</a></li>
-      <li><a href="#" onclick="irCategoria('dryfit'); return false;">Dryfit</a></li>
-      <li><a href="#" onclick="irCategoria('personalizado'); return false;">Personalizado</a></li>
+      <button class="nav-drawer-fechar" onclick="fecharMenu()" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
+      <li><a href="#" onclick="irCategoria('all');   return false;"><i class="fas fa-th-large nav-ico"></i>Todos</a></li>
+      <li><a href="#" onclick="irCategoria('oversized'); return false;"><i class="fas fa-tshirt nav-ico"></i>Oversized</a></li>
+      <li><a href="#" onclick="irCategoria('polos'); return false;"><i class="fas fa-user-tie nav-ico"></i>Polos</a></li>
+      <li><a href="#" onclick="irCategoria('dryfit'); return false;"><i class="fas fa-person-running nav-ico"></i>Dryfit</a></li>
+      <li><a href="#" onclick="irCategoria('personalizado'); return false;"><i class="fas fa-palette nav-ico"></i>Personalizado</a></li>
+      <li><a href="#" onclick="abrirPagina('ovEstampas'); return false;"><i class="fas fa-images nav-ico"></i>Estampas Disponíveis</a></li>
+      <li><a href="#" onclick="abrirPagina('ovPrecos'); return false;"><i class="fas fa-tags nav-ico"></i>Tabela de Preços</a></li>
+      <li class="nav-extra"><a id="navWpp" href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp nav-ico" style="color:inherit"></i>Falar no WhatsApp</a></li>
     </ul>
 
     <!-- AÇÕES -->
@@ -946,6 +1034,11 @@ body::after {
         <div class="cat-icon">🎨</div>
         <span>Personalizado</span>
         <small>Sua Estampa</small>
+      </div>
+      <div class="cat-card reveal" onclick="abrirPagina('ovEstampas')">
+        <div class="cat-icon">🖼️</div>
+        <span>Estampas</span>
+        <small>Veja as Opções</small>
       </div>
     </div>
   </div>
@@ -1057,6 +1150,7 @@ body::after {
         <li><a href="#" onclick="irCategoria('polos');return false;">Polos</a></li>
         <li><a href="#" onclick="irCategoria('dryfit');return false;">Dryfit</a></li>
         <li><a href="#" onclick="irCategoria('personalizado');return false;">Personalizado</a></li>
+        <li><a href="#" onclick="abrirPagina('ovEstampas');return false;">Estampas Disponíveis</a></li>
       </ul>
     </div>
 
@@ -1064,6 +1158,7 @@ body::after {
       <h5>Empresa</h5>
       <ul>
         <li><a href="#" onclick="abrirPagina('ovSobre');return false;">Sobre Nós</a></li>
+        <li><a href="#" onclick="abrirPagina('ovPrecos');return false;">Tabela de Preços</a></li>
         <li><a href="#" onclick="abrirPagina('ovTermos');return false;">Termos de Uso</a></li>
       </ul>
     </div>
@@ -1084,6 +1179,7 @@ body::after {
     <p id="elCopyright"></p>
     <div class="footer-links">
       <a href="#" onclick="abrirPagina('ovSobre');return false;">Sobre Nós</a>
+      <a href="#" onclick="abrirPagina('ovPrecos');return false;">Tabela de Preços</a>
       <a href="#" onclick="abrirPagina('ovTermos');return false;">Termos de Uso</a>
     </div>
   </div>
@@ -1312,7 +1408,7 @@ body::after {
             <li><i class="fas fa-check-circle"></i> <strong>Qualidade acima de tudo</strong> — peças que valem cada real</li>
             <li><i class="fas fa-check-circle"></i> <strong>Atendimento humano</strong> — você fala direto com a gente</li>
             <li><i class="fas fa-check-circle"></i> <strong>Entrega rápida</strong> — somos de Rio Branco, entregamos em Rio Branco</li>
-            <li><i class="fas fa-check-circle"></i> <strong>Troca sem burocracia</strong> — resolvemos em até 3 dias</li>
+            <li><i class="fas fa-check-circle"></i> <strong>Troca sem burocracia</strong> — resolvemos em até 2 dias úteis</li>
             <li><i class="fas fa-check-circle"></i> <strong>Estilo autêntico</strong> — coleções que fogem do óbvio</li>
           </ul>
         </div>
@@ -1333,6 +1429,35 @@ body::after {
         </a>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- PÁGINA: ESTAMPAS DISPONÍVEIS -->
+<div id="ovEstampas" class="pagina-overlay" style="display:none">
+  <div class="pagina-wrap">
+    <button class="btn-voltar" onclick="fecharPagina('ovEstampas')">
+      <i class="fas fa-arrow-left"></i> Voltar
+    </button>
+    <div class="pagina-hero">
+      <p class="eyebrow">Personalizado</p>
+      <h1 class="pagina-titulo-grande">ESTAMPAS<br/><em>DISPONÍVEIS</em></h1>
+      <p class="estampas-intro">Dá uma olhada nas estampas que já temos prontas para aplicar na sua camisa personalizada. Escolheu uma? É só clicar em "Pedir essa estampa" e a gente já monta seu pedido no WhatsApp — ou envie a sua própria arte se preferir algo exclusivo.</p>
+    </div>
+    <div id="gridEstampas" class="estampas-grid"></div>
+  </div>
+</div>
+
+<!-- PÁGINA: TABELA DE PREÇOS -->
+<div id="ovPrecos" class="pagina-overlay" style="display:none">
+  <div class="pagina-wrap pagina-estreita">
+    <button class="btn-voltar" onclick="fecharPagina('ovPrecos')">
+      <i class="fas fa-arrow-left"></i> Voltar
+    </button>
+    <div class="pagina-hero">
+      <p class="eyebrow">Valores</p>
+      <h1 class="pagina-titulo-grande">TABELA<br/><em>DE PREÇOS</em></h1>
+    </div>
+    <div class="tabela-precos-wrap" id="tabelaPrecosWrap"></div>
   </div>
 </div>
 
@@ -1366,7 +1491,7 @@ body::after {
       </div>
       <div class="termo-bloco reveal">
         <h3><span>05</span> Troca e Devolução</h3>
-        <p>Você pode solicitar troca em até <strong>3 dias corridos</strong> após o recebimento, com produto sem uso e etiqueta original. Em caso de defeito, a troca é garantida sem custo.</p>
+        <p>Você pode solicitar troca em até <strong>2 dias úteis</strong> após o recebimento, com produto sem uso e etiqueta original. Em caso de defeito, a troca é garantida sem custo.</p>
       </div>
       <div class="termo-bloco reveal">
         <h3><span>06</span> Privacidade dos Dados</h3>
@@ -1382,6 +1507,21 @@ body::after {
     </div>
   </div>
 </div>
+
+<!-- ════ BARRA DE NAVEGAÇÃO INFERIOR (MOBILE) ═════════════════ -->
+<nav class="mobile-tabbar" id="mobileTabbar">
+  <button onclick="irInicio()"><i class="fas fa-home"></i><span>Início</span></button>
+  <button onclick="toggleMenu()"><i class="fas fa-bars"></i><span>Menu</span></button>
+  <button onclick="tabbarBuscar()"><i class="fas fa-search"></i><span>Buscar</span></button>
+  <button onclick="abrirFavoritos()" style="position:relative">
+    <i class="fas fa-heart"></i><span>Favoritos</span>
+    <span class="badge" id="badgeFavTab" style="display:none"></span>
+  </button>
+  <button onclick="abrirCarrinho()" style="position:relative">
+    <i class="fas fa-shopping-bag"></i><span>Sacola</span>
+    <span class="badge" id="badgeCartTab" style="display:none">0</span>
+  </button>
+</nav>
 
 <!-- ════ CONFIGURAÇÃO E PRODUTOS ═══════════════════════════════ -->
 <script>
@@ -1406,13 +1546,23 @@ const CONFIG = {
   // ── LOGO ───────────────────────────────────────────────────
   // Cole aqui a URL da imagem da sua logo
   // Deixe "" para usar só o texto "ACRE STREETWEAR"
-  logoUrl: "ac-st.png",
+  logoUrl: "boneco.png",
 
   // ── IMAGEM DE FUNDO DO HERO (banner principal) ──────────────
   // Cole aqui a URL/caminho de uma imagem para aparecer atrás do
   // texto "AQUI VOCÊ TEM &STILO". Deixe "" para usar só o fundo
   // com o efeito verde padrão (sem foto).
-  heroImagemFundo: "",
+  heroImagemFundo: "banner.png",
+
+  // ── TABELA DE PREÇOS ─────────────────────────────────────────
+  // Cole aqui o caminho/URL da imagem da sua tabela de preços.
+  // Ela aparece na página "Tabela de Preços" (menu e rodapé).
+  // Deixe "" para mostrar um aviso de "em breve".
+  tabelaPrecosImagem: "tabela.png",
+
+  // Aviso mostrado junto à tabela de preços (ex: preço varia
+  // conforme a quantidade de estampas). Deixe "" para ocultar.
+  tabelaPrecosAviso: "⚠️ O preço para estampar sua camisa pode variar conforme a quantidade de estampas: 2 estampas = R$ 20, 3 estampas = R$ 30, 4 estampas = R$ 40, e assim por diante.",
 
   // ── TEXTOS ─────────────────────────────────────────────────
   topBar: " STREETWEAR — RIO BRANCO AC / TROCA EM 2 DIAS / ENTREGA EM 24HRS",
@@ -1477,8 +1627,8 @@ const PRODUTOS = [
     preco:       65.00,
     precoAntigo: null,
     badge:       "Exclusivo",
-    descricao:   "Camiseta unissex 100% algodão estampa exclusiva da AST. Sem estampa na frente.🧼 Cuidados com sua Camisa ASTPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
-    tamanhos:    [, "M", "G","GG"],
+    descricao:   "Camiseta unissex 100% algodão estampa exclusiva da AST. Sem estampa na frente.\n\n🧼 Cuidados com sua Camisa AST\nPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:\n• Lave a camisa do avesso.\n• Utilize água fria ou em temperatura ambiente.\n• Não utilize alvejantes ou produtos com cloro.\n• Evite deixar a peça de molho por longos períodos.\n• Seque à sombra e evite secadora.\n• Passe a ferro apenas do avesso, sem contato direto com a estampa.\n• Não lave a seco.\n\n🔄 Política de Troca\nRealizamos trocas em até 2 dias úteis após o recebimento do pedido, desde que a peça esteja sem sinais de uso, com a etiqueta original.",
+    tamanhos:    ["M", "G", "GG"],
     cores: [
       { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/dragaoP.jpg"] },
       { nome: "Branco", hex: "#f5f5f0", fotos: ["img/dragaoB.jpg"] },
@@ -1497,12 +1647,12 @@ const PRODUTOS = [
     preco:       65.00,
     precoAntigo: null,
     badge:       "Exclusivo",
-    descricao:   "Camisa oversized unissex 100% algodão, exclusiva da AC streetwear.Estampa pequena na frente.🧼 Cuidados com sua Camisa ASTPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo! ",
-    tamanhos:    [, "M", "G","GG"],
+    descricao:   "Camisa oversized unissex 100% algodão, exclusiva da AC streetwear. Estampa pequena na frente.\n\n🧼 Cuidados com sua Camisa AST\nPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:\n• Lave a camisa do avesso.\n• Utilize água fria ou em temperatura ambiente.\n• Não utilize alvejantes ou produtos com cloro.\n• Evite deixar a peça de molho por longos períodos.\n• Seque à sombra e evite secadora.\n• Passe a ferro apenas do avesso, sem contato direto com a estampa.\n• Não lave a seco.\n\n🔄 Política de Troca\nRealizamos trocas em até 2 dias úteis após o recebimento do pedido, desde que a peça esteja sem sinais de uso, com a etiqueta original.",
+    tamanhos:    ["M", "G", "GG"],
     cores: [
       { nome: "Preto", hex: "#1a1a1a", fotos: ["img/dragaonP.jpg"] },
       // PLACEHOLDER — troque pela foto real desta cor quando tiver
-      { nome: "Bege", hex: "#f5f5dc", fotos: ["img/dragaonA.jpg.jpg"] },
+      { nome: "Bege", hex: "#f5f5dc", fotos: ["img/dragaonA.jpg"] },
     ],
     destaque: true,
     novidade: true,
@@ -1517,8 +1667,8 @@ const PRODUTOS = [
     preco:       65.00,
     precoAntigo: null,
     badge:       "Exclusivo",
-    descricao:   "Camiseta oversized unissex 100% algodão estampa unica e exclusiva da Ac Streetwear. estampa gotica crstã so rei bauduino de jerusalem. 🧼 Cuidados com sua Camisa ASTPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
-    tamanhos:    [, "M", "G","GG"],
+    descricao:   "Camiseta oversized unissex 100% algodão estampa unica e exclusiva da Ac Streetwear. estampa gotica crstã so rei bauduino de jerusalem.\n\n🧼 Cuidados com sua Camisa AST\nPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:\n• Lave a camisa do avesso.\n• Utilize água fria ou em temperatura ambiente.\n• Não utilize alvejantes ou produtos com cloro.\n• Evite deixar a peça de molho por longos períodos.\n• Seque à sombra e evite secadora.\n• Passe a ferro apenas do avesso, sem contato direto com a estampa.\n• Não lave a seco.\n\n🔄 Política de Troca\nRealizamos trocas em até 2 dias úteis após o recebimento do pedido, desde que a peça esteja sem sinais de uso, com a etiqueta original.",
+    tamanhos:    ["M", "G", "GG"],
     cores: [
       { nome: "Preto", hex: "#1a1a1a", fotos: ["img/bauduinoP.jpg"] },
       { nome: "Branco", hex: "#f5f5f0", fotos: ["img/bauduinoB.jpg"] },
@@ -1539,8 +1689,8 @@ const PRODUTOS = [
     preco:       65.00,
     precoAntigo: null,
     badge:       "Exclusivo",
-    descricao:   "Camiseta oversized unissex 100% algodão estampa única e exclusiva da Ac Streetwear. estampa crstã 'criai em mim um coração puro',🧼 Cuidados com sua Camisa ASTPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
-    tamanhos:    [, "M", "G","GG"],
+    descricao:   "Camiseta oversized unissex 100% algodão estampa única e exclusiva da Ac Streetwear. estampa crstã 'criai em mim um coração puro'.\n\n🧼 Cuidados com sua Camisa AST\nPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:\n• Lave a camisa do avesso.\n• Utilize água fria ou em temperatura ambiente.\n• Não utilize alvejantes ou produtos com cloro.\n• Evite deixar a peça de molho por longos períodos.\n• Seque à sombra e evite secadora.\n• Passe a ferro apenas do avesso, sem contato direto com a estampa.\n• Não lave a seco.\n\n🔄 Política de Troca\nRealizamos trocas em até 2 dias úteis após o recebimento do pedido, desde que a peça esteja sem sinais de uso, com a etiqueta original.",
+    tamanhos:    ["M", "G", "GG"],
     cores: [
       { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/coraçãop.png"] },
       { nome: "Branco", hex: "#f5f5f0", fotos: ["img/coraçãob.png"] },
@@ -1560,19 +1710,18 @@ const PRODUTOS = [
     preco:       65.00,
     precoAntigo: null,
     badge:       "Exclusivo",
-    descricao:   "Camiseta unissex 100% algodão estampa única e exclusiva da Ac Streetwear. estampa cristã de jesus 'eu sou o caminho verdade e a vida'. sem estampa na frente.🧼 Cuidados com sua Camisa ASTPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
-    tamanhos:    [, "M", "G","GG"],
+    descricao:   "Camiseta unissex 100% algodão estampa única e exclusiva da Ac Streetwear. estampa cristã de jesus 'eu sou o caminho verdade e a vida'. sem estampa na frente.\n\n🧼 Cuidados com sua Camisa AST\nPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:\n• Lave a camisa do avesso.\n• Utilize água fria ou em temperatura ambiente.\n• Não utilize alvejantes ou produtos com cloro.\n• Evite deixar a peça de molho por longos períodos.\n• Seque à sombra e evite secadora.\n• Passe a ferro apenas do avesso, sem contato direto com a estampa.\n• Não lave a seco.\n\n🔄 Política de Troca\nRealizamos trocas em até 2 dias úteis após o recebimento do pedido, desde que a peça esteja sem sinais de uso, com a etiqueta original.",
+    tamanhos:    ["M", "G", "GG"],
     cores: [
       { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/JesusP.png"] },
       { nome: "Branco", hex: "#f5f5f0", fotos: ["img/JesusB.png"] },
       // PLACEHOLDER — troque pela foto real desta cor quando tiver
-     
     ],
     destaque: true,
     novidade: true,
     active:   true,
   },
-  
+
 
    {
     id: 9,
@@ -1582,35 +1731,17 @@ const PRODUTOS = [
     preco:       65.00,
     precoAntigo: null,
     badge:       "Exclusivo",
-    descricao:   "Camiseta oversized unissex 100% algodão estampa de uma rosa(flor) na parte da frente, sem estampa na parte de traz.🧼 Cuidados com sua Camisa ASTPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
+    descricao:   "Camiseta oversized unissex 100% algodão estampa de uma rosa(flor) na parte da frente, sem estampa na parte de traz.\n\n🧼 Cuidados com sua Camisa AST\nPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:\n• Lave a camisa do avesso.\n• Utilize água fria ou em temperatura ambiente.\n• Não utilize alvejantes ou produtos com cloro.\n• Evite deixar a peça de molho por longos períodos.\n• Seque à sombra e evite secadora.\n• Passe a ferro apenas do avesso, sem contato direto com a estampa.\n• Não lave a seco.\n\n🔄 Política de Troca\nRealizamos trocas em até 2 dias úteis após o recebimento do pedido, desde que a peça esteja sem sinais de uso, com a etiqueta original.",
     tamanhos:    ["G"],
     cores: [
       { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/florP.png"] },
       { nome: "Branco", hex: "#f5f5f0", fotos: ["img/florB.png"] },
       // PLACEHOLDER — troque pela foto real desta cor quando tiver
-    
     ],
     destaque: true,
     novidade: true,
     active:   true,
   },
-
-  // ─── POLOS ───────────────────────────────────────────────────
-  //  Camisas polo. Ainda não há produtos aqui — adicione os seus
-  //  copiando um bloco de produto acima e usando categoria: "polos".
-
-  // ─── DRYFIT ──────────────────────────────────────────────────
-  //  Camisetas dryfit (tecido leve/respirável). Ainda não há
-  //  produtos aqui — copie um bloco acima e use categoria: "dryfit".
-
-  // ─── PALETA DE CORES DE REFERÊNCIA ───────────────────────────
-  //  Cole o hex ao adicionar uma cor nova em "cores". Ex:
-  //  { nome: "Vermelho", hex: "#dc2626", fotos: ["img/sua-foto.png"] }
-  //    Vermelho   #dc2626      Cinza     #71717a      Azul     #2563eb
-  //    Azul Marinho #1e3a5f    Verde     #16a34a      Amarelo  #eab308
-  //    Roxo       #7c3aed      Rosa      #ec4899      Bege     #d6cbb3
-  //    Marrom     #78350f
-
 
   // ─── PERSONALIZADO (estampa em papel de transfer) ───────────
   //  Cliente escolhe o modelo/cor/tamanho aqui e, depois de fechar
@@ -1625,7 +1756,7 @@ const PRODUTOS = [
     precoAntigo: null,
     badge:       "Personalizado",
     descricao:   "Camiseta oversized unissex 100% algodão. Escolha a cor e o tamanho e envie sua estampa pelo WhatsApp após o pedido — aplicamos em papel de transfer de alta qualidade. ⚠️ A estampa é feita no mesmo dia: espere 24h para lavar a peça, assim a tinta seca totalmente e a arte se preserva.",
-    tamanhos:    [, "M", "G","GG"],
+    tamanhos:    ["M", "G", "GG"],
     cores: [
       { nome: "Branco", hex: "#f5f5f0", fotos: ["img/sbranco.png"] },
       { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/spreto.png"] },
@@ -1646,13 +1777,12 @@ const PRODUTOS = [
     preco:       65.00,
     precoAntigo: null,
     badge:       "Oversized",
-    descricao:   "🧼 Cuidados com sua Camisa ASTPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!.",
-    tamanhos:    [, "M", "G","GG"],
+    descricao:   "Camiseta oversized unissex 100% algodão com estampa exclusiva do Leão de Judá.\n\n🧼 Cuidados com sua Camisa AST\nPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:\n• Lave a camisa do avesso.\n• Utilize água fria ou em temperatura ambiente.\n• Não utilize alvejantes ou produtos com cloro.\n• Evite deixar a peça de molho por longos períodos.\n• Seque à sombra e evite secadora.\n• Passe a ferro apenas do avesso, sem contato direto com a estampa.\n• Não lave a seco.\n\n🔄 Política de Troca\nRealizamos trocas em até 2 dias úteis após o recebimento do pedido, desde que a peça esteja sem sinais de uso, com a etiqueta original.",
+    tamanhos:    ["M", "G", "GG"],
     cores: [
       { nome: "Branco", hex: "#f5f5f0", fotos: ["img/leaoB.jpg"] },
       { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/leaoP.jpg"] },
       // PLACEHOLDER — troque pela foto real desta cor quando tiver
-      
     ],
     destaque: false,
     novidade: false,
@@ -1666,13 +1796,12 @@ const PRODUTOS = [
     preco:       70.00,
     precoAntigo: null,
     badge:       "Gola POLO",
-    descricao:   "🧼 Cuidados com sua Camisa AST Para garantir a durabilidade da sua peça , recomendamos os seguintes cuidados:*.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.*.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
-    tamanhos:    [, "M", "G","GG"],
+    descricao:   "Camisa gola polo AST, corte tradicional, 100% algodão.\n\n🧼 Cuidados com sua Camisa AST\nPara garantir a durabilidade da sua peça, recomendamos os seguintes cuidados:\n• Utilize água fria ou em temperatura ambiente.\n• Não utilize alvejantes ou produtos com cloro.\n• Evite deixar a peça de molho por longos períodos.\n• Não lave a seco.\n\n🔄 Política de Troca\nRealizamos trocas em até 2 dias úteis após o recebimento do pedido, desde que a peça esteja sem sinais de uso, com a etiqueta original.",
+    tamanhos:    ["M", "G", "GG"],
     cores: [
       { nome: "Branco", hex: "#f5f5f0", fotos: ["img/poloB2.png"] },
       { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/poloB1.png"] },
       // PLACEHOLDER — troque pela foto real desta cor quando tiver
-      
     ],
     destaque: false,
     novidade: false,
@@ -1687,12 +1816,11 @@ const PRODUTOS = [
     precoAntigo: null,
     badge:       "Gola POLO",
     descricao:   "Camiseta gola polo 50% algodão e 50% poliester , corte tradicional. Escolha a cor e o tamanho e envie sua estampa pelo WhatsApp após o pedido — aplicamos em papel de transfer de alta qualidade. ⚠️ A estampa é feita no mesmo dia: espere 24h para lavar a peça, assim a tinta seca totalmente e a arte se preserva.",
-    tamanhos:    [, "M", "G","GG"],
+    tamanhos:    ["M", "G", "GG"],
     cores: [
       { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/poloP.png"] },
       { nome: "Branco", hex: "#f5f5f0", fotos: ["img/poloB.png"] },
       // PLACEHOLDER — troque pela foto real desta cor quando tiver
-      
     ],
     destaque: false,
     novidade: false,
@@ -1706,8 +1834,8 @@ const PRODUTOS = [
     preco:       65.00,
     precoAntigo: null,
     badge:       "Exclusivo",
-    descricao:   "Camiseta oversized unissex 100% algodão estampa exclusiva da AST. estampa é uma cruz pequena no peito'.🧼 Cuidados com sua Camisa AST Para garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
-    tamanhos:    [, "M", "G","GG"],
+    descricao:   "Camiseta oversized unissex 100% algodão estampa exclusiva da AST. estampa é uma cruz pequena no peito.\n\n🧼 Cuidados com sua Camisa AST\nPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:\n• Lave a camisa do avesso.\n• Utilize água fria ou em temperatura ambiente.\n• Não utilize alvejantes ou produtos com cloro.\n• Evite deixar a peça de molho por longos períodos.\n• Seque à sombra e evite secadora.\n• Passe a ferro apenas do avesso, sem contato direto com a estampa.\n• Não lave a seco.\n\n🔄 Política de Troca\nRealizamos trocas em até 2 dias úteis após o recebimento do pedido, desde que a peça esteja sem sinais de uso, com a etiqueta original.",
+    tamanhos:    ["M", "G", "GG"],
     cores: [
       { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/CruzP.png"] },
       { nome: "Branco", hex: "#f5f5f0", fotos: ["img/cruzB.png"] },
@@ -1726,8 +1854,8 @@ const PRODUTOS = [
     preco:       65.00,
     precoAntigo: null,
     badge:       "Exclusivo",
-    descricao:   "Camiseta oversized unissex 100% algodão estampa única e exclusiva da AST. estampa do jogador colombiano Juan Cuadrado'.🧼 Cuidados com sua Camisa AST Para garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
-    tamanhos:    [, "M", "G","GG"],
+    descricao:   "Camiseta oversized unissex 100% algodão estampa única e exclusiva da AST. estampa do jogador colombiano Juan Cuadrado.\n\n🧼 Cuidados com sua Camisa AST\nPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:\n• Lave a camisa do avesso.\n• Utilize água fria ou em temperatura ambiente.\n• Não utilize alvejantes ou produtos com cloro.\n• Evite deixar a peça de molho por longos períodos.\n• Seque à sombra e evite secadora.\n• Passe a ferro apenas do avesso, sem contato direto com a estampa.\n• Não lave a seco.\n\n🔄 Política de Troca\nRealizamos trocas em até 2 dias úteis após o recebimento do pedido, desde que a peça esteja sem sinais de uso, com a etiqueta original.",
+    tamanhos:    ["M", "G", "GG"],
     cores: [
       { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/cuadradoP.png"] },
       { nome: "Branco", hex: "#f5f5f0", fotos: ["img/CuadradoB.png"] },
@@ -1745,8 +1873,8 @@ const PRODUTOS = [
     preco:       65.00,
     precoAntigo: null,
     badge:       "Exclusivo",
-    descricao:   "Camiseta oversized unissex 100% algodão estampa única e exclusiva da AST.🧼 Cuidados com sua Camisa AST Para garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
-    tamanhos:    [, "M", "G","GG"],
+    descricao:   "Camiseta oversized unissex 100% algodão estampa única e exclusiva da AST.\n\n🧼 Cuidados com sua Camisa AST\nPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:\n• Lave a camisa do avesso.\n• Utilize água fria ou em temperatura ambiente.\n• Não utilize alvejantes ou produtos com cloro.\n• Evite deixar a peça de molho por longos períodos.\n• Seque à sombra e evite secadora.\n• Passe a ferro apenas do avesso, sem contato direto com a estampa.\n• Não lave a seco.\n\n🔄 Política de Troca\nRealizamos trocas em até 2 dias úteis após o recebimento do pedido, desde que a peça esteja sem sinais de uso, com a etiqueta original.",
+    tamanhos:    ["M", "G", "GG"],
     cores: [
       { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/astP.png"] },
       { nome: "Branco", hex: "#f5f5f0", fotos: ["img/astB.png"] },
@@ -1760,12 +1888,12 @@ const PRODUTOS = [
     id: 14,
     nome:        "Camiseta Oversized Lisa sem estampa",
     marca:       "AST INDUSTRIES",
-    categoria:   "Oversized",
+    categoria:   "oversized",
     preco:       60.00,
     precoAntigo: null,
-    badge:       "Personalizado",
-    descricao:   "🧼 Cuidados com sua Camisa AST Para garantir a durabilidade da sua peça e manter sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
-    tamanhos:    [, "M", "G","GG"],
+    badge:       "Básica",
+    descricao:   "Camiseta oversized lisa, sem estampa, ideal para o dia a dia ou para você aplicar sua própria estampa depois.\n\n🧼 Cuidados com sua Camisa AST\nPara garantir a durabilidade da sua peça, recomendamos os seguintes cuidados:\n• Lave a camisa do avesso.\n• Utilize água fria ou em temperatura ambiente.\n• Não utilize alvejantes ou produtos com cloro.\n• Evite deixar a peça de molho por longos períodos.\n• Seque à sombra e evite secadora.\n• Não lave a seco.\n\n🔄 Política de Troca\nRealizamos trocas em até 2 dias úteis após o recebimento do pedido, desde que a peça esteja sem sinais de uso, com a etiqueta original.",
+    tamanhos:    ["M", "G", "GG"],
     cores: [
       { nome: "Branco", hex: "#f5f5f0", fotos: ["img/lisaB.png"] },
       { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/lisaP.png"] },
@@ -1785,8 +1913,8 @@ const PRODUTOS = [
     preco:       65.00,
     precoAntigo: null,
     badge:       "Exclusivo",
-    descricao:   "Camiseta oversized unissex com estampa cristã na parte de traz 'Jesus Rei.João 3:16'.🧼 Cuidados com sua Camisa AST Para garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:* Lave a camisa do avesso.* Utilize água fria ou em temperatura ambiente.* Não utilize alvejantes ou produtos com cloro.* Evite deixar a peça de molho por longos períodos.* Seque à sombra e evite secadora.* Passe a ferro apenas do avesso, sem contato direto com a estampa.* Não lave a seco.Seguindo essas recomendações, sua camisa manterá a qualidade da estampa e do tecido por muito mais tempo.### 🔄 Política de TrocaNa **AST**, prezamos pela sua satisfação.Realizamos trocas em até **2 dias úteis após o recebimento do pedido**, desde que:* A peça esteja sem sinais de uso, lavagem ou alterações.* A etiqueta original permaneça afixada.* O produto seja devolvido nas mesmas condições em que foi entregue.**Importante:** Não realizamos trocas de produtos personalizados por erro de escolha de tamanho, cor ou estampa. Caso o produto apresente defeito de fabricação, entre em contato conosco para que possamos resolver o problema da melhor forma possível.Agradecemos por escolher a **AST**. É um prazer vestir o seu estilo!",
-    tamanhos:    [, "M", "G","GG"],
+    descricao:   "Camiseta oversized unissex com estampa cristã na parte de traz 'Jesus Rei. João 3:16'.\n\n🧼 Cuidados com sua Camisa AST\nPara garantir a durabilidade da sua peça e manter a estampa sempre bonita, recomendamos os seguintes cuidados:\n• Lave a camisa do avesso.\n• Utilize água fria ou em temperatura ambiente.\n• Não utilize alvejantes ou produtos com cloro.\n• Evite deixar a peça de molho por longos períodos.\n• Seque à sombra e evite secadora.\n• Passe a ferro apenas do avesso, sem contato direto com a estampa.\n• Não lave a seco.\n\n🔄 Política de Troca\nRealizamos trocas em até 2 dias úteis após o recebimento do pedido, desde que a peça esteja sem sinais de uso, com a etiqueta original.",
+    tamanhos:    ["M", "G", "GG"],
     cores: [
       { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/kingP.png"] },
       { nome: "Branco", hex: "#f5f5f0", fotos: ["img/kingB.png"] },
@@ -1805,28 +1933,82 @@ const PRODUTOS = [
     preco:       30.00,
     precoAntigo: 60.00,
     badge:       "PROMOÇÃO",
-    descricao:   "Desenvolvida para oferecer conforto, leveza e alto desempenho, nossa camisa Dry Fit 100% Poliéster é ideal para o dia a dia, atividades físicas, eventos e personalizações. Seu tecido tecnológico auxilia na evaporação do suor, proporcionando uma sensação de frescor e secagem rápida.Características:✔️ Tecido Dry Fit 100% Poliéster ✔️ Leve e confortável ✔️ Secagem rápida ✔️ Excelente respirabilidade ✔️ Toque macio ✔️ Ideal para uso esportivo e casual ✔️ Ótima qualidade para estampas Cuidados com a peça Para manter sua camisa sempre bonita e aumentar sua durabilidade:Lave do avesso.Utilize água fria ou em temperatura ambiente.Não utilize alvejantes ou produtos com cloro.Seque à sombra.Evite secadora.Passe a ferro do avesso e em temperatura baixa, sem contato direto com a estampa.Não lave a seco.Política de Troca: Na AST, sua satisfação é nossa prioridade.Realizamos trocas em até 2 dias úteis após o recebimento do pedido, desde que:A peça esteja sem sinais de uso ou lavagem.Possua a etiqueta original.Seja devolvida nas mesmas condições em que foi entregue.Importante: Produtos personalizados não possuem troca por escolha incorreta de tamanho, cor ou estampa. Caso seja constatado defeito de fabricação, entre em contato conosco para que possamos solucionar o problema da melhor forma possível.AST — Vista sua identidade.",
-    tamanhos:    [,"GG"],
+    descricao:   "Desenvolvida para oferecer conforto, leveza e alto desempenho, nossa camisa Dry Fit 100% Poliéster é ideal para o dia a dia, atividades físicas, eventos e personalizações. Seu tecido tecnológico auxilia na evaporação do suor, proporcionando uma sensação de frescor e secagem rápida.\n\nCaracterísticas:\n✔️ Tecido Dry Fit 100% Poliéster\n✔️ Leve e confortável\n✔️ Secagem rápida\n✔️ Excelente respirabilidade\n✔️ Toque macio\n✔️ Ideal para uso esportivo e casual\n✔️ Ótima qualidade para estampas\n\n🧼 Cuidados com a peça\nLave do avesso. Utilize água fria ou em temperatura ambiente. Não utilize alvejantes ou produtos com cloro. Seque à sombra, evite secadora. Passe a ferro do avesso e em temperatura baixa, sem contato direto com a estampa. Não lave a seco.\n\n🔄 Política de Troca\nRealizamos trocas em até 2 dias úteis após o recebimento do pedido, desde que a peça esteja sem sinais de uso, com a etiqueta original.",
+    tamanhos:    ["GG"],
     cores: [
       { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/dryP.png"] },
       { nome: "Branco", hex: "#f5f5f0", fotos: ["img/dryB.png"] },
       // PLACEHOLDER — troque pela foto real desta cor quando tiver
       { nome: "Vinho", hex: "#800020", fotos: ["img/dryV.png"] },
       { nome: "Cinza",    hex: "#71717a", fotos: ["img/dryC.png"] },
-       { nome: "Azul Escuro",    hex: "#001f3f", fotos: ["img/dryA.png"] },
-   
+      { nome: "Azul Escuro",    hex: "#001f3f", fotos: ["img/dryA.png"] },
     ],
     destaque: true,
     novidade: true,
     active:   true,
   },
-  
+
 
   // ════════════════════════════════════════════════════════════
   //  ► ADICIONE NOVOS PRODUTOS AQUI ↓
   //  Copie um bloco acima, cole aqui e mude os dados.
   //  Não esqueça: id único, vírgula no final do bloco!
   // ════════════════════════════════════════════════════════════
+
+];
+
+// ═══════════════════════════════════════════════════════════════
+//  3. ESTAMPAS DISPONÍVEIS
+//  Galeria de estampas prontas que os clientes podem escolher
+//  para os produtos "Personalizado". Aparece na página
+//  "Estampas Disponíveis" (menu e rodapé).
+//
+//  ► Como ADICIONAR uma estampa:
+//    1. Copie um bloco { ... } abaixo
+//    2. Cole ANTES do ]; no final, mude id/nome/imagem
+//
+//  CAMPOS:
+//  id      → Número único
+//  nome    → Nome/descrição curta da estampa
+//  imagem  → Caminho da foto da estampa (ex: "img/estampa-01.png")
+// ═══════════════════════════════════════════════════════════════
+const ESTAMPAS = [
+  { id: 1,  nome: "1", imagem: "est/contanos.jpg" },
+  { id: 2,  nome: "Cruz Gótica",     imagem: "est/coração.jpg" },
+  { id: 3,  nome: "Dragão Oriental", imagem: "est/cruz.jpg" },
+  { id: 4,  nome: "Cruz Gótica",     imagem: "est/cuadrado.jpg" },
+  { id: 5,  nome: "Dragão Oriental", imagem: "est/eismeaq.jpg" },
+  { id: 6,  nome: "Cruz Gótica",     imagem: "est/fenix.jpg" },
+  { id: 7,  nome: "Dragão Oriental", imagem: "est/flor.jpg" },
+  { id: 8,  nome: "Cruz Gótica",     imagem: "est/gengar.jpg" },
+  { id: 9,  nome: "Dragão Oriental", imagem: "est/contanos.jpg" },
+  { id: 10, nome: "Cruz Gótica",     imagem: "est/coração.jpg" },
+  { id: 11, nome: "Dragão Oriental", imagem: "est/image.jpg" },
+  { id: 12, nome: "Cruz Gótica",     imagem: "est/jesus.jpg" },
+  { id: 13, nome: "Dragão Oriental", imagem: "est/jesusCVV.jpg" },
+  { id: 14, nome: "Cruz Gótica",     imagem: "est/king.jpg" },
+  { id: 15, nome: "Dragão Oriental", imagem: "est/leao.jpg" },
+  { id: 16, nome: "Cruz Gótica",     imagem: "est/mão.jpg" },
+
+  // ════════════════════════════════════════════════════════════
+  //  ► PLACEHOLDERS — troque "nome" e "imagem" pelas suas estampas
+  //  reais quando tiver. Cada uma precisa de uma foto em est/...
+  // ════════════════════════════════════════════════════════════
+  { id: 17, nome: "Estampa 17", imagem: "est/image (19).jpg" },
+  { id: 18, nome: "Estampa 18", imagem: "est/image (20).jpg" },
+  { id: 19, nome: "Estampa 19", imagem: "est/osceus.jpg" },
+  { id: 20, nome: "Estampa 20", imagem: "est/image (21).jpg" },
+  { id: 21, nome: "Estampa 21", imagem: "est/image (22).jpg" },
+  { id: 22, nome: "Estampa 22", imagem: "est/image (23).jpg" },
+  { id: 23, nome: "Estampa 23", imagem: "est/image (24).jpg" },
+  { id: 24, nome: "Estampa 24", imagem: "est/image (25).jpg" },
+  { id: 25, nome: "Estampa 25", imagem: "est/image (28).jpg" },
+  { id: 26, nome: "Estampa 26", imagem: "est/tatu.jpg" },
+  { id: 27, nome: "Estampa 27", imagem: "est/thorffin.jpg" },
+  { id: 29, nome: "Estampa 29", imagem: "est/image (30).jpg" },
+  { id: 30, nome: "Estampa 30", imagem: "est/image (31).jpg" },
+  { id: 31, nome: "Estampa 31", imagem: "est/image (32).jpg" },
+  { id: 32, nome: "Estampa 33", imagem: "est/tigre e dragão.jpg" },
 
 ];
 
@@ -1869,6 +2051,8 @@ document.addEventListener('DOMContentLoaded', () => {
   aplicarConfig();
   renderProdutos();
   renderDestaque();
+  renderEstampas();
+  renderTabelaPrecos();
   atualizarBadges();
   initScrollReveal();
 
@@ -1969,7 +2153,7 @@ function aplicarConfig() {
   if (bannerEl) bannerEl.innerHTML = c.bannerTitulo.split('|').join('<br/>');
 
   // Links WhatsApp
-  [['linkWpp', wpp], ['footerWpp', wpp], ['sobreWpp', wpp], ['termosWpp', wpp], ['wppFlutuante', wpp]].forEach(([id, url]) => setHref(id, url));
+  [['linkWpp', wpp], ['footerWpp', wpp], ['sobreWpp', wpp], ['termosWpp', wpp], ['wppFlutuante', wpp], ['navWpp', wpp]].forEach(([id, url]) => setHref(id, url));
   setHref('linkInsta',   c.instagram || '#');
   setHref('linkTiktok',  c.tiktok    || '#');
   setHref('footerInsta', c.instagram || '#');
@@ -2057,6 +2241,60 @@ function renderDestaque() {
   }
   grid.innerHTML = lista.map(p => cardHTML(p)).join('');
   animarCards();
+}
+
+// ── Estampas disponíveis ────────────────────────────────────
+function renderEstampas() {
+  const grid = document.getElementById('gridEstampas');
+  if (!grid) return;
+
+  if (!ESTAMPAS.length) {
+    grid.innerHTML = `
+      <div class="estampas-vazio">
+        <i class="fas fa-images"></i>
+        <p>Em breve vamos publicar aqui as estampas prontas.<br/>Fale com a gente no WhatsApp pra ver as opções disponíveis agora!</p>
+        <a class="btn-wpp" id="estampasWppVazio" href="#" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+        </a>
+      </div>`;
+    setHref('estampasWppVazio', `https://wa.me/${CONFIG.whatsapp}`);
+    return;
+  }
+
+  grid.innerHTML = ESTAMPAS.map(e => `
+    <div class="estampa-card">
+      <div class="estampa-foto"><img src="${e.imagem}" alt="${e.nome}" loading="lazy"/></div>
+      <div class="estampa-info">
+        <h4>${e.nome}</h4>
+        <a class="btn-wpp" href="https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(`Olá! Quero uma camiseta personalizada com a estampa "${e.nome}" 🎨`)}" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i> Pedir essa estampa
+        </a>
+      </div>
+    </div>`).join('');
+}
+
+// ── Tabela de preços ─────────────────────────────────────────
+function renderTabelaPrecos() {
+  const wrap = document.getElementById('tabelaPrecosWrap');
+  if (!wrap) return;
+
+  const aviso = CONFIG.tabelaPrecosAviso
+    ? `<div class="tabela-precos-aviso"><i class="fas fa-triangle-exclamation"></i> ${CONFIG.tabelaPrecosAviso}</div>`
+    : '';
+
+  if (CONFIG.tabelaPrecosImagem) {
+    wrap.innerHTML = `<img src="${CONFIG.tabelaPrecosImagem}" alt="Tabela de preços"/>${aviso}`;
+  } else {
+    wrap.innerHTML = `
+      <div class="tabela-precos-vazio">
+        <i class="fas fa-tags"></i>
+        <p>A tabela de preços ainda não foi adicionada.<br/>Enquanto isso, fale com a gente no WhatsApp!</p>
+        <a class="btn-wpp" id="precosWppVazio" href="#" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+        </a>
+      </div>${aviso}`;
+    setHref('precosWppVazio', `https://wa.me/${CONFIG.whatsapp}`);
+  }
 }
 
 function cardHTML(p) {
@@ -2223,6 +2461,15 @@ function toggleBusca() {
 function fecharBuscaMobile() {
   buscaMobileAberta = false;
   document.getElementById('buscaMobile').classList.remove('aberta');
+}
+
+// Botão "Buscar" da barra inferior mobile: rola para o topo e abre a busca
+function tabbarBuscar() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(() => {
+    if (!buscaMobileAberta) toggleBusca();
+    else document.getElementById('buscaMobileInput')?.focus();
+  }, 320);
 }
 
 // ── Modal Produto ─────────────────────────────────────────────
@@ -2456,6 +2703,11 @@ function atualizarBadges() {
   const bf = document.getElementById('badgeFav');
   bf.textContent = favoritos.length;
   bf.style.display = favoritos.length > 0 ? 'flex' : 'none';
+
+  const bcTab = document.getElementById('badgeCartTab');
+  if (bcTab) { bcTab.textContent = qtd; bcTab.style.display = qtd > 0 ? 'flex' : 'none'; }
+  const bfTab = document.getElementById('badgeFavTab');
+  if (bfTab) { bfTab.textContent = favoritos.length; bfTab.style.display = favoritos.length > 0 ? 'flex' : 'none'; }
 }
 
 // ── Checkout ──────────────────────────────────────────────────
@@ -2554,6 +2806,7 @@ function abrirPagina(id) {
   el.style.display = 'flex';
   setTimeout(() => el.classList.add('aberta'), 10);
   el.scrollTop = 0;
+  fecharMenu();
   atualizarScrollLock();
 }
 
@@ -2597,6 +2850,7 @@ function toggleMenu() {
   const nav = document.getElementById('navMenu');
   const aberto = !nav.classList.contains('aberto');
   nav.classList.toggle('aberto', aberto);
+  document.getElementById('navBackdrop')?.classList.toggle('aberto', aberto);
   document.getElementById('hamburger').setAttribute('aria-expanded', String(aberto));
   const icone = document.querySelector('#hamburger i');
   if (icone) icone.className = aberto ? 'fas fa-times' : 'fas fa-bars';
@@ -2605,6 +2859,7 @@ function toggleMenu() {
 }
 function fecharMenu() {
   document.getElementById('navMenu').classList.remove('aberto');
+  document.getElementById('navBackdrop')?.classList.remove('aberto');
   document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
   const icone = document.querySelector('#hamburger i');
   if (icone) icone.className = 'fas fa-bars';
