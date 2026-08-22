@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ACRE STREETWEAR</title>
+  <title>ACRE STREETWEAR CUSTOM</title>
   <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Oswald:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
@@ -587,12 +587,13 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible {
 .pix-row input { flex:1; background:var(--esc3); border:1px solid rgba(255,255,255,.08); color:var(--cinza); padding:.5rem .75rem; border-radius:var(--r); font-size:.76rem; outline:none }
 
 /* Tabs pagamento */
-.pagto-tabs { display:flex; gap:.5rem; margin-bottom:1.2rem }
+.pagto-tabs { display:flex; gap:.5rem; margin-bottom:1.2rem; flex-wrap:wrap }
 .pagto-tab {
   flex:1; display:flex; align-items:center; justify-content:center; gap:.45rem;
   padding:.65rem; border-radius:var(--r); font-size:.85rem; font-weight:600;
   border:1.5px solid var(--esc4); color:var(--cinza);
   transition:all var(--t); cursor:pointer;
+  min-width:100px;
 }
 .pagto-tab:hover { border-color:var(--neon); color:var(--branco) }
 .pagto-tab.ativo { border-color:var(--primaria); background:rgba(21,128,61,.14); color:var(--branco) }
@@ -835,6 +836,8 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible {
   .modal-overlay { align-items:flex-end; padding:0 }
   .pagina-wrap { padding:1.2rem 1rem }
   .estampas-grid { grid-template-columns:1fr 1fr; gap:.7rem }
+  .pagto-tabs { flex-wrap:wrap }
+  .pagto-tab { min-width:calc(50% - .25rem) }
 }
 
 @keyframes slideDown {
@@ -968,9 +971,9 @@ body::after {
     <!-- LOGO -->
     <a href="#" class="logo-link" onclick="irInicio(); return false;" id="logoWrap">
       <!-- Se logoUrl estiver preenchido, mostra a imagem -->
-      <img id="logoImg" src="" alt="ACRE STREETWEAR" class="logo-img" style="display:none"/>
+      <img id="logoImg" src="" alt="AST CUSTOM" class="logo-img" style="display:none"/>
       <!-- Senão mostra o texto -->
-      <span class="logo-texto" id="logoTexto">ACRE<span>STREETWEAR</span></span>
+      <span class="logo-texto" id="logoTexto">AST<span>CUSTOM</span></span>
     </a>
 
     <!-- NAV LINKS -->
@@ -1029,7 +1032,7 @@ body::after {
   <div class="hero-deco" aria-hidden="true">
     <div class="circulo c1"></div>
     <div class="circulo c2"></div>
-    <div class="deco-label"><span>AST</span><span>INDUSTRIES</span></div>
+    <div class="deco-label"><span>AST</span><span>CUSTOM</span></div>
   </div>
 </section>
 
@@ -1155,13 +1158,13 @@ body::after {
   <div class="container footer-grid">
     <div class="footer-marca">
       <a href="#" onclick="irInicio(); return false;" class="logo-link footer-logo">
-        <img id="footerLogoImg" src="" alt="ACRE STREETWEAR" class="logo-img" style="display:none"/>
-        <span class="logo-texto" id="footerLogoTexto">ACRE<span>STREETWEAR</span></span>
+        <img id="footerLogoImg" src="" alt="AST CUSTOM" class="logo-img" style="display:none"/>
+        <span class="logo-texto" id="footerLogoTexto">AST<span>CUSTOM</span></span>
       </a>
       <p class="footer-desc" id="elFooterDesc"></p>
       <p class="footer-local"><i class="fas fa-map-marker-alt"></i> Rio Branco — Acre (AC)</p>
       <div class="redes">
-        <a id="linkInsta" href="#https://www.instagram.com/ast_industries?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+        <a id="linkInsta" href="https://www.instagram.com/ast_custom?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
         <a id="linkTiktok" href="#" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
         <a id="linkWpp" href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       </div>
@@ -1196,7 +1199,7 @@ body::after {
       <a class="footer-wpp" id="footerInsta" href="#" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-instagram"></i> Instagram
       </a>
-      <p class="footer-pag">Aceitamos PIX e Cartão</p>
+      <p class="footer-pag">Aceitamos PIX, Cartão e Dinheiro</p>
     </div>
   </div>
 
@@ -1348,6 +1351,9 @@ body::after {
             <button class="pagto-tab" id="tabCartao" onclick="selecionarPagto('cartao')">
               <i class="fas fa-credit-card"></i> Cartão
             </button>
+            <button class="pagto-tab" id="tabDinheiro" onclick="selecionarPagto('dinheiro')">
+              <i class="fas fa-money-bill-wave"></i> Dinheiro
+            </button>
           </div>
 
           <!-- PIX -->
@@ -1376,6 +1382,23 @@ body::after {
               <div class="pix-passo"><span>1</span> Clique em "Fazer Pedido" para enviar seu pedido pelo WhatsApp</div>
               <div class="pix-passo"><span>2</span> Aguarde a confirmação da loja</div>
               <div class="pix-passo"><span>3</span> Pague na maquininha no momento da entrega</div>
+            </div>
+          </div>
+
+          <!-- DINHEIRO -->
+          <div id="painelDinheiro" class="pagto-painel">
+            <div class="cartao-aviso">
+              <i class="fas fa-info-circle" style="margin-top:.15rem;flex-shrink:0"></i>
+              <span>O pagamento em dinheiro físico é feito direto com o entregador, no momento da entrega. Se precisar de troco, avise no pedido.</span>
+            </div>
+            <div class="pix-passos">
+              <div class="pix-passo"><span>1</span> Clique em "Fazer Pedido" para enviar seu pedido pelo WhatsApp</div>
+              <div class="pix-passo"><span>2</span> Aguarde a confirmação da loja</div>
+              <div class="pix-passo"><span>3</span> Pague em dinheiro ao entregador na hora da entrega</div>
+            </div>
+            <div class="fg" style="margin-top:1rem">
+              <label>Precisa de troco para quanto? (opcional)</label>
+              <input type="text" id="ckTroco" placeholder="Ex: 100,00"/>
             </div>
           </div>
 
@@ -1420,13 +1443,13 @@ body::after {
     </button>
     <div class="pagina-hero">
       <p class="eyebrow">Nossa História</p>
-      <h1 class="pagina-titulo-grande">SOBRE A<br/><em>AST INDUSTRIES</em></h1>
+      <h1 class="pagina-titulo-grande">SOBRE A<br/><em>AST CUSTOM</em></h1>
     </div>
     <div class="sobre-conteudo">
       <div class="sobre-grid">
         <div class="sobre-texto">
           <h2>Quem somos</h2>
-          <p>A <strong>AST INDUSTRIES (ACRE STREETWEAR INDUSTRIES)</strong> nasceu em Rio Branco, Acre, com uma missão simples: oferecer moda de qualidade com estilo próprio e preço justo para quem vive aqui no Acre.</p>
+          <p>A <strong>AST CUSTOM (ACRE STREETWEAR CUSTOM)</strong> nasceu em Rio Branco, Acre, com uma missão simples: oferecer moda de qualidade com estilo próprio e preço justo para quem vive aqui no Acre.</p>
           <p>Acreditamos que roupa não é só tecido — é expressão, identidade, atitude. Cada peça que criamos passa por um cuidado especial para que você use algo que realmente representa quem você é.</p>
 
           <h2>Nossos valores</h2>
@@ -1442,7 +1465,7 @@ body::after {
           <div class="stat reveal"><strong>2026</strong><span>Fundada</span></div>
           <div class="stat reveal"><strong>100%</strong><span>Qualidade</span></div>
           <div class="stat reveal"><strong>RBAC</strong><span>Rio Branco — AC</span></div>
-          <div class="stat reveal"><strong>PIX & CARTÃO</strong><span>Simples e seguro</span></div>
+          <div class="stat reveal"><strong>PIX, CARTÃO & DINHEIRO</strong><span>Simples e seguro</span></div>
         </div>
       </div>
       <blockquote class="sobre-quote reveal">
@@ -1496,7 +1519,7 @@ body::after {
     <div class="pagina-hero">
       <p class="eyebrow">Documentos Legais</p>
       <h1 class="pagina-titulo-grande">TERMOS<br/><em>DE USO</em></h1>
-      <p class="termos-data">Última atualização: Janeiro de 2026</p>
+      <p class="termos-data">Última atualização: Agosto de 2026</p>
     </div>
     <div class="termos-conteudo">
       <div class="termo-bloco reveal">
@@ -1505,11 +1528,11 @@ body::after {
       </div>
       <div class="termo-bloco reveal">
         <h3><span>02</span> Como Funciona a Compra</h3>
-        <p>Selecione os produtos, informe o endereço, copie a chave PIX, faça o pagamento e clique em "Fazer Pedido". O resumo vai direto ao WhatsApp da loja. O pedido é confirmado após envio do comprovante. Se a compra for no cartão nosso entregador vai levar a maquininha ate você.</p>
+        <p>Selecione os produtos, informe o endereço, escolha a forma de pagamento e clique em "Fazer Pedido". O resumo vai direto ao WhatsApp da loja. Se for PIX, o pedido é confirmado após envio do comprovante. Se for no cartão, nosso entregador leva a maquininha até você. Se for em dinheiro, o pagamento é feito direto ao entregador na entrega.</p>
       </div>
       <div class="termo-bloco reveal">
         <h3><span>03</span> Formas de Pagamento</h3>
-        <p>Aceitamos <strong>PIX</strong> e <strong>Cartão</strong>. Não trabalhamos com boleto bancário.</p>
+        <p>Aceitamos <strong>PIX</strong>, <strong>Cartão</strong> e <strong>Dinheiro Físico</strong>. Não trabalhamos com boleto bancário.</p>
       </div>
       <div class="termo-bloco reveal">
         <h3><span>04</span> Entrega</h3>
@@ -1552,7 +1575,7 @@ body::after {
 <!-- ════ CONFIGURAÇÃO E PRODUTOS ═══════════════════════════════ -->
 <script>
 // ╔══════════════════════════════════════════════════════════════╗
-// ║           ACRE STREETWEAR — ARQUIVO DE CONFIGURAÇÃO               ║
+// ║           AST CUSTOM — ARQUIVO DE CONFIGURAÇÃO               ║
 // ║   Edite aqui para mudar produtos e textos da loja           ║
 // ╚══════════════════════════════════════════════════════════════╝
 
@@ -1566,12 +1589,12 @@ const CONFIG = {
   pixChave: "38c1d737-0ecd-4e46-9117-a788ef24b61f",  // Sua chave PIX
 
   // ── REDES SOCIAIS (deixe "#" para ocultar) ─────────────────
-  instagram: "https://www.instagram.com/ast_industries?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+  instagram: "https://www.instagram.com/ast_custom?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==",
   tiktok:    "#",
 
   // ── LOGO ───────────────────────────────────────────────────
   // Cole aqui a URL da imagem da sua logo
-  // Deixe "" para usar só o texto "ACRE STREETWEAR"
+  // Deixe "" para usar só o texto "AST CUSTOM"
   logoUrl: "boneco.png",
 
   // ── IMAGEM DE FUNDO DO HERO (banner principal) ──────────────
@@ -1591,18 +1614,18 @@ const CONFIG = {
   tabelaPrecosAviso: "⚠️ O preço para estampar sua camisa pode variar conforme a quantidade de estampas: 2 estampas = R$ 20, 3 estampas = R$ 30, 4 estampas = R$ 40, e assim por diante.",
 
   // ── TEXTOS ─────────────────────────────────────────────────
-  topBar: " STREETWEAR — RIO BRANCO AC / TROCA EM 2 DIAS / ENTREGA EM 24HRS",
+  topBar: " AST CUSTOM — RIO BRANCO AC / TROCA EM 2 DIAS / ENTREGA EM 24HRS",
 
-  heroEyebrow: " AST INDUSTRIES COLLECTION 2026",
+  heroEyebrow: " AST CUSTOM COLLECTION 2026",
   heroTitulo:  "AQUI|VOCÊ TEM |&STILO",   // | separa as 3 linhas. A do meio fica verde.
   heroSub:     "VISTA SUA ESSÊNCIA",
 
   bannerTitulo:    "MELHORES PREÇOS|DO ACRE",  // | quebra linha
-  bannerSubtitulo: " STREETWEAR EXCLUSIVO",
+  bannerSubtitulo: " AST CUSTOM EXCLUSIVO",
   bannerBotao:     "Ver Tudo",
 
   footerDescricao: "Street culture. Estilo próprio. Movimento real — Rio Branco, AC.",
-  copyright:       "© 2026 ACRE STREETWEAR INDUSTRIES. Todos os direitos reservados.",
+  copyright:       "© 2026 AST CUSTOM (ACRE STREETWEAR CUSTOM). Todos os direitos reservados.",
 
   // ── CORES ──────────────────────────────────────────────────
   corPrimaria: "#15803d",   // Cor dos botões — verde escuro
@@ -1624,7 +1647,7 @@ const CONFIG = {
 //  CAMPOS:
 //  id         → Número único (não repita!)
 //  nome       → Nome do produto
-//  marca      → "ACRE STREETWEAR" ou outra marca
+//  marca      → "AST CUSTOM" ou outra marca
 //  categoria  → "oversized" | "polos" | "dryfit" | "personalizado"
 //               (use "personalizado" para camisas com estampa personalizada
 //                em papel de transfer — oversized, básica ou polo)
@@ -1652,7 +1675,7 @@ const PRODUTOS = [
   {
     id: 1,
     nome:        "Camiseta Dragão Chinês",
-    marca:       "AST INDUSTRIES",
+    marca:       "AST CUSTOM",
     categoria:   "oversized",
     preco:       65.00,
     precoAntigo: null,
@@ -1671,7 +1694,7 @@ const PRODUTOS = [
   {
     id: 2,
     nome:        "Camiseta Dragão Chinês das nuvens",
-    marca:       "AST INDUSTRIES",
+    marca:       "AST CUSTOM",
     categoria:   "oversized",
     preco:       65.00,
     precoAntigo: null,
@@ -1690,7 +1713,7 @@ const PRODUTOS = [
   {
     id: 3,
     nome:        "Camiseta Oversized Gotica Cristã",
-    marca:       "AST INDUSTRIES",
+    marca:       "AST CUSTOM",
     categoria:   "oversized",
     preco:       65.00,
     precoAntigo: null,
@@ -1711,7 +1734,7 @@ const PRODUTOS = [
   {
     id: 4,
     nome:        "Camisa Oversized Cristã ",
-    marca:       "AST INDUSTRIES",
+    marca:       "AST CUSTOM",
     categoria:   "oversized",
     preco:       65.00,
     precoAntigo: null,
@@ -1731,7 +1754,7 @@ const PRODUTOS = [
   {
     id: 5,
     nome:        "Camisa oversized cristã de jesus",
-    marca:       "AST INDUSTRIES",
+    marca:       "AST CUSTOM",
     categoria:   "oversized",
     preco:       65.00,
     precoAntigo: null,
@@ -1774,7 +1797,7 @@ const PRODUTOS = [
   {
     id: 7,
     nome:        "Camiseta Personalizada Oversized",
-    marca:       "AST INDUSTRIES",
+    marca:       "AST CUSTOM",
     categoria:   "personalizado",
     preco:       70.00,
     precoAntigo: null,
@@ -1795,7 +1818,7 @@ const PRODUTOS = [
   {
     id: 8,
     nome:        "Camiseta oversized Cristã leão de juda",
-    marca:       "AST INDUSTRIES",
+    marca:       "AST CUSTOM",
     categoria:   "oversized",
     preco:       65.00,
     precoAntigo: null,
@@ -1813,7 +1836,7 @@ const PRODUTOS = [
    {
     id: 10,
     nome:        "Camiseta Gola Polo Masculina",
-    marca:       "AST INDUSTRIES",
+    marca:       "AST CUSTOM",
     categoria:   "polos",
     preco:       70.00,
     precoAntigo: null,
@@ -1831,7 +1854,7 @@ const PRODUTOS = [
    {
     id: 15,
     nome:        "Camiseta Personalizada Gola polo",
-    marca:       "AST INDUSTRIES",
+    marca:       "AST CUSTOM",
     categoria:   "personalizado",
     preco:       80.00,
     precoAntigo: null,
@@ -1868,7 +1891,7 @@ const PRODUTOS = [
   {
     id: 12,
     nome:        "Camisa Oversized futebolista de Juan Cuadrado",
-    marca:       "AST INDUSTRIES",
+    marca:       "AST CUSTOM",
     categoria:   "oversized",
     preco:       65.00,
     precoAntigo: null,
@@ -1877,7 +1900,6 @@ const PRODUTOS = [
     cores: [
       { nome: "Preto",  hex: "#1a1a1a", fotos: ["img/cuadradoP.png"], tamanhos: ["M", "G", "GG"] },
       { nome: "Branco", hex: "#f5f5f0", fotos: ["img/CuadradoB.png"], tamanhos: ["M", "G", ] },
-      // PLACEHOLDER — troque pela foto real desta cor quando tiver
     ],
     destaque: true,
     novidade: true,
@@ -1886,7 +1908,7 @@ const PRODUTOS = [
    {
     id: 13,
     nome:        "Camisa Oversized Streetwear",
-    marca:       "AST INDUSTRIES",
+    marca:       "AST CUSTOM",
     categoria:   "oversized",
     preco:       65.00,
     precoAntigo: null,
@@ -1904,7 +1926,7 @@ const PRODUTOS = [
   {
     id: 14,
     nome:        "Camiseta Oversized Lisa sem estampa",
-    marca:       "AST INDUSTRIES",
+    marca:       "AST CUSTOM",
     categoria:   "oversized",
     preco:       60.00,
     precoAntigo: null,
@@ -1964,18 +1986,15 @@ const PRODUTOS = [
 
 
   // ════════════════════════════════════════════════════════════
-  //  ► ADICIONE NOVOS PRODUTOS AQUI ↓
-  //  Copie um bloco acima, cole aqui e mude os dados.
-  //  Não esqueça: id único, vírgula no final do bloco!
+  //  
   // ════════════════════════════════════════════════════════════
 
 ];
 
 // ═══════════════════════════════════════════════════════════════
-//  3. ESTAMPAS DISPONÍVEIS
-//  Galeria de estampas prontas que os clientes podem escolher
-//  para os produtos "Personalizado". Aparece na página
-//  "Estampas Disponíveis" (menu e rodapé).
+// 
+//  
+
 //
 //  ► Como ADICIONAR uma estampa:
 //    1. Copie um bloco { ... } abaixo
@@ -2029,7 +2048,7 @@ const ESTAMPAS = [
 <!-- ════ LÓGICA DA LOJA ════════════════════════════════════════ -->
 <script>
 // ============================================================
-//  ACRE STREETWEAR — script.js  v7
+//  AST CUSTOM — script.js  v8
 //  Não precisa editar este arquivo.
 //  Para mudar produtos e textos, edite apenas o bloco acima.
 // ============================================================
@@ -2817,8 +2836,10 @@ function selecionarPagto(metodo) {
   metodoPagto = metodo;
   document.getElementById('tabPix').classList.toggle('ativo', metodo === 'pix');
   document.getElementById('tabCartao').classList.toggle('ativo', metodo === 'cartao');
+  document.getElementById('tabDinheiro').classList.toggle('ativo', metodo === 'dinheiro');
   document.getElementById('painelPix').classList.toggle('ativo', metodo === 'pix');
   document.getElementById('painelCartao').classList.toggle('ativo', metodo === 'cartao');
+  document.getElementById('painelDinheiro').classList.toggle('ativo', metodo === 'dinheiro');
 }
 
 function finalizarPedido() {
@@ -2831,7 +2852,7 @@ function finalizarPedido() {
   if (!bairro) { toast('⚠ Preencha o bairro');     focus('ckBairro'); return; }
   if (!end)    { toast('⚠ Preencha o endereço');   focus('ckEnd');    return; }
 
-  let msg = `Olá! Quero fazer um pedido na *ACRE STREETWEAR* 🛍️\n\n`;
+  let msg = `Olá! Quero fazer um pedido na *AST CUSTOM* 🛍️\n\n`;
   msg += `*👤 Nome:* ${nome}\n`;
   msg += `*📍 Endereço:* ${end}${compl ? `, ${compl}` : ''} — ${bairro}, Rio Branco/AC\n\n`;
   msg += `*🛒 Itens do Pedido:*\n${'─'.repeat(20)}\n`;
@@ -2844,8 +2865,12 @@ function finalizarPedido() {
 
   if (metodoPagto === 'pix') {
     msg += `*Pagamento:* PIX 💸\n_(Vou enviar o comprovante em seguida)_ ✅`;
-  } else {
+  } else if (metodoPagto === 'cartao') {
     msg += `*Pagamento:* Cartão 💳\n_(Vou pagar na maquininha na entrega)_ ✅`;
+  } else {
+    const troco = val('ckTroco');
+    msg += `*Pagamento:* Dinheiro Físico 💵\n_(Vou pagar em dinheiro direto ao entregador)_`;
+    if (troco) msg += `\n*Troco para:* R$ ${troco}`;
   }
 
   const temPersonalizado = carrinho.some(it => PRODUTOS.find(p => p.id === it.id)?.categoria === 'personalizado');
